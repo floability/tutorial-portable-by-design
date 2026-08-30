@@ -10,7 +10,7 @@ You should have received a credential card containing:
 - Your password.
 - Your assigned tutorial server.
 
-Continue to [**Connect to the tutorial server**](live-tutorial.md).
+Continue to [**Connect to the tutorial server**](live.md).
 
 The live environment is already prepared. You do **not** need to install Conda, TaskVine, Floability, or any other tutorial software.
 

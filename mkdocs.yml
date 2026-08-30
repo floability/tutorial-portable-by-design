@@ -1,0 +1,17 @@
+site_name: Portable by Design Tutorial
+site_description: Hands-on materials for portable, reproducible scientific workflows with TaskVine, Sciunit, and Floability.
+
+docs_dir: docs
+
+theme:
+  name: readthedocs
+
+nav:
+  - Home: index.md
+  - Access and Setup:
+      - Choose Your Setup: 01-access-and-setup/index.md
+      - Live Tutorial: 01-access-and-setup/live.md
+      - Self-Managed Setup: 01-access-and-setup/self-managed.md
+  - TaskVine: 02-taskvine/index.md
+  - Sciunit: 03-sciunit/index.md
+  - Floability: 04-floability/index.md

@@ -61,6 +61,7 @@ Now confirm that your tutorial workspace is writable:
 ```bash
 printf 'access works\n' > ~/tutorial/access-test.txt
 cat ~/tutorial/access-test.txt
+rm ~/tutorial/access-test.txt
 ```
 
 You should see:
@@ -71,7 +72,22 @@ access works
 
 Your home directory and tutorial workspace belong to your account. Always use the username and server assigned to you.
 
-## 2. Activate the tutorial tools
+## 2. Find the tutorial materials
+
+All tutorial instructions, scripts, and examples are already available in your workspace. Do not clone another copy of the repository on the live server.
+
+```bash
+cd ~/tutorial
+ls
+```
+
+You should see the main repository files and directories:
+
+```text
+README.md  docs  examples  mkdocs.yml  scripts
+```
+
+## 3. Activate the tutorial tools
 
 The tutorial software is installed in a shared, read-only environment.
 
@@ -94,7 +110,7 @@ echo "$CONDA_PREFIX"
 /opt/tutorial/
 ```
 
-## 3. Check TaskVine and Floability
+## 4. Check TaskVine and Floability
 
 Run:
 
@@ -134,4 +150,4 @@ ssh -L LOCAL_PORT:localhost:REMOTE_PORT USERNAME@SERVER
 
 The Windows version is expected to use the same options in PowerShell, but it remains unverified until tested on a Windows computer.
 
-Continue to [**Your First TaskVine Program**](../02-taskvine/README.md).
+Continue to [**Your First TaskVine Program**](../02-taskvine/index.md).
