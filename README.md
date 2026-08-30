@@ -1,5 +1,21 @@
 # Portable by Design Tutorial
 
-This repository contains the complete hands-on materials for *Portable by Design: Deploying Notebook-based Scientific Workflows across HPC Clusters*. It will bring together every tutorial step and the runnable examples for TaskVine, Sciunit, and Floability so that participants need to download only this repository to follow the tutorial.
+Hands-on materials for **Portable by Design: Deploying Notebook-based Scientific Workflows across HPC Clusters**.
 
-TaskVine and Sciunit examples will be included directly alongside their instructions. Floability examples will remain in the [Floability Hub](https://github.com/floability-hub); for each one, this repository will provide a README that explains the exercise and links to its canonical source, beginning with the [matrix multiplication example](https://github.com/floability-hub/matrix-multiplication).
+This tutorial introduces tools and techniques for building portable, reproducible scientific workflows using **TaskVine, Sciunit, and Floability**. The repository contains the instructions and runnable exercises needed to follow the tutorial.
+
+## Getting Started
+
+Start with **[Access and Setup](01-access-and-setup/README.md)**.
+
+You can follow the tutorial in either of two ways:
+
+* **Live tutorial participant** — connect to the prepared tutorial server using the credentials provided during the session.
+* **Self-managed setup** — create the tutorial environment on your own Linux computer or server.
+
+## Tutorial Materials
+
+* **Slides** — coming soon.
+* **TaskVine exercises** — coming soon.
+* **Sciunit exercises** — coming soon.
+* **Floability exercises** — coming soon.
