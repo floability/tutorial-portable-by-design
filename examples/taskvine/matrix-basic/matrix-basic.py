@@ -1,74 +1,71 @@
 #!/usr/bin/env python3
-"""Submit one command-only matrix multiplication task to TaskVine."""
+"""Multiply two hardcoded matrix pairs with TaskVine PythonTask."""
 
 import getpass
-import json
-import shlex
-import textwrap
+import os
 
 import ndcctools.taskvine as vine
 
 
-MATRIX_A = [[1, 2], [3, 4]]
-MATRIX_B = [[5, 6], [7, 8]]
-EXPECTED_RESULT = [[19, 22], [43, 50]]
+def multiply_matrix(matrix_a, matrix_b):
+    """Return the matrix product of matrix_a and matrix_b."""
+    import numpy as np
+
+    return np.matmul(matrix_a, matrix_b).tolist()
 
 
-# The manager coordinates tasks. Port 0 asks the operating system to choose an
-# available local port, which is useful when several tutorial users share a host.
-manager_name = f"matrix-basic-{getpass.getuser()}"
-manager = vine.Manager(port=0, name=manager_name)
+def main():
+    manager_name = f"taskvine-matrix-basic-{getpass.getuser()}-{os.getpid()}"
+    manager = vine.Manager(port=0, name=manager_name)
 
-print(f"Manager name: {manager_name}")
-print(f"Listening on port: {manager.port}")
-print("\nIn a second terminal, activate the same environment and run:")
-print(
-    "vine_worker --single-shot --cores=1 --memory=2048 --disk=2048 "
-    f"localhost {manager.port}"
-)
+    print(f"Manager name: {manager_name}")
+    print(f"Listening on port: {manager.port}")
+    print("\nIn a second terminal, activate this environment and run:")
+    print(
+        "vine_factory -T local --min-workers=1 --max-workers=2 "
+        f"--manager-name {manager_name}"
+    )
 
+    # Four hardcoded matrices make two independent multiplication tasks.
+    matrix_a = [[1, 2], [3, 4]]
+    matrix_b = [[5, 6], [7, 8]]
+    matrix_c = [[2, 0], [0, 2]]
+    matrix_d = [[3, 1], [4, 2]]
 
-# This first example declares no files. The two small matrices and the worker
-# program are encoded directly in the command, and the result returns on stdout.
-worker_program = textwrap.dedent(
-    f"""
-    import json
+    # A PythonTask runs a Python function with Python arguments on a worker.
+    task_ab = vine.PythonTask(multiply_matrix, matrix_a, matrix_b)
+    task_ab.set_tag("A x B")
+    task_ab.set_cores(1)
+    manager.submit(task_ab)
 
-    matrix_a = {MATRIX_A!r}
-    matrix_b = {MATRIX_B!r}
+    task_cd = vine.PythonTask(multiply_matrix, matrix_c, matrix_d)
+    task_cd.set_tag("C x D")
+    task_cd.set_cores(1)
+    manager.submit(task_cd)
 
-    result = [
-        [sum(a * b for a, b in zip(row, column)) for column in zip(*matrix_b)]
-        for row in matrix_a
-    ]
-    print(json.dumps(result))
-    """
-)
-command = f"python3 -c {shlex.quote(worker_program)}"
+    print("\nSubmitted two PythonTasks. Waiting for the factory worker...")
+    while not manager.empty():
+        completed = manager.wait(5)
+        if not completed:
+            continue
 
-task = vine.Task(command)
-task.set_cores(1)
-task_id = manager.submit(task)
+        if not completed.successful():
+            raise RuntimeError(
+                f"Task {completed.tag} failed with TaskVine result "
+                f"{completed.result}"
+            )
+        if isinstance(completed.output, Exception):
+            raise RuntimeError(
+                f"Task {completed.tag} raised {completed.output!r}"
+            )
 
-print(f"\nSubmitted task {task_id}: {MATRIX_A} x {MATRIX_B}")
-print("Waiting for the worker...")
-
-while not manager.empty():
-    completed = manager.wait(5)
-    if not completed:
-        continue
-    if not completed.successful():
-        raise RuntimeError(
-            f"Task {completed.id} failed with TaskVine result "
-            f"{completed.result}: {completed.output.strip()}"
+        print(
+            f"Completed {completed.tag} on {completed.addrport}: "
+            f"{completed.output}"
         )
 
-    result = json.loads(completed.output)
-    if result != EXPECTED_RESULT:
-        raise RuntimeError(
-            f"Task {completed.id} returned {result}; expected {EXPECTED_RESULT}"
-        )
-    print(f"Task {completed.id} completed on {completed.addrport}")
-    print(f"Result: {result}")
+    print("\nBasic PythonTask matrix multiplication complete.")
 
-print("\nBasic matrix multiplication complete.")
+
+if __name__ == "__main__":
+    main()

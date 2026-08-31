@@ -26,7 +26,8 @@ On an HPC system, the batch scheduler allocates worker processes to nodes. TaskV
 | Feature | Role in an application |
 | --- | --- |
 | Manager | Coordinates tasks, files, workers, and results. |
-| Command task | Describes an external command to execute in a worker sandbox. |
+| Command task | Uses `vine.Task` to describe a Unix command line executed in a worker sandbox. |
+| Python task | Uses `vine.PythonTask` to execute a Python function with Python arguments. |
 | Submission | Makes a task available for TaskVine to schedule. |
 | `wait` | Returns completed tasks to the application in dynamic completion order. |
 | File declarations | Describe inputs and outputs before tasks use them. |
@@ -39,12 +40,12 @@ Function Calls provide TaskVine's serverless-style execution model. A Function L
 
 ## Hands-on progression
 
-### 1. Basic matrix multiplication
+### 1. TaskVine quickstart
 
-Start with [**TaskVine Quickstart: Basic Matrix Multiplication**](quickstart.md). You will run one command task, observe its manager waiting for resources, connect one local worker, and retrieve the result through standard output.
+Start with the [**TaskVine Quickstart**](quickstart.md). You will use standard `vine.Task` objects to run Linux `grep` and `wc` commands, observe the manager waiting for resources, and connect one worker directly.
 
-### 2. Data-parallel matrix multiplication
+### 2. Matrix multiplication with PythonTask
 
-Continue with [**Data-Parallel Matrix Multiplication**](matrix-files.md). You will extend the same computation with CSV inputs, explicit output declarations, multiple independent tasks, file caching, task tags, and resource requirements.
+Continue with [**Matrix Multiplication with TaskVine**](matrix.md). You may run a hardcoded or file-based version. Both use PythonTask to execute a Python function, and both obtain a local worker through `vine_factory`. The file-based version adds explicit input and output declarations.
 
-Together, the exercises progress from one command and one result to a small data-parallel workflow without changing the underlying scientific operation.
+Together, the exercises distinguish Unix command tasks from Python function tasks before introducing Function Calls and reusable worker-side libraries.

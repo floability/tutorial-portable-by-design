@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Multiply several independent pairs of CSV matrices with TaskVine."""
+"""Multiply two pairs of declared CSV matrices with TaskVine PythonTask."""
 
 import getpass
+import os
 from pathlib import Path
 
 import ndcctools.taskvine as vine
@@ -11,89 +12,95 @@ EXAMPLE_DIR = Path(__file__).resolve().parent
 DATA_DIR = EXAMPLE_DIR / "data"
 OUTPUT_DIR = EXAMPLE_DIR / "outputs"
 
-MATRIX_PAIRS = [
-    ("square-2x2", "pair-01-a.csv", "pair-01-b.csv"),
-    ("rectangular", "pair-02-a.csv", "pair-02-b.csv"),
-    ("identity", "pair-03-a.csv", "pair-03-b.csv"),
-]
+
+def multiply_matrix_files(input_a, input_b, output):
+    """Read two CSV matrices, multiply them, and write the result as CSV.
+
+    This function is self-contained because PythonTask executes it on a worker.
+    """
+    import numpy as np
+
+    matrix_a = np.loadtxt(input_a, delimiter=",")
+    matrix_b = np.loadtxt(input_b, delimiter=",")
+    result = np.matmul(matrix_a, matrix_b)
+    np.savetxt(output, result, delimiter=",", fmt="%g")
+    return result.tolist()
 
 
-# Step 1: Create the manager and tell the participant how to start one worker.
-manager_name = f"matrix-files-{getpass.getuser()}"
-manager = vine.Manager(port=0, name=manager_name)
+def main():
+    manager_name = f"taskvine-matrix-files-{getpass.getuser()}-{os.getpid()}"
+    manager = vine.Manager(port=0, name=manager_name)
 
-print(f"Manager name: {manager_name}")
-print(f"Listening on port: {manager.port}")
-print("\nIn a second terminal, activate the same environment and run:")
-print(
-    "vine_worker --single-shot --cores=1 --memory=2048 --disk=2048 "
-    f"localhost {manager.port}"
-)
-
-
-# Step 2: Declare the program once. TaskVine can cache this common input and
-# reuse it for every multiplication task sent to a worker.
-multiply_program = manager.declare_file(
-    str(EXAMPLE_DIR / "multiply_csv.py"),
-    cache=True,
-)
-
-OUTPUT_DIR.mkdir(exist_ok=True)
-submitted = {}
-
-
-# Step 3: Turn each independent matrix pair into one task. Local filenames are
-# mapped to simple sandbox names that are identical for every task.
-for label, matrix_a_name, matrix_b_name in MATRIX_PAIRS:
-    matrix_a = manager.declare_file(str(DATA_DIR / matrix_a_name), cache=True)
-    matrix_b = manager.declare_file(str(DATA_DIR / matrix_b_name), cache=True)
-    output_path = OUTPUT_DIR / f"{label}.csv"
-    result_file = manager.declare_file(str(output_path))
-
-    task = vine.Task(
-        "python3 multiply_csv.py matrix-a.csv matrix-b.csv result.csv"
-    )
-    task.add_input(multiply_program, "multiply_csv.py")
-    task.add_input(matrix_a, "matrix-a.csv")
-    task.add_input(matrix_b, "matrix-b.csv")
-    task.add_output(result_file, "result.csv")
-    task.set_tag(label)
-    task.set_cores(1)
-    task.set_memory(256)
-    task.set_disk(256)
-
-    task_id = manager.submit(task)
-    submitted[task_id] = (label, output_path)
-
-print(f"\nSubmitted {len(submitted)} independent matrix tasks.")
-print("Waiting for the worker...")
-
-
-# Step 4: Collect tasks in completion order. Task IDs connect returned tasks to
-# the local output paths chosen when they were submitted.
-succeeded = 0
-while not manager.empty():
-    completed = manager.wait(5)
-    if not completed:
-        continue
-
-    label, output_path = submitted[completed.id]
-    if not completed.successful():
-        print(
-            f"FAILED {label}: TaskVine result={completed.result} "
-            f"output={completed.output.strip()!r}"
-        )
-        continue
-
-    succeeded += 1
+    print(f"Manager name: {manager_name}")
+    print(f"Listening on port: {manager.port}")
+    print("\nIn a second terminal, activate this environment and run:")
     print(
-        f"Completed {label!r} on {completed.addrport}: "
-        f"{output_path.relative_to(EXAMPLE_DIR)}"
+        "vine_factory -T local --min-workers=1 --max-workers=2 "
+        f"--manager-name {manager_name}"
     )
 
-if succeeded != len(submitted):
-    raise SystemExit(
-        f"Only {succeeded} of {len(submitted)} matrix tasks succeeded."
-    )
+    OUTPUT_DIR.mkdir(exist_ok=True)
 
-print(f"\nData-parallel matrix multiplication complete: {succeeded} tasks.")
+    # Declare four manager-side inputs and two manager-side outputs.
+    matrix_a = manager.declare_file(str(DATA_DIR / "matrix-a.csv"))
+    matrix_b = manager.declare_file(str(DATA_DIR / "matrix-b.csv"))
+    matrix_c = manager.declare_file(str(DATA_DIR / "matrix-c.csv"))
+    matrix_d = manager.declare_file(str(DATA_DIR / "matrix-d.csv"))
+    result_ab = manager.declare_file(str(OUTPUT_DIR / "result-ab.csv"))
+    result_cd = manager.declare_file(str(OUTPUT_DIR / "result-cd.csv"))
+
+    # The first PythonTask reads A and B from its private worker sandbox.
+    task_ab = vine.PythonTask(
+        multiply_matrix_files,
+        "matrix-a.csv",
+        "matrix-b.csv",
+        "result.csv",
+    )
+    task_ab.add_input(matrix_a, "matrix-a.csv")
+    task_ab.add_input(matrix_b, "matrix-b.csv")
+    task_ab.add_output(result_ab, "result.csv")
+    task_ab.set_tag("A x B")
+    task_ab.set_cores(1)
+    manager.submit(task_ab)
+
+    # The second PythonTask repeats the same operation for C and D.
+    task_cd = vine.PythonTask(
+        multiply_matrix_files,
+        "matrix-c.csv",
+        "matrix-d.csv",
+        "result.csv",
+    )
+    task_cd.add_input(matrix_c, "matrix-c.csv")
+    task_cd.add_input(matrix_d, "matrix-d.csv")
+    task_cd.add_output(result_cd, "result.csv")
+    task_cd.set_tag("C x D")
+    task_cd.set_cores(1)
+    manager.submit(task_cd)
+
+    print("\nSubmitted two file-based PythonTasks. Waiting for the factory worker...")
+    while not manager.empty():
+        completed = manager.wait(5)
+        if not completed:
+            continue
+
+        if not completed.successful():
+            raise RuntimeError(
+                f"Task {completed.tag} failed with TaskVine result "
+                f"{completed.result}"
+            )
+        if isinstance(completed.output, Exception):
+            raise RuntimeError(
+                f"Task {completed.tag} raised {completed.output!r}"
+            )
+
+        print(
+            f"Completed {completed.tag} on {completed.addrport}: "
+            f"{completed.output}"
+        )
+
+    print("\nFile-based PythonTask matrix multiplication complete.")
+    print("Outputs: outputs/result-ab.csv and outputs/result-cd.csv")
+
+
+if __name__ == "__main__":
+    main()

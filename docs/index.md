@@ -23,7 +23,7 @@ Short presentations introduce each concept, followed immediately by guided exerc
 | ---: | --- | --- |
 | 10 min | **TaskVine overview** — manager-worker execution, dynamic scheduling, and data-intensive workflows | Slides *(coming soon)* · [Overview](02-taskvine/index.md) |
 | 15 min | **Access, setup, and TaskVine quickstart** | [Setup](01-access-and-setup/index.md) · [Hands-on](02-taskvine/quickstart.md) |
-| 35 min | **TaskVine application structure and execution** — tasks, files, workers, and result collection | Slides *(coming soon)* · [Hands-on](02-taskvine/matrix-files.md) |
+| 35 min | **TaskVine application structure and execution** — tasks, files, workers, and result collection | Slides *(coming soon)* · [Hands-on](02-taskvine/matrix.md) |
 | 30 min | **Reproducible execution with Sciunit** — capture, inspect, and reproduce an execution | Slides *(coming soon)* · [Hands-on](03-sciunit/index.md) |
 
 ### Break · 15 minutes
