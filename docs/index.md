@@ -15,7 +15,7 @@ Short presentations introduce each concept, followed immediately by guided exerc
 - **Tools:** TaskVine, Sciunit, and Floability
 - **Setup:** prepared tutorial server or a self-managed x86-64 Linux system
 
-## Tutorial schedule
+## Tutorial outline
 
 ### Part I — TaskVine and Sciunit · 90 minutes
 
