@@ -32,6 +32,7 @@ conda create -y -n portable-by-design \
   --strict-channel-priority \
   python=3.11 \
   pip \
+  setuptools=80.9.0 \
   git \
   jupyterlab \
   ndcctools \
@@ -47,8 +48,12 @@ conda activate portable-by-design
 Install the Sciunit command-line tool inside the active environment:
 
 ```bash
-python -m pip install sciunit2
+python -m pip install sciunit2==0.4.post115.dev43584757
 ```
+
+`setuptools=80.9.0` is a temporary compatibility pin for the current Sciunit CLI, which still uses the deprecated `pkg_resources` API.
+
+<!-- TODO: Revisit the Setuptools pin when Sciunit no longer imports pkg_resources. -->
 
 Whenever you open a new terminal and return to the tutorial, activate it again:
 
