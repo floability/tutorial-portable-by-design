@@ -1,50 +1,61 @@
-# TaskVine Quickstart
+# TaskVine Quickstart: Basic Matrix Multiplication
 
-In this exercise, you will start a TaskVine manager, observe it waiting for execution resources, and connect one local worker from a second terminal.
+In this exercise, you will run one matrix-multiplication task with TaskVine. A manager submits the task and waits while a local worker connects from a second terminal, executes the command, and returns its standard output.
 
-The prepared program submits five word-count tasks. Each task searches for a different word in the same copy of *War and Peace*.
+The matrices are embedded directly in the command, so this first exercise has no data files to transfer. Its purpose is to validate your environment and introduce the manager–worker execution model with as few moving parts as possible.
+
+## What you will do
+
+1. Start a TaskVine manager.
+2. Submit one command task.
+3. Start one resource-limited local worker.
+4. Receive and validate the result.
 
 ## Before you begin
 
-Complete [Access and Setup](../01-access-and-setup/index.md) before starting this exercise. Both setup routes place the repository at `~/tutorial`.
+Complete [Access and Setup](../01-access-and-setup/index.md) before starting. Both setup routes place the tutorial repository at `~/tutorial`.
 
-Enter the first example and check its contents:
+Enter the example directory:
 
 ```bash
-cd ~/tutorial/examples/taskvine/quickstart
+cd ~/tutorial/examples/taskvine/matrix-basic
 ls
 ```
 
 You should see:
 
 ```text
-README.md  taskvine-quickstart.py
+README.md  environment.yml  matrix-basic.py
 ```
 
-The live server already contains these files. Self-managed participants received them by cloning the repository during setup.
+Live participants should already have the shared tutorial tools activated. Self-managed participants should activate their tutorial environment if necessary:
+
+```bash
+conda activate portable-by-design
+```
 
 ## 1. Start the manager
 
-In your current terminal, run:
+In your first terminal, run:
 
 ```bash
-python taskvine-quickstart.py
+python matrix-basic.py
 ```
 
-The program will print a manager name containing your username, select an available port, submit five tasks, and then wait:
+The program creates a manager on an available local port and submits one task:
 
 ```text
-Manager name: taskvine-quickstart-USERNAME
+Manager name: matrix-basic-USERNAME
 Listening on port: PORT
 
-In a second terminal, run:
+In a second terminal, activate the same environment and run:
 vine_worker ... localhost PORT
 
-Submitting tasks...
-Waiting for a worker to connect and complete the tasks...
+Submitted task 1: [[1, 2], [3, 4]] x [[5, 6], [7, 8]]
+Waiting for the worker...
 ```
 
-Nothing is wrong when the program waits here. The manager has work to perform but does not yet have a worker.
+The program is supposed to wait at this point. The manager has described the work, but no execution resource has connected yet.
 
 Leave this terminal running.
 
@@ -52,16 +63,18 @@ Leave this terminal running.
 
 ### Live tutorial participants
 
-Open another terminal on your computer, connect to the same tutorial server with the credentials on your card, and activate the shared tools:
+Open another terminal on your computer, connect to the same tutorial server, and activate the shared tools:
 
 ```bash
 ssh USERNAME@SERVER
 source /opt/tutorial/activate.sh
 ```
 
+Use the username and server printed on your credential card.
+
 ### Self-managed participants
 
-Open another terminal on the same Linux computer and activate the tutorial environment:
+Open another terminal on the same Linux system and activate the tutorial environment:
 
 ```bash
 conda activate portable-by-design
@@ -69,43 +82,103 @@ conda activate portable-by-design
 
 ## 3. Start the worker
 
-Return briefly to the manager terminal and copy the complete `vine_worker` command it printed. Run that command in the second terminal.
+Return briefly to the manager terminal and copy the complete `vine_worker` command it printed. Run that command in your second terminal.
 
 It will look similar to:
 
 ```bash
-vine_worker localhost PORT
+vine_worker --single-shot --cores=1 --memory=2048 --disk=2048 localhost PORT
 ```
 
-Use the actual port printed by your manager instead of `PORT`.
+Use the actual port printed by your manager instead of `PORT`. Live participants must run the worker on the tutorial server, not on their laptop.
 
-The worker connects locally to your manager and begins requesting tasks. Live participants should run this command on the tutorial server, not on their own laptop.
+The worker options deliberately limit the resources advertised to TaskVine:
 
-## 4. Confirm success
+| Option | Meaning |
+| --- | --- |
+| `--single-shot` | Exit after this manager disconnects. |
+| `--cores=1` | Advertise one CPU core. |
+| `--memory=2048` | Advertise 2,048 MiB of memory. |
+| `--disk=2048` | Advertise 2,048 MiB of task workspace. |
+| `localhost PORT` | Connect directly to the manager running on the same server. |
 
-Return to the manager terminal. The five tasks may finish in a different order from the order in which they were submitted.
+## 4. Confirm the result
 
-You should finish with:
+Return to the manager terminal. It should report the worker address and the validated product:
 
 ```text
-Quickstart complete: 5 of 5 tasks succeeded.
+Task 1 completed on WORKER_ADDRESS
+Result: [[19, 22], [43, 50]]
+
+Basic matrix multiplication complete.
 ```
 
-You have now run a TaskVine manager and worker. The manager described the work, the worker provided an execution resource, and TaskVine transferred the shared input and returned each result.
+The manager then exits. Because the worker was started with `--single-shot`, the worker also disconnects and exits automatically.
 
-## Reset
+## 5. Connect the code to the execution model
 
-The manager exits after all five tasks finish. Return to the worker terminal and press `Ctrl-C` to stop the worker.
+Open `matrix-basic.py` in an editor or inspect it from the terminal:
 
-If the exercise is interrupted, press `Ctrl-C` once in each terminal. Then restart the manager and use the newly printed worker command because the port may change.
-
-## Progress
-
-```text
-[x] Tutorial environment works
-[x] TaskVine manager starts
-[x] Worker connects
-[x] First distributed workflow completes
+```bash
+less matrix-basic.py
 ```
 
-Continue to **TaskVine Application Structure and Execution** *(coming soon)*.
+### Create the manager
+
+```python
+manager = vine.Manager(port=0, name=manager_name)
+```
+
+The manager coordinates tasks and workers. Port `0` asks the operating system to select an available port, avoiding fixed-port conflicts when many participants share the tutorial server.
+
+### Define a command task
+
+```python
+task = vine.Task(command)
+task.set_cores(1)
+```
+
+A `Task` describes a command to execute. This task requests one core. TaskVine will assign it only to a worker that advertises enough available resources.
+
+The two matrices and the worker-side Python program are embedded in `command`. There are no declared files in this first example; the result is printed to the task's standard output.
+
+### Submit the task
+
+```python
+task_id = manager.submit(task)
+```
+
+Submitting places the task under the manager's control. Submission does not execute the task immediately: a suitable worker must first connect and request work.
+
+### Wait for completion
+
+```python
+completed = manager.wait(5)
+```
+
+`wait` returns a completed task, or no task when the five-second timeout expires. Real applications usually call it repeatedly while submitted work remains.
+
+### Check success and retrieve output
+
+```python
+if not completed.successful():
+    raise RuntimeError(...)
+
+result = json.loads(completed.output)
+```
+
+The manager checks TaskVine's task result before using the captured standard output. The program also compares the matrix product with the expected answer and exits nonzero if they differ.
+
+## If you need to stop early
+
+Press `Ctrl-C` once in each terminal. Restart the manager before trying again, then use the newly printed worker command because its port may be different.
+
+## What you have learned
+
+- A manager defines and coordinates work.
+- A worker supplies execution resources.
+- Submitting a task and executing it are separate events.
+- Task resource requests are matched against worker resources.
+- A command task can return a small result through standard output.
+
+Continue to [**Data-Parallel Matrix Multiplication**](matrix-files.md), where the same computation gains declared input files, output files, and multiple independent tasks.

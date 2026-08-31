@@ -18,6 +18,7 @@ nav:
       - Self-Managed Setup: 01-access-and-setup/self-managed.md
   - TaskVine:
       - Overview: 02-taskvine/index.md
-      - Quickstart: 02-taskvine/quickstart.md
+      - Basic Matrix Quickstart: 02-taskvine/quickstart.md
+      - Data-Parallel Matrices: 02-taskvine/matrix-files.md
   - Sciunit: 03-sciunit/index.md
   - Floability: 04-floability/index.md
