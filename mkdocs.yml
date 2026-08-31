@@ -16,6 +16,8 @@ nav:
       - Choose Your Setup: 01-access-and-setup/index.md
       - Live Tutorial: 01-access-and-setup/live.md
       - Self-Managed Setup: 01-access-and-setup/self-managed.md
-  - TaskVine: 02-taskvine/index.md
+  - TaskVine:
+      - Overview: 02-taskvine/index.md
+      - Quickstart: 02-taskvine/quickstart.md
   - Sciunit: 03-sciunit/index.md
   - Floability: 04-floability/index.md

@@ -150,4 +150,4 @@ ssh -L LOCAL_PORT:localhost:REMOTE_PORT USERNAME@SERVER
 
 The Windows version is expected to use the same options in PowerShell, but it remains unverified until tested on a Windows computer.
 
-Continue to [**Your First TaskVine Program**](../02-taskvine/index.md).
+Continue to [**TaskVine Quickstart**](../02-taskvine/quickstart.md).

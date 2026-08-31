@@ -13,11 +13,11 @@ If Conda is not installed, install [Miniforge](https://github.com/conda-forge/mi
 
 ## 1. Clone the tutorial repository
 
-Choose where you want to keep the tutorial and run:
+Clone the repository into the standard tutorial location:
 
 ```bash
-git clone https://github.com/floability/tutorial-portable-by-design.git
-cd tutorial-portable-by-design
+git clone https://github.com/floability/tutorial-portable-by-design.git ~/tutorial
+cd ~/tutorial
 ```
 
 The repository contains the tutorial instructions, scripts, and examples. Run the remaining setup commands from the repository root.
@@ -90,4 +90,4 @@ The self-managed exercises use **directly launched TaskVine workers**. A Slurm i
 
 ## You are ready
 
-Continue to [**Your First TaskVine Program**](../02-taskvine/index.md).
+Continue to [**TaskVine Quickstart**](../02-taskvine/quickstart.md).
