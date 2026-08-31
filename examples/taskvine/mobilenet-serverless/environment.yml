@@ -1,0 +1,12 @@
+name: taskvine-mobilenet-serverless
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - ndcctools=7.17.1
+  - cloudpickle=3.1.2
+  - onnxruntime=1.28.0
+  - numpy=2.4.3
+  - pillow=12.1.1
