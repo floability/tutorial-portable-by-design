@@ -21,4 +21,9 @@ nav:
       - Quickstart: 02-taskvine/quickstart.md
       - Matrix PythonTasks: 02-taskvine/matrix.md
   - Sciunit: 03-sciunit/index.md
-  - Floability: 04-floability/index.md
+  - Floability:
+      - Overview: 04-floability/index.md
+      - Run Your First Backpack: 04-floability/first-backpack.md
+      - Structure of a Backpack: 04-floability/backpack-structure.md
+      - Create and Run a Backpack: 04-floability/create-backpack.md
+      - Generate a Backpack Automatically: 04-floability/audit.md

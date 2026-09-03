@@ -32,10 +32,12 @@ Short presentations introduce each concept, followed immediately by guided exerc
 
 | Time | Topic | Materials |
 | ---: | --- | --- |
-| 15 min | **Floability overview** — portable notebook workflows and the backpack model | Slides *(coming soon)* |
-| 20 min | **Running a basic backpack** | [Hands-on](04-floability/index.md) *(coming soon)* |
-| 20 min | **Structure of a Floability backpack** — workflow, software, data, and compute specifications | Slides *(coming soon)* · [Hands-on](04-floability/index.md) *(coming soon)* |
-| 20 min | **Managing data dependencies across HPC sites** — resolving, staging, verifying, and reusing data | Slides *(coming soon)* · [Hands-on](04-floability/index.md) *(coming soon)* |
+| 10 min | **Floability overview** — portable workflow deployment and the backpack model | Slides *(coming soon)* · [Overview](04-floability/index.md) |
+| 15 min | **Run your first backpack** — deploy and interact with an existing notebook workflow | [Hands-on](04-floability/first-backpack.md) |
+| 10 min | **Structure of a backpack** — workflow, software, data, and compute specifications | Slides *(coming soon)* · [Guide](04-floability/backpack-structure.md) |
+| 20 min | **Create and run a backpack** — package a workflow and complete its specifications | [Hands-on](04-floability/create-backpack.md) |
+| 15 min | **Generate a backpack automatically** — use Audit to produce initial specifications from a working notebook environment | [Hands-on](04-floability/audit.md) |
+| 5 min | **Wrap-up and questions** | Key takeaways and next steps |
 
 ## How the tools fit together
 
@@ -53,8 +55,9 @@ By the end of the tutorial, you will be able to:
 - explain TaskVine's manager-worker execution model;
 - capture and reproduce a workflow execution with Sciunit;
 - run a notebook workflow packaged as a Floability backpack;
-- identify the workflow, software, data, and compute specifications in a backpack; and
-- manage data dependencies when moving workflows between computing environments.
+- identify the workflow, software, data, and compute specifications in a backpack;
+- create and run a backpack from an existing workflow; and
+- use Floability Audit to generate initial backpack specifications for manual review.
 
 ## Related resources
 
