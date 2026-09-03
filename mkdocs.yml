@@ -27,3 +27,6 @@ nav:
       - Structure of a Backpack: 04-floability/backpack-structure.md
       - Create and Run a Backpack: 04-floability/create-backpack.md
       - Generate a Backpack Automatically: 04-floability/audit.md
+  - Optional Backpack Examples:
+      - Try Other Backpacks: 04-floability/optional-backpacks/index.md
+      - MobileNet Batch Inference: 04-floability/optional-backpacks/mobilenet.md

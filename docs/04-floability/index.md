@@ -41,3 +41,10 @@ site-specific storage, scheduler, network, and policy settings to be supplied
 at deployment time.
 
 [**Run your first backpack →**](first-backpack.md)
+
+## After the tutorial
+
+The live schedule uses the matrix example. If you want a more advanced
+workflow afterward, continue with
+[**MobileNet batch inference**](optional-backpacks/mobilenet.md) or browse the
+[complete collection in Floability Hub](https://github.com/floability-hub).
