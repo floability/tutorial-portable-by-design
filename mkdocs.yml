@@ -3,6 +3,9 @@ site_description: Hands-on materials for portable, reproducible scientific workf
 
 docs_dir: docs
 
+markdown_extensions:
+  - admonition
+
 theme:
   name: material
   features:
