@@ -23,7 +23,7 @@ Short presentations introduce each concept, followed immediately by guided exerc
 | ---: | --- | --- |
 | 10 min | **Tutorial overview** — tutorial goals, the portability problem, the three-tool ecosystem, and the TaskVine manager-worker model | [Slides](https://docs.google.com/presentation/d/1CHyHMTHB1CfTIvFxfMB7ychu1Ed5oCG3lhBlRd9ppeM/edit?usp=sharing) |
 | 15 min | **Access, setup, and TaskVine quickstart** | [Setup](01-access-and-setup/index.md) · [Hands-on](02-taskvine/quickstart.md) |
-| 35 min | **TaskVine application structure and execution** — tasks, files, workers, and result collection | Slides *(coming soon)* · [Hands-on](02-taskvine/matrix.md) |
+| 35 min | **TaskVine application structure and execution** — tasks, files, workers, and result collection | [Slides](https://docs.google.com/presentation/d/1CHyHMTHB1CfTIvFxfMB7ychu1Ed5oCG3lhBlRd9ppeM/edit?usp=sharing) · [Documentation](https://cctools.readthedocs.io/en/stable/taskvine/) · [Hands-on](02-taskvine/matrix.md) |
 | 30 min | **Reproducible execution with Sciunit** — capture, inspect, and reproduce an execution | Slides *(coming soon)* · [Hands-on](03-sciunit/index.md) |
 
 ### Break · 15 minutes
@@ -32,9 +32,9 @@ Short presentations introduce each concept, followed immediately by guided exerc
 
 | Time | Topic | Materials |
 | ---: | --- | --- |
-| 10 min | **Floability overview** — portable workflow deployment and the backpack model | Slides *(coming soon)* · [Overview](04-floability/index.md) |
+| 10 min | **Floability overview** — portable workflow deployment and the backpack model | [Slides](https://docs.google.com/presentation/d/1Ne_OXoEx7dqW7Nbf-Z9U6Llm1kdjDUyIV8fopiBsprg/edit?usp=sharing) · [Overview](04-floability/index.md) |
 | 15 min | **Run your first backpack** — deploy and interact with an existing notebook workflow | [Hands-on](04-floability/first-backpack.md) |
-| 10 min | **Structure of a backpack** — workflow, software, data, and compute specifications | Slides *(coming soon)* · [Guide](04-floability/backpack-structure.md) |
+| 10 min | **Structure of a backpack** — workflow, software, data, and compute specifications | [Slides](https://docs.google.com/presentation/d/1Ne_OXoEx7dqW7Nbf-Z9U6Llm1kdjDUyIV8fopiBsprg/edit?usp=sharing) · [Guide](04-floability/backpack-structure.md) |
 | 20 min | **Create and run a backpack** — package a workflow and complete its specifications | [Hands-on](04-floability/create-backpack.md) |
 | 15 min | **Generate a backpack automatically** — use Audit to produce initial specifications from a working notebook environment | [Hands-on](04-floability/audit.md) |
 | 5 min | **Wrap-up and questions** | Key takeaways and next steps |
