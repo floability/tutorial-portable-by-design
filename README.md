@@ -51,3 +51,18 @@ Before committing documentation changes, run the strict build check:
 ```bash
 mkdocs build --strict
 ```
+
+## Update the GitHub Pages site
+
+Pushing changes to `main` does not update the published website. Continue developing and committing normally, and deploy only when the documentation is ready to be published.
+
+When you are ready to publish, make sure the desired changes are committed and run:
+
+```bash
+mkdocs build --strict
+mkdocs gh-deploy
+```
+
+The first deployment creates the `gh-pages` branch. In the GitHub repository, open **Settings → Pages**, select **Deploy from a branch**, choose the `gh-pages` branch and `/ (root)`, and click **Save**.
+
+The site will be available at [https://floability.github.io/tutorial-portable-by-design/](https://floability.github.io/tutorial-portable-by-design/). Do not edit the `gh-pages` branch directly; update the Markdown source and run `mkdocs gh-deploy` again.
