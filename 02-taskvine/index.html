@@ -14,7 +14,7 @@
         <link rel="prev" href="../01-access-and-setup/self-managed/">
       
       
-        <link rel="next" href="quickstart/">
+        <link rel="next" href="hands-on/">
       
       
         
@@ -371,6 +371,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -432,6 +436,34 @@
   
   
     <li class="md-nav__item">
+      <a href="hands-on/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hands-on Exercises
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="quickstart/" class="md-nav__link">
         
   
@@ -468,6 +500,34 @@
     
   
     Matrix PythonTasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mobilenet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MobileNet Batch Inference
   
 
     
@@ -862,41 +922,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hands-on-progression" class="md-nav__link">
+  <a href="#hands-on-exercises" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Hands-on progression
+        Hands-on exercises
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Hands-on progression">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-taskvine-quickstart" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. TaskVine quickstart
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-matrix-multiplication-with-pythontask" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Matrix multiplication with PythonTask
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -984,12 +1016,11 @@
 </tbody>
 </table>
 <p>Function Calls provide TaskVine's serverless-style execution model. A Function Library can initialize expensive reusable state—such as a machine-learning model—once on a worker and serve many lightweight calls. A later advanced example will explore this model.</p>
-<h2 id="hands-on-progression">Hands-on progression</h2>
-<h3 id="1-taskvine-quickstart">1. TaskVine quickstart</h3>
-<p>Start with the <a href="quickstart/"><strong>TaskVine Quickstart</strong></a>. You will use standard <code>vine.Task</code> objects to run Linux <code>grep</code> and <code>wc</code> commands, observe the manager waiting for resources, and connect one worker directly.</p>
-<h3 id="2-matrix-multiplication-with-pythontask">2. Matrix multiplication with PythonTask</h3>
-<p>Continue with <a href="matrix/"><strong>Matrix Multiplication with TaskVine</strong></a>. You may run a hardcoded or file-based version. Both use PythonTask to execute a Python function, and both obtain a local worker through <code>vine_factory</code>. The file-based version adds explicit input and output declarations.</p>
-<p>Together, the exercises distinguish Unix command tasks from Python function tasks before introducing Function Calls and reusable worker-side libraries.</p>
+<h2 id="hands-on-exercises">Hands-on exercises</h2>
+<p>Continue to the <a href="hands-on/"><strong>TaskVine hands-on exercises</strong></a> for the guided
+Quickstart, matrix multiplication, and MobileNet batch-inference applications.
+Together, they progress from Unix command tasks to Python functions, declared
+files, and reusable worker-side Function Libraries.</p>
 
 
 

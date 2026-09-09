@@ -11,25 +11,25 @@
       
       
       
-        <link rel="prev" href="../02-taskvine/mobilenet/">
+        <link rel="prev" href="../matrix/">
       
       
-        <link rel="next" href="../04-floability/">
+        <link rel="next" href="../../03-sciunit/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Sciunit - Portable by Design Tutorial</title>
+        <title>MobileNet Batch Inference - Portable by Design Tutorial</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -48,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sciunit" class="md-skip">
+        <a href="#mobilenet-batch-inference" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +82,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Portable by Design Tutorial" class="md-header__button md-logo" aria-label="Portable by Design Tutorial" data-md-component="logo">
+    <a href="../.." title="Portable by Design Tutorial" class="md-header__button md-logo" aria-label="Portable by Design Tutorial" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sciunit
+              MobileNet Batch Inference
             
           </span>
         </div>
@@ -180,7 +180,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Portable by Design Tutorial" class="md-nav__button md-logo" aria-label="Portable by Design Tutorial" data-md-component="logo">
+    <a href="../.." title="Portable by Design Tutorial" class="md-nav__button md-logo" aria-label="Portable by Design Tutorial" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -198,7 +198,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -252,7 +252,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../01-access-and-setup/" class="md-nav__link ">
+            <a href="../../01-access-and-setup/" class="md-nav__link ">
               
   
   
@@ -296,7 +296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../01-access-and-setup/live/" class="md-nav__link">
+      <a href="../../01-access-and-setup/live/" class="md-nav__link">
         
   
   
@@ -324,7 +324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../01-access-and-setup/self-managed/" class="md-nav__link">
+      <a href="../../01-access-and-setup/self-managed/" class="md-nav__link">
         
   
   
@@ -356,6 +356,8 @@
       
   
   
+    
+  
   
   
     
@@ -382,15 +384,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../02-taskvine/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -414,7 +416,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -434,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../02-taskvine/hands-on/" class="md-nav__link">
+      <a href="../hands-on/" class="md-nav__link">
         
   
   
@@ -462,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../02-taskvine/quickstart/" class="md-nav__link">
+      <a href="../quickstart/" class="md-nav__link">
         
   
   
@@ -490,7 +492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../02-taskvine/matrix/" class="md-nav__link">
+      <a href="../matrix/" class="md-nav__link">
         
   
   
@@ -515,10 +517,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../02-taskvine/mobilenet/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MobileNet Batch Inference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -534,6 +563,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-stays-the-same" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What stays the same
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-create-the-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Create the environment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-run-the-ordinary-pythontask-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Run the ordinary PythonTask version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-run-the-serverless-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Run the serverless version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-use-a-function-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why use a Function Library?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taskvine-hands-on-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TaskVine hands-on navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -550,19 +665,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../03-sciunit/" class="md-nav__link">
         
   
   
@@ -578,7 +684,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -621,7 +726,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../04-floability/" class="md-nav__link ">
+            <a href="../../04-floability/" class="md-nav__link ">
               
   
   
@@ -665,7 +770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../04-floability/first-backpack/" class="md-nav__link">
+      <a href="../../04-floability/first-backpack/" class="md-nav__link">
         
   
   
@@ -693,7 +798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../04-floability/backpack-structure/" class="md-nav__link">
+      <a href="../../04-floability/backpack-structure/" class="md-nav__link">
         
   
   
@@ -721,7 +826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../04-floability/create-backpack/" class="md-nav__link">
+      <a href="../../04-floability/create-backpack/" class="md-nav__link">
         
   
   
@@ -749,7 +854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../04-floability/audit/" class="md-nav__link">
+      <a href="../../04-floability/audit/" class="md-nav__link">
         
   
   
@@ -809,7 +914,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../04-floability/optional-backpacks/" class="md-nav__link ">
+            <a href="../../04-floability/optional-backpacks/" class="md-nav__link ">
               
   
   
@@ -853,7 +958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../04-floability/optional-backpacks/mobilenet/" class="md-nav__link">
+      <a href="../../04-floability/optional-backpacks/mobilenet/" class="md-nav__link">
         
   
   
@@ -901,6 +1006,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-stays-the-same" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What stays the same
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-create-the-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Create the environment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-run-the-ordinary-pythontask-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Run the ordinary PythonTask version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-run-the-serverless-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Run the serverless version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-use-a-function-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why use a Function Library?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taskvine-hands-on-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TaskVine hands-on navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -916,8 +1095,146 @@
 
 
 
-<h1 id="sciunit">Sciunit</h1>
-<p>Sciunit hands-on instructions will be added here.</p>
+<h1 id="mobilenet-batch-inference">MobileNet Batch Inference</h1>
+<p>This exercise classifies four images with MobileNetV2. The same application is
+implemented twice so you can compare ordinary TaskVine PythonTasks with
+TaskVine's serverless-style Function Calls.</p>
+<p>The complete programs are in:</p>
+<pre><code class="language-text">examples/taskvine/mobilenet-batch-inference/
+├── mobilenet-python-task.py
+├── mobilenet-serverless.py
+├── environment.yml
+└── images/
+</code></pre>
+<h2 id="what-stays-the-same">What stays the same</h2>
+<p>Both programs:</p>
+<ul>
+<li>sort the same four local images and divide them into two microbatches;</li>
+<li>create a named TaskVine manager;</li>
+<li>declare the same pinned MobileNet model, labels, and image inputs;</li>
+<li>submit two independent image-classification operations;</li>
+<li>use one core per operation; and</li>
+<li>collect and validate the same predictions.</li>
+</ul>
+<p>The programs differ only in how TaskVine executes the inference function and
+manages the model state.</p>
+<table>
+<thead>
+<tr>
+<th>PythonTask version</th>
+<th>Serverless version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Submits <code>vine.PythonTask</code></td>
+<td>Installs a Function Library and submits <code>vine.FunctionCall</code></td>
+</tr>
+<tr>
+<td>Each task starts an ordinary Python process</td>
+<td>Calls execute inside a persistent library process</td>
+</tr>
+<tr>
+<td>Each task loads a new ONNX session</td>
+<td>The library loads one ONNX session during initialization</td>
+</tr>
+<tr>
+<td>Model and labels are inputs to every task</td>
+<td>Model and labels are inputs to the library</td>
+</tr>
+<tr>
+<td>Two batches produce two model-load IDs</td>
+<td>Two batches reuse one model-load ID</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-create-the-environment">1. Create the environment</h2>
+<p>Move to the example directory:</p>
+<pre><code class="language-bash">cd ~/tutorial/examples/taskvine/mobilenet-batch-inference
+</code></pre>
+<p>Create and activate its Conda environment:</p>
+<pre><code class="language-bash">conda env create --file environment.yml
+conda activate taskvine-mobilenet
+</code></pre>
+<p>If you already created it, only activate it:</p>
+<pre><code class="language-bash">conda activate taskvine-mobilenet
+</code></pre>
+<p>The environment provides TaskVine and <code>cloudpickle</code> for Python task transport,
+ONNX Runtime for CPU inference, NumPy for tensor preparation, and Pillow for
+image loading and resizing.</p>
+<h2 id="2-run-the-ordinary-pythontask-version">2. Run the ordinary PythonTask version</h2>
+<p>In the first terminal, start the manager application:</p>
+<pre><code class="language-bash">python mobilenet-python-task.py
+</code></pre>
+<p>The program prints its manager name and waits for workers.</p>
+<p>Open a second terminal, activate the same environment, and run the complete
+<code>vine_factory</code> command printed by the manager. It will look like:</p>
+<pre><code class="language-bash">conda activate taskvine-mobilenet
+vine_factory -T local --min-workers=1 --max-workers=1 \
+  --cores=1 \
+  --manager-name MANAGER_NAME
+</code></pre>
+<p>Use the actual manager name printed by the program. The first run may pause
+while TaskVine retrieves the pinned 13.3 MiB model and ImageNet label file.
+The one-core worker also ensures that the serverless comparison uses one
+one-core Function Library instance.</p>
+<p>The run should finish with:</p>
+<pre><code class="language-text">MobileNet PythonTask batch inference complete.
+Classified 4 images in 2 batches using 2 independent model loads.
+</code></pre>
+<p>The two load IDs show that each ordinary PythonTask initialized its own ONNX
+session. Return to the factory terminal and press <code>Ctrl-C</code>.</p>
+<h2 id="3-run-the-serverless-version">3. Run the serverless version</h2>
+<p>In the first terminal, start a fresh manager:</p>
+<pre><code class="language-bash">python mobilenet-serverless.py
+</code></pre>
+<p>In the second terminal, run the new <code>vine_factory</code> command printed by this
+manager. Use the new manager name rather than the name from the previous run.</p>
+<p>The serverless version first creates a Function Library:</p>
+<pre><code class="language-python">library = manager.create_library_from_functions(
+    LIBRARY_NAME,
+    classify_image_batch,
+    library_context_info=[
+        initialize_mobilenet_library,
+        [&quot;model.onnx&quot;, &quot;labels.txt&quot;],
+        {},
+    ],
+)
+manager.install_library(library)
+</code></pre>
+<p><code>initialize_mobilenet_library</code> loads the model and labels once. The program
+then submits image microbatches as lightweight calls:</p>
+<pre><code class="language-python">call = vine.FunctionCall(
+    LIBRARY_NAME,
+    &quot;classify_image_batch&quot;,
+    sandbox_image_paths,
+    TOP_K,
+)
+manager.submit(call)
+</code></pre>
+<p>A successful run ends with:</p>
+<pre><code class="language-text">MobileNet serverless batch inference complete.
+Classified 4 images in 2 batches using 1 shared model load.
+</code></pre>
+<p>Both results should print the same model-load ID, demonstrating that the
+Function Calls reused persistent state. Stop the factory with <code>Ctrl-C</code>.</p>
+<h2 id="why-use-a-function-library">Why use a Function Library?</h2>
+<p>Ordinary PythonTasks are direct and work well for independent functions with
+little startup cost. For machine-learning inference, repeatedly importing
+libraries and loading a model can become a significant part of every task.</p>
+<p>A Function Library moves that initialization into a persistent worker-side
+process. Later Function Calls carry only their arguments and declared image
+inputs. The same pattern applies to scientific libraries, lookup tables, model
+weights, and other expensive reusable state.</p>
+<p>This four-image exercise demonstrates behavior rather than performance. A
+larger workload is needed for a meaningful timing comparison.</p>
+<h2 id="taskvine-hands-on-navigation">TaskVine hands-on navigation</h2>
+<ul>
+<li>Return to the <a href="../hands-on/">TaskVine hands-on exercises</a>.</li>
+<li>Review the <a href="../quickstart/">TaskVine Quickstart</a>.</li>
+<li>Review <a href="../matrix/">Matrix Multiplication with TaskVine</a>.</li>
+<li>Read the <a href="https://cctools.readthedocs.io/en/stable/taskvine/#serverless-computing-with-taskvine">official TaskVine Function Calls documentation</a>.</li>
+</ul>
 
 
 
@@ -967,10 +1284,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.indexes", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
