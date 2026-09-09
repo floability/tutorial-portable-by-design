@@ -297,3 +297,9 @@ Both task types are submitted with `manager.submit`, scheduled on workers, and r
 - [TaskVine documentation](https://cctools.readthedocs.io/en/stable/taskvine/)
 - [Python Tasks](https://cctools.readthedocs.io/en/stable/taskvine/#python-tasks)
 - [TaskVine Factory manual](https://cctools.readthedocs.io/en/stable/man_pages/vine_factory/)
+
+## TaskVine hands-on navigation
+
+- Return to the [TaskVine hands-on exercises](hands-on.md).
+- Review the [TaskVine Quickstart](quickstart.md).
+- Continue to [MobileNet Batch Inference](mobilenet.md).

@@ -130,4 +130,8 @@ If the exercise is interrupted, press `Ctrl-C` once in each terminal. Restart th
 - Declared files are mapped into private task sandboxes.
 - Task results may complete in a different order from submission.
 
-Continue to [**Matrix Multiplication with TaskVine**](matrix.md) to execute Python functions with `vine.PythonTask` and manage workers with `vine_factory`.
+## TaskVine hands-on navigation
+
+- Return to the [TaskVine hands-on exercises](hands-on.md).
+- Continue to [Matrix Multiplication with TaskVine](matrix.md).
+- Preview [MobileNet Batch Inference](mobilenet.md).

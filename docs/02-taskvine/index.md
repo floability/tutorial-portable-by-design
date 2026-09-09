@@ -38,14 +38,9 @@ On an HPC system, the batch scheduler allocates worker processes to nodes. TaskV
 
 Function Calls provide TaskVine's serverless-style execution model. A Function Library can initialize expensive reusable state—such as a machine-learning model—once on a worker and serve many lightweight calls. A later advanced example will explore this model.
 
-## Hands-on progression
+## Hands-on exercises
 
-### 1. TaskVine quickstart
-
-Start with the [**TaskVine Quickstart**](quickstart.md). You will use standard `vine.Task` objects to run Linux `grep` and `wc` commands, observe the manager waiting for resources, and connect one worker directly.
-
-### 2. Matrix multiplication with PythonTask
-
-Continue with [**Matrix Multiplication with TaskVine**](matrix.md). You may run a hardcoded or file-based version. Both use PythonTask to execute a Python function, and both obtain a local worker through `vine_factory`. The file-based version adds explicit input and output declarations.
-
-Together, the exercises distinguish Unix command tasks from Python function tasks before introducing Function Calls and reusable worker-side libraries.
+Continue to the [**TaskVine hands-on exercises**](hands-on.md) for the guided
+Quickstart, matrix multiplication, and MobileNet batch-inference applications.
+Together, they progress from Unix command tasks to Python functions, declared
+files, and reusable worker-side Function Libraries.

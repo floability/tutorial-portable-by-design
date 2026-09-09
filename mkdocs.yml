@@ -21,8 +21,10 @@ nav:
       - Self-Managed Setup: 01-access-and-setup/self-managed.md
   - TaskVine:
       - Overview: 02-taskvine/index.md
+      - Hands-on Exercises: 02-taskvine/hands-on.md
       - Quickstart: 02-taskvine/quickstart.md
       - Matrix PythonTasks: 02-taskvine/matrix.md
+      - MobileNet Batch Inference: 02-taskvine/mobilenet.md
   - Sciunit: 03-sciunit/index.md
   - Floability:
       - Overview: 04-floability/index.md

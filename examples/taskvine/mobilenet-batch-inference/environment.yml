@@ -1,4 +1,4 @@
-name: taskvine-mobilenet-serverless
+name: taskvine-mobilenet
 
 channels:
   - conda-forge
