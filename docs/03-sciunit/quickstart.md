@@ -11,7 +11,11 @@ sciunit list
 ```
 The result should be empty, since no program has been executed yet.
 
-Now, run the following command:
+## Auditing Basic Linux Commands with Sciunit
+
+### ls
+
+Run the Linux command `ls`:
 ```
 sciunit exec ls
 ```
@@ -22,7 +26,9 @@ file.txt   image.png
  Date: Fri, 11 Sep 2026 17:07:13 +0000
 ```
 
-Now, run the following command:
+### date
+
+Run the Linux command `date`:
 ```
 sciunit exec date
 ```
@@ -58,7 +64,7 @@ Update its permissions to execution:
 ```
 chmod u+x hello.sh
 ```
-We can run this program as follows to get its output:
+We can run this program to get its output:
 ```
 > ./hello.sh
 hello, world
@@ -78,8 +84,15 @@ We can see that there are three containerized executions in this project now:
    e2 Sep 11 17:09 date
    e3 Sep 11 17:17 ./hello.sh
 ```
-We can repeat the latest execution as follows to get the same output:
+
+## Repeat Containerized Executions with Sciunit
+We can pick and repeat any of the stored executions from this list. For example, repeat the last execution to get the same output:
 ```
 > sciunit repeat e3
+hello, world
+```
+Repeat the first execution:
+```
+> sciunit repeat e1
 hello, world
 ```
