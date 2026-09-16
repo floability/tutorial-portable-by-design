@@ -562,6 +562,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sciunit
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -578,6 +596,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sciunit-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sciunit Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-sciunit-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Sciunit Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -901,6 +960,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sciunit-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sciunit Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-sciunit-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Sciunit Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -917,7 +1006,35 @@
 
 
 <h1 id="sciunit">Sciunit</h1>
-<p>Sciunit hands-on instructions will be added here.</p>
+<p><a href="https://github.com/radiant-systems-lab/sciunit">Sciunit</a> is a command-line tool which creates efficient, lightweight, self-contained packages of computational experiments that can be guaranteed to reproduce. Sciunit creates a reusable research object that containerizes and stores applications, facilitates sharing and collaboration, and eases the task of executing, understanding, and building on shared work.</p>
+<h2 id="sciunit-workflow">Sciunit Workflow</h2>
+<p>A Sciunit container consists of multiple executions. Each execution refers to running a command under Linux. The command may be a single binary, may start with the name of a specific virtual machine for managed languages such as “java,” or may be a shell script that contains multiple commands.</p>
+<p>Sciunit uses application virtualization to capture and repeat an execution and works in two modes: <strong>audit</strong> and <strong>repeat</strong>. During <em>audit</em> mode, the dependencies of an execution are determined including its code, data, and environment, which are saved to a container. During <em>repeat</em> phase, the containerized execution is repeated on the same or different machine at a later stage.</p>
+<h2 id="core-sciunit-commands">Core Sciunit Commands</h2>
+<p><strong>sciunit create &lt;name&gt;</strong><br>
+Create a new Sciunit project under <code>~/sciunit/&lt;name&gt;</code> and open it.</p>
+<p><strong>sciunit open &lt;name&gt;|&lt;url&gt;</strong><br>
+Open the Sciunit project under <code>~/sciunit/&lt;name&gt;</code> or designated by a url.</p>
+<p><strong>sciunit exec &lt;executable&gt; &lt;args...&gt;</strong><br>
+Capture the execution of the given executable with the command line arguments args. The newly-created execution is added to the currently-opened Sciunit project and assigned execution id <code>eN</code>, where N is a monotonically-increasing decimal.</p>
+<p><strong>sciunit repeat &lt;execution id&gt;</strong><br>
+Repeat the execution of execution id from the currently-opened Sciunit project exactly as it happened earlier.</p>
+<p><strong>sciunit list</strong><br>
+List the existing executions in the currently-opened Sciunit project.</p>
+<p><strong>sciunit show &lt;execution id&gt;</strong><br>
+Show detailed information about a specific execution in the currently-opened Sciunit project.</p>
+<h1 id="flinc">FLINC</h1>
+<p><a href="https://github.com/radiant-systems-lab/Flinc">FLINC</a> is built on top of Sciunit. It enables users to audit and repeat programs executing in interactive notebook environments like Jupyter. FLINC creates two new kernels:
+1. <strong>Audit Kernel:</strong> executes, audits, and containerizes notebook code
+2. <strong>Repeat Kernel:</strong> repeats the containerized code</p>
+<h2 id="hands-on-progression">Hands-on progression</h2>
+<h3 id="1-sciunit-quickstart">1. Sciunit Quickstart</h3>
+<p>Start with the <a href="quickstart/"><strong>Sciunit Quickstart</strong></a>. You will use Sciunit to run basic Linux commands like <code>ls</code> and <code>date</code>, and learn how to run a very simple hello world script in bash and Python.</p>
+<h3 id="2-executing-a-workflow-with-sciunit">2. Executing a Workflow with Sciunit</h3>
+<p>Move on to <a href="rag-lite/"><strong>Workflow Execution with Sciunit</strong></a>. In this example, you will run a multi-step workflow using Sciunit audit and then reproduce it using Sciunit repeat.</p>
+<h3 id="3-executing-an-interactive-workflow-with-flinc">3. Executing an Interactive Workflow with FLINC</h3>
+<p>Finally, you will open <a href="rag-lite-flinc.md"><strong>Notebook Execution with FLINC</strong></a>. In this example, you will execute the same workflow as #2 above in an interactive Jupyter notebook environment.</p>
+<p>These exercices demonstrate how to create a reproducible execution in a shell environment using Sciunit and in an interactive environment using FLINC. </p>
 
 
 
