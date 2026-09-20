@@ -1,8 +1,15 @@
 # Sciunit Quickstart
 
+Activate the conda environment as the first step:
+```
+source /opt/tutorial/activate.sh 
+```
+
+## Creating your Sciunit Project
 Create your Sciunit project:
 ```
-sciunit create project-pbd
+> sciunit create project-pbd
+Opened empty sciunit at /home/user02/sciunit/project-pbd
 ```
 
 Check how many executions are containerized within this project:
@@ -13,16 +20,16 @@ The result should be empty, since no program has been executed yet.
 
 ## Auditing Basic Linux Commands with Sciunit
 
-### ls
+### pwd
 
-Run the Linux command `ls`:
+Run the Linux command `pwd`:
 ```
-sciunit exec ls
+sciunit exec pwd
 ```
 This will display the contents of your current directory show you an output like this:
 ```
-file.txt   image.png
-[project-pbd e1] ls
+/home/user02
+[project-pbd e1] pwd
  Date: Fri, 11 Sep 2026 17:07:13 +0000
 ```
 
@@ -43,7 +50,7 @@ Fri Sep 11 17:09:31 UTC 2026
 You can view the list of containerized executions through:
 ```
 > sciunit list
-   e1 Sep 11 17:07 ls
+   e1 Sep 11 17:07 pwd
    e2 Sep 11 17:09 date
 ```
 You can see more details for each container as well:
@@ -51,7 +58,7 @@ You can see more details for each container as well:
 > sciunit show e1
      id: e1
 sciunit: project-pbd
-command: ls
+command: pwd
    size: 178.01 MB
 started: 2026-09-11 17:07
 ```
@@ -60,7 +67,7 @@ Now, let us create and run a simple hello world program in a script called `hell
 #!/bin/sh
 echo 'hello, world'
 ```
-Update its permissions to execution:
+Update file permissions to execute it:
 ```
 chmod u+x hello.sh
 ```
@@ -80,7 +87,7 @@ hello, world
 We can see that there are three containerized executions in this project now:
 ```
 > sciunit list
-   e1 Sep 11 17:07 ls
+   e1 Sep 11 17:07 pwd
    e2 Sep 11 17:09 date
    e3 Sep 11 17:17 ./hello.sh
 ```
@@ -94,5 +101,5 @@ hello, world
 Repeat the first execution:
 ```
 > sciunit repeat e1
-hello, world
+/home/user02
 ```

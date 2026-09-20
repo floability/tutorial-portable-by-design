@@ -36,7 +36,7 @@ Show detailed information about a specific execution in the currently-opened Sci
 
 ### 1. Sciunit Quickstart
 
-Start with the [**Sciunit Quickstart**](quickstart.md). You will use Sciunit to run basic Linux commands like `ls` and `date`, and learn how to run a very simple hello world script in bash and Python.
+Start with the [**Sciunit Quickstart**](quickstart.md). You will use Sciunit to run basic Linux commands like `pwd` and `date`, and learn how to run a very simple hello world script in bash.
 
 ### 2. Executing a Workflow with Sciunit
 Move on to [**Workflow Execution with Sciunit**](rag-lite.md). In this example, you will run a multi-step workflow using Sciunit audit and then reproduce it using Sciunit repeat.
