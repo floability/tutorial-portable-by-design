@@ -21,7 +21,7 @@
     
     
       
-        <title>Sciunit Quickstart - Portable by Design Tutorial</title>
+        <title>Running Multi-Step Workflow with FLINC - Portable by Design Tutorial</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sciunit-quickstart" class="md-skip">
+        <a href="#running-multi-step-workflow-with-flinc" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sciunit Quickstart
+              Running Multi-Step Workflow with FLINC
             
           </span>
         </div>
@@ -894,10 +894,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creating-your-sciunit-project" class="md-nav__link">
+  <a href="#install-flinc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creating your Sciunit Project
+        Install FLINC
       
     </span>
   </a>
@@ -905,49 +905,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#auditing-basic-linux-commands-with-sciunit" class="md-nav__link">
+  <a href="#auditing-with-flinc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Auditing Basic Linux Commands with Sciunit
+        Auditing with FLINC
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Auditing Basic Linux Commands with Sciunit">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pwd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        pwd
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#date" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        date
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#repeat-containerized-executions-with-sciunit" class="md-nav__link">
+  <a href="#repeating-with-flinc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Repeat Containerized Executions with Sciunit
+        Repeating with FLINC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-notebook-executions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspecting Notebook Executions
       
     </span>
   </a>
@@ -971,84 +954,27 @@
 
 
 
-<h1 id="sciunit-quickstart">Sciunit Quickstart</h1>
-<p>Activate the conda environment as the first step:</p>
-<pre><code>source /opt/tutorial/activate.sh 
+<h1 id="running-multi-step-workflow-with-flinc">Running Multi-Step Workflow with FLINC</h1>
+<p>Workflows are most commonly executed in interactive environments like Jupyter notebooks. In order to achieve reproducibility in these environments, we use FLINC, which is built on top of Sciunit and extends the concept of application virtualization to such environments. It creates two new kernels: audit and repeat.</p>
+<p><path to notebook comes here></p>
+<h2 id="install-flinc">Install FLINC</h2>
+<pre><code>git clone https://github.com/radiant-systems-lab/Flinc
+cd Flinc
 </code></pre>
-<h2 id="creating-your-sciunit-project">Creating your Sciunit Project</h2>
-<p>Create your Sciunit project:</p>
-<pre><code>&gt; sciunit create project-pbd
-Opened empty sciunit at /home/user02/sciunit/project-pbd
+<p>Find the path of the kernel you wish to audit:</p>
+<pre><code>jupyter kernelspec list
 </code></pre>
-<p>Check how many executions are containerized within this project:</p>
+<p>Execute install.sh from the command line:</p>
+<pre><code>./install.sh &lt;user kernel path&gt;
+</code></pre>
+<p><code>&lt;user kernel path&gt;</code> is the path of the kernel that will execute your notebook code.</p>
+<h2 id="auditing-with-flinc">Auditing with FLINC</h2>
+<p>Select the audit kernel from within the notebook and execute your notebook code. After execution completes, select 'No Kernel' from the list or shutdown the kernel. Wait anywhere from few seconds to few minutes to complete auditing and container creation in the background. Each audit run will create a new Sciunit container in the background.</p>
+<h2 id="repeating-with-flinc">Repeating with FLINC</h2>
+<p>Repeat your notebook code on the same or different machine by selecting the repeat kernel. It will repeat the last audited execution. After using the repeat kernel, select 'No Kernel' again to finish.</p>
+<h2 id="inspecting-notebook-executions">Inspecting Notebook Executions</h2>
+<p>FILNC will store your notebook as an executable which you can view from the command line:</p>
 <pre><code>sciunit list
-</code></pre>
-<p>The result should be empty, since no program has been executed yet.</p>
-<h2 id="auditing-basic-linux-commands-with-sciunit">Auditing Basic Linux Commands with Sciunit</h2>
-<h3 id="pwd">pwd</h3>
-<p>Run the Linux command <code>pwd</code>:</p>
-<pre><code>sciunit exec pwd
-</code></pre>
-<p>This will display the contents of your current directory show you an output like this:</p>
-<pre><code>/home/user02
-[project-pbd e1] pwd
- Date: Fri, 11 Sep 2026 17:07:13 +0000
-</code></pre>
-<h3 id="date">date</h3>
-<p>Run the Linux command <code>date</code>:</p>
-<pre><code>sciunit exec date
-</code></pre>
-<p>This will show an output like this:</p>
-<pre><code>Fri Sep 11 17:09:31 UTC 2026
-
-[project-pbd e2] date
- Date: Fri, 11 Sep 2026 17:09:31 +0000
-</code></pre>
-<p>You can view the list of containerized executions through:</p>
-<pre><code>&gt; sciunit list
-   e1 Sep 11 17:07 pwd
-   e2 Sep 11 17:09 date
-</code></pre>
-<p>You can see more details for each container as well:</p>
-<pre><code>&gt; sciunit show e1
-     id: e1
-sciunit: project-pbd
-command: pwd
-   size: 178.01 MB
-started: 2026-09-11 17:07
-</code></pre>
-<p>Now, let us create and run a simple hello world program in a script called <code>hello.sh</code>:</p>
-<pre><code>#!/bin/sh
-echo 'hello, world'
-</code></pre>
-<p>Update file permissions to execute it:</p>
-<pre><code>chmod u+x hello.sh
-</code></pre>
-<p>We can run this program to get its output:</p>
-<pre><code>&gt; ./hello.sh
-hello, world
-</code></pre>
-<p>Now, let’s try to capture this program with Sciunit:</p>
-<pre><code>&gt; sciunit exec ./hello.sh
-hello, world
-
-[project-pbd e3] ./hello.sh
- Date: Fri, 11 Sep 2026 17:17:05 +0000
-</code></pre>
-<p>We can see that there are three containerized executions in this project now:</p>
-<pre><code>&gt; sciunit list
-   e1 Sep 11 17:07 pwd
-   e2 Sep 11 17:09 date
-   e3 Sep 11 17:17 ./hello.sh
-</code></pre>
-<h2 id="repeat-containerized-executions-with-sciunit">Repeat Containerized Executions with Sciunit</h2>
-<p>We can pick and repeat any of the stored executions from this list. For example, repeat the last execution to get the same output:</p>
-<pre><code>&gt; sciunit repeat e3
-hello, world
-</code></pre>
-<p>Repeat the first execution:</p>
-<pre><code>&gt; sciunit repeat e1
-/home/user02
 </code></pre>
 
 
