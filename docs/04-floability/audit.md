@@ -98,7 +98,7 @@ Check its contents:
 ls -lahtr
 ```
 
-You should see the matrix multiplication notebook and a `data` directory.
+You should see the [matrix multiplication](https://github.com/floability/tutorial-portable-by-design/blob/main/examples/audit/matrix-multiplication.ipynb) notebook and a `data` directory.
 
 Now inspect the input data:
 
