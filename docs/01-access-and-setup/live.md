@@ -118,6 +118,7 @@ Run:
 vine_worker --version
 python -c "import ndcctools.taskvine; print('TaskVine: OK')"
 floability --help >/dev/null && echo "Floability: OK"
+sciunit --version >/dev/null && echo "Sciunit: OK"
 ```
 
 You should finish with:
@@ -125,6 +126,7 @@ You should finish with:
 ```text
 TaskVine: OK
 Floability: OK
+Sciunit: OK
 ```
 
 ## You are ready

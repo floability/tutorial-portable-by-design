@@ -25,7 +25,11 @@ nav:
       - Quickstart: 02-taskvine/quickstart.md
       - Matrix PythonTasks: 02-taskvine/matrix.md
       - MobileNet Batch Inference: 02-taskvine/mobilenet.md
-  - Sciunit: 03-sciunit/index.md
+  - Sciunit: 
+    - Overview: 03-sciunit/index.md
+    - Quickstart: 03-sciunit/quickstart.md
+    - Workflow Execution with Sciunit: 03-sciunit/rag-lite.md
+    - Interactive Execution with FLINC: 03-sciunit/rag-lite-flinc.md
   - Floability:
       - Overview: 04-floability/index.md
       - Run Your First Backpack: 04-floability/first-backpack.md
