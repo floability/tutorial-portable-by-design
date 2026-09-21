@@ -32,7 +32,7 @@ For `floability audit` to work, you should already have:
 - the **Conda environment** in which the notebook runs successfully; and
 - the notebook's required **input data files** available locally.
 
-Then Floability Audit can observe the notebook while it runs and generate an initial backpack for you.
+Then `floability audit` can observe the notebook while it runs and generate an initial backpack for you.
 
 Instead of manually identifying every software dependency and input file, `floability audit` executes the notebook and observes what it actually uses.
 
@@ -80,7 +80,7 @@ If it does not, activate the tutorial environment.
 conda activate matrix-env
 ```
 
-The environment supplied to Audit must already contain the dependencies required to run the notebook successfully.
+The environment supplied to  `floability audit` must already contain the dependencies required to run the notebook successfully.
 
 ---
 
@@ -105,6 +105,7 @@ Now inspect the input data:
 ```bash
 ls -lahtr data/matrices
 ```
+You should see some csv files.
 
 If the above are available, then the example is already set up with everything `floability audit` needs:
 
@@ -127,8 +128,6 @@ At this point, we have the three things needed for an audit:
         ↓
    floability audit
 ```
-
-The important idea is that **Audit observes an existing working execution**. It does not guess which packages should be installed or recover missing input files.
 
 ---
 
@@ -201,8 +200,6 @@ Then inspect the detected data:
 ```bash
 cat matrix-backpack/data/data.yml
 ```
-
-Audit observes a particular execution, so the generated specifications should always be reviewed before using the backpack.
 
 ---
 
