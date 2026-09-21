@@ -5,16 +5,27 @@
 In this exercise, you will deploy the **matrix-multiplication** backpack, run
 its notebook, and observe its TaskVine tasks.
 
-Start with the tutorial tools activated. Live participants use:
+## Before you begin
+
+Check which Conda environment is active:
+
+```bash
+echo "${CONDA_PREFIX:-No Conda environment is active}"
+```
+
+The path should end in `/tutorial-env`. If it does not, activate the tutorial
+environment using the command for your setup:
+
+### Live tutorial
 
 ```bash
 source /opt/tutorial/activate.sh
 ```
 
-Self-managed participants use:
+### Self-managed
 
 ```bash
-conda activate portable-by-design
+conda activate tutorial-env
 ```
 
 ## 1. Locate the backpack

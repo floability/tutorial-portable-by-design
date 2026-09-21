@@ -27,7 +27,7 @@ The repository contains the tutorial instructions, scripts, and examples. Run th
 Run:
 
 ```bash
-conda create -y -n portable-by-design \
+conda create -y -n tutorial-env \
   -c conda-forge \
   --strict-channel-priority \
   python=3.11 \
@@ -41,7 +41,7 @@ conda create -y -n portable-by-design \
 Activate it:
 
 ```bash
-conda activate portable-by-design
+conda activate tutorial-env
 ```
 
 Install the Sciunit command-line tool inside the active environment:
@@ -55,7 +55,7 @@ Pip will install the current Sciunit release and its declared dependencies.
 Whenever you open a new terminal and return to the tutorial, activate it again:
 
 ```bash
-conda activate portable-by-design
+conda activate tutorial-env
 ```
 
 ## 3. Check the installation
@@ -83,7 +83,7 @@ No broken requirements found.
 
 ## 4. Understand the environment layout
 
-The `portable-by-design` environment contains the tools needed to follow the tutorial.
+The `tutorial-env` environment contains the tools needed to follow the tutorial.
 
 During later exercises, Floability may create additional software environments for individual backpacks. Those environments are separate from this tutorial tools environment and may be cached for reuse.
 

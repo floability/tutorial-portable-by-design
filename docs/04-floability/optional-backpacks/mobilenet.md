@@ -9,9 +9,32 @@ The workflow performs CPU-only MobileNetV2 inference over 24 openly licensed
 Wikimedia Commons images. It is a deployment and execution example, not an
 image-classification accuracy benchmark.
 
+## Before you begin
+
+Check which Conda environment is active:
+
+```bash
+echo "${CONDA_PREFIX:-No Conda environment is active}"
+```
+
+The path should end in `/tutorial-env`. If it does not, activate the tutorial
+environment using the command for your setup:
+
+### Live tutorial
+
+```bash
+source /opt/tutorial/activate.sh
+```
+
+### Self-managed
+
+```bash
+conda activate tutorial-env
+```
+
 ## 1. Get the backpack
 
-Activate the tutorial tools, then clone the backpack from
+Clone the backpack from
 [Floability Hub](https://github.com/floability-hub/mobilenet-batch-inference):
 
 ```bash

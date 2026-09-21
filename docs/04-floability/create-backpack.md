@@ -11,19 +11,30 @@ Both workflows are Python scripts, so run them non-interactively with
 
 ## Before you begin
 
-Activate the tutorial tools and return to the repository root.
+Check which Conda environment is active:
+
+```bash
+echo "${CONDA_PREFIX:-No Conda environment is active}"
+```
+
+The path should end in `/tutorial-env`. If it does not, activate the tutorial
+environment using the command for your setup:
 
 ### Live tutorial
 
 ```bash
 source /opt/tutorial/activate.sh
-cd ~/tutorial
 ```
 
 ### Self-managed
 
 ```bash
-conda activate portable-by-design
+conda activate tutorial-env
+```
+
+Return to the repository root:
+
+```bash
 cd ~/tutorial
 ```
 

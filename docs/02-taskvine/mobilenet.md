@@ -36,6 +36,29 @@ manages the model state.
 | Model and labels are inputs to every task | Model and labels are inputs to the library |
 | Two batches produce two model-load IDs | Two batches reuse one model-load ID |
 
+## Before you begin
+
+Check which Conda environment is active:
+
+```bash
+echo "${CONDA_PREFIX:-No Conda environment is active}"
+```
+
+The path should end in `/tutorial-env`. If it does not, activate the tutorial
+environment using the command for your setup:
+
+### Live tutorial
+
+```bash
+source /opt/tutorial/activate.sh
+```
+
+### Self-managed
+
+```bash
+conda activate tutorial-env
+```
+
 ## 1. Create the environment
 
 Move to the example directory:

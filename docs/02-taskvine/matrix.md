@@ -11,6 +11,29 @@ Two complete versions are provided:
 
 You may run either example. Both use the same environment-creation and `vine_factory` procedure. During the live tutorial, the accompanying slides build the application piece by piece before reviewing the completed code.
 
+## Before you begin
+
+Check which Conda environment is active:
+
+```bash
+echo "${CONDA_PREFIX:-No Conda environment is active}"
+```
+
+The path should end in `/tutorial-env`. If it does not, activate the tutorial
+environment using the command for your setup:
+
+### Live tutorial
+
+```bash
+source /opt/tutorial/activate.sh
+```
+
+### Self-managed
+
+```bash
+conda activate tutorial-env
+```
+
 ## 1. Choose an example
 
 For the basic version:

@@ -30,6 +30,29 @@ In this tutorial, we will use the [Matrix Multiplication notebook](https://githu
 
 > `floability audit` is currently experimental. The generated backpack should be reviewed before using it for larger runs.
 
+## Before you begin
+
+Check which Conda environment is active:
+
+```bash
+echo "${CONDA_PREFIX:-No Conda environment is active}"
+```
+
+The path should end in `/tutorial-env`. If it does not, activate the tutorial
+environment using the command for your setup:
+
+### Live tutorial
+
+```bash
+source /opt/tutorial/activate.sh
+```
+
+### Self-managed
+
+```bash
+conda activate tutorial-env
+```
+
 ## 1. Get the Example Notebook
 
 Clone the matrix multiplication example:

@@ -10,6 +10,27 @@ This quickstart uses `vine.Task`, TaskVine's standard command-task interface. A 
 
 Complete [Access and Setup](../01-access-and-setup/index.md) before starting. Both setup routes place the repository at `~/tutorial`.
 
+Check which Conda environment is active:
+
+```bash
+echo "${CONDA_PREFIX:-No Conda environment is active}"
+```
+
+The path should end in `/tutorial-env`. If it does not, activate the tutorial
+environment using the command for your setup:
+
+### Live tutorial
+
+```bash
+source /opt/tutorial/activate.sh
+```
+
+### Self-managed
+
+```bash
+conda activate tutorial-env
+```
+
 Enter the quickstart directory:
 
 ```bash
@@ -66,7 +87,7 @@ Use the username and server printed on your credential card.
 Open another terminal on the same Linux system and activate the tutorial environment:
 
 ```bash
-conda activate portable-by-design
+conda activate tutorial-env
 ```
 
 ## 3. Start the worker directly
