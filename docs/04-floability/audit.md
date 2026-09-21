@@ -14,22 +14,6 @@ For Floability Audit to work, you should already have:
 
 Then Floability Audit can observe the notebook while it runs and generate an initial backpack for you.
 
-# Generate a Backpack Automatically
-
-**Session time:** 15 minutes
-
-You already have a Jupyter notebook that works.
-
-But how do you turn it into a Floability Backpack without manually specifying all of its software and data dependencies?
-
-For Floability Audit to work, you should already have:
-
-- a **working Jupyter notebook**;
-- the **Conda environment** in which the notebook runs successfully; and
-- the notebook's required **input data files** available locally.
-
-Then Floability Audit can observe the notebook while it runs and generate an initial backpack for you.
-
 ```text
 👨‍💻 Notebook author
 
@@ -70,9 +54,14 @@ In this tutorial, we will use a [Matrix Multiplication notebook](https://github.
 
 ---
 
-## 1. Check Your Environment
+## 1. Before we begin
 
-First, check which Conda environment is currently active:
+First, activate the correct environment for this demo
+
+```bash
+source /opt/tutorial/activate-matrix.sh
+```
+Let's verify if we are in the correct environment.
 
 ```bash
 echo "${CONDA_PREFIX:-No Conda environment is active}"
@@ -81,21 +70,14 @@ echo "${CONDA_PREFIX:-No Conda environment is active}"
 The path should end in:
 
 ```text
-/tutorial-env
+/matrix-env
 ```
 
 If it does not, activate the tutorial environment.
 
-### Live tutorial
 
 ```bash
-source /opt/tutorial/activate.sh
-```
-
-### Self-managed setup
-
-```bash
-conda activate tutorial-env
+conda activate matrix-env
 ```
 
 The environment supplied to Audit must already contain the dependencies required to run the notebook successfully.
