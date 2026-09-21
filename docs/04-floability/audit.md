@@ -84,7 +84,7 @@ The environment supplied to Audit must already contain the dependencies required
 
 ---
 
-## 2. Check the Notebook and Input Data
+## 2. Check the Notebook and Input Data availability
 
 Navigate to the audit example directory:
 
@@ -95,7 +95,7 @@ cd ~/tutorial/examples/audit
 Check its contents:
 
 ```bash
-ls -lah
+ls -lahtr
 ```
 
 You should see the matrix multiplication notebook and a `data` directory.
@@ -103,10 +103,10 @@ You should see the matrix multiplication notebook and a `data` directory.
 Now inspect the input data:
 
 ```bash
-ls -lah data/matrices
+ls -lahtr data/matrices
 ```
 
-The example is already set up with everything Audit needs:
+If the above are available, then the example is already set up with everything `floability audit` needs:
 
 ```text
 audit/
@@ -140,7 +140,7 @@ Now run:
 floability audit \
     --notebook matrix-multiplication.ipynb \
     --conda-env "$CONDA_PREFIX" \
-    --data-dirs data \
+    --data-dirs ./data \
     --backpack-name matrix-backpack
 ```
 
@@ -153,17 +153,11 @@ The important options are:
 | `--data-dirs` | Tells Audit where possible input data files are located |
 | `--backpack-name` | Sets the name of the generated backpack |
 
+There are several additional options that you can check using `floability audit -h`
+
 During the audit, Floability executes the notebook and observes the dependencies used during that execution.
 
-Instead of manually specifying things such as:
-
-```text
-This notebook needs NumPy.
-This notebook reads these matrix files.
-This notebook uses these resources.
-```
-
-Audit collects this information from the execution and uses it to create an initial backpack.
+Instead of manually specifying things, Floability collects this information from the execution and uses it to create an initial backpack.
 
 ---
 
@@ -172,7 +166,7 @@ Audit collects this information from the execution and uses it to create an init
 After the audit finishes, check the generated backpack:
 
 ```bash
-ls -lah matrix-backpack
+ls -lahtr matrix-backpack
 ```
 
 The generated directory will have a structure similar to:
