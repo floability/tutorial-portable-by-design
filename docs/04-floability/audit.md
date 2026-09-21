@@ -2,20 +2,13 @@
 
 **Session time:** 15 minutes
 
-You already have a Jupyter notebook that works.
+> **You already have a Jupyter notebook that works. But how do you turn it into a Floability Backpack without manually specifying all of its software and data dependencies?**
 
-But how do you turn it into a Floability Backpack without manually specifying all of its software and data dependencies?
 
-For Floability Audit to work, you should already have:
 
-- a **working Jupyter notebook**;
-- the **Conda environment** in which the notebook runs successfully; and
-- the notebook's required **input data files** available locally.
-
-Then Floability Audit can observe the notebook while it runs and generate an initial backpack for you.
 
 ```text
-👨‍💻 Notebook author
+👨‍💻 Notebook User
 
 "I already have a working notebook.
 How do I generate a Backpack from it?"
@@ -33,12 +26,20 @@ How do I generate a Backpack from it?"
        🎒 Floability Backpack
 ```
 
+For `floability audit` to work, you should already have:
+
+- a **working Jupyter notebook**;
+- the **Conda environment** in which the notebook runs successfully; and
+- the notebook's required **input data files** available locally.
+
+Then Floability Audit can observe the notebook while it runs and generate an initial backpack for you.
+
 Instead of manually identifying every software dependency and input file, `floability audit` executes the notebook and observes what it actually uses.
 
-> **Important:** Audit does not create the notebook's environment or recover missing input data. The notebook must already run successfully with its required environment and input files available.
+> **Important:** Audit does not create the notebook's environment or recover missing input data. The notebook must already run successfully with its required environment and input files available. Audit is currently experimental, so the generated backpack should be reviewed and tested before being shared or used for larger runs.
 
-Audit is currently experimental, so the generated backpack should be reviewed and tested before being shared or used for larger runs.
 
+<!--
 ## Learning goals
 
 By the end of this tutorial, you will be able to:
@@ -49,8 +50,7 @@ By the end of this tutorial, you will be able to:
 - validate and run the generated backpack.
 
 In this tutorial, we will use a [Matrix Multiplication notebook](https://github.com/floability/tutorial-portable-by-design/blob/main/examples/audit/matrix-multiplication.ipynb).
-
-[**Return to the Floability overview →**](index.md)
+-->
 
 ---
 
@@ -497,3 +497,5 @@ The key point is:
 > **Audit helps turn an already working notebook into a backpack. It does not make a broken or incomplete notebook environment work automatically.**
 
 From here, you can review the generated specifications, validate the backpack, and use it to reproduce the workflow on another supported system.
+
+[**Return to the Floability overview →**](index.md)
