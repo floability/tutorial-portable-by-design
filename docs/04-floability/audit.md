@@ -253,6 +253,8 @@ We started with an existing working notebook setup:
 
 Instead of manually specifying everything the notebook requires, we let Floability observe a successful execution and generate the initial backpack specifications.
 
+<!--
+
 The key point is:
 
 > **Audit helps turn an already working notebook into a backpack. It does not make a broken or incomplete notebook environment work automatically.**
@@ -263,6 +265,8 @@ Instead of manually identifying every software dependency and input file, `floab
 > **Important:** Audit does not create the notebook's environment or recover missing input data. The notebook must already run successfully with its required environment and input files available.
 
 Audit is currently experimental, so the generated backpack should be reviewed and tested before being shared or used for larger runs.
+
+
 
 ## Learning goals
 
@@ -339,160 +343,5 @@ The example is already set up with everything Audit needs:
 audit/
 ├── matrix-multiplication.ipynb
 └── data/
-    └── matrices/
-        └── input matrix files
-```
-
-At this point, we have the three things needed for an audit:
-
-```text
-📓 Working notebook
-        +
-🐍 Working Conda environment
-        +
-📁 Available input data
-        ↓
-   floability audit
-```
-
-The important idea is that **Audit observes an existing working execution**. It does not guess which packages should be installed or recover missing input files.
-
----
-
-## 3. Run Floability Audit
-
-Now run:
-
-```bash
-floability audit \
-    --notebook matrix-multiplication.ipynb \
-    --conda-env "$CONDA_PREFIX" \
-    --data-dirs data \
-    --backpack-name matrix-backpack
-```
-
-The important options are:
-
-| Option | What it does |
-| --- | --- |
-| `--notebook` | Specifies the notebook to execute and audit |
-| `--conda-env` | Specifies the working Conda environment |
-| `--data-dirs` | Tells Audit where possible input data files are located |
-| `--backpack-name` | Sets the name of the generated backpack |
-
-During the audit, Floability executes the notebook and observes the dependencies used during that execution.
-
-Instead of manually specifying things such as:
-
-```text
-This notebook needs NumPy.
-This notebook reads these matrix files.
-This notebook uses these resources.
-```
-
-Audit collects this information from the execution and uses it to create an initial backpack.
-
----
-
-## 4. Inspect the Generated Backpack
-
-After the audit finishes, check the generated backpack:
-
-```bash
-ls -lah matrix-backpack
-```
-
-The generated directory will have a structure similar to:
-
-```text
-matrix-backpack/
-├── compute/
-│   └── compute.yml
-├── data/
-│   └── data.yml
-├── software/
-│   └── environment.yml
-└── workflow/
-    └── matrix-multiplication.ipynb
-```
-
-The main files are:
-
-- `workflow/matrix-multiplication.ipynb` — the notebook
-- `software/environment.yml` — discovered software dependencies
-- `data/data.yml` — detected input data
-- `compute/compute.yml` — initial compute configuration
-
-For example, inspect the generated software specification:
-
-```bash
-cat matrix-backpack/software/environment.yml
-```
-
-Then inspect the detected data:
-
-```bash
-cat matrix-backpack/data/data.yml
-```
-
-Audit observes a particular execution, so the generated specifications should always be reviewed before using the backpack.
-
----
-
-## 5. Validate the Backpack
-
-Check that the generated backpack has a valid Floability structure:
-
-```bash
-floability backpack validate matrix-backpack
-```
-
----
-
-## 6. Run the Backpack
-
-Run the backpack interactively:
-
-```bash
-floability run --backpack matrix-backpack
-```
-
-Floability uses the generated specifications to prepare the workflow and launch JupyterLab.
-
-You can also execute the notebook without opening Jupyter:
-
-```bash
-floability execute --backpack matrix-backpack
-```
-
-For a Slurm cluster:
-
-```bash
-floability run \
-    --backpack matrix-backpack \
-    --batch-type slurm
-```
-
----
-
-## What Did We Do?
-
-We started with an existing working notebook setup:
-
-```text
-📓 Notebook  +  🐍 Environment  +  📁 Input Data
-                ↓
-         floability audit
-                ↓
-       🎒 Generated Backpack
-```
-
-Instead of manually specifying everything the notebook requires, we let Floability observe a successful execution and generate the initial backpack specifications.
-
-The key point is:
-
-> **Audit helps turn an already working notebook into a backpack. It does not make a broken or incomplete notebook environment work automatically.**
-
-From here, you can review the generated specifications, validate the backpack, and use it to reproduce the workflow on another supported system.
 
 [**Return to the Floability overview →**](index.md)
