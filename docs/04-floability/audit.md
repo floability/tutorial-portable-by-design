@@ -26,7 +26,7 @@ If you already have a Jupyter notebook that runs successfully, Floability can he
 
 Instead of manually writing the software and data specifications, `floability audit` runs the notebook, observes the software and input files it uses, and generates an initial backpack for you.
 
-In this tutorial, we will use a [Matrix Multiplication notebook]([https://github.com/floability-hub/matrix-multiplication/blob/main/workflow/matrix-multiplication.ipynb](https://github.com/floability/tutorial-portable-by-design/blob/main/examples/audit/matrix-multiplication.ipynb)).
+In this tutorial, we will use a [Matrix Multiplication notebook](https://github.com/floability/tutorial-portable-by-design/blob/main/examples/audit/matrix-multiplication.ipynb).
 
 > `floability audit` is currently experimental. The generated backpack should be reviewed before using it for larger runs.
 
