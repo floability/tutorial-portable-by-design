@@ -4,25 +4,35 @@ Sciunit can be used to execute and containerize complex scientific workflows con
 
 
 ## RAG-Lite
-This workflow consists of three steps. It ingests and chunks text data and creates a corpus, which is converted into a retrieval index, which is then queried to retrieve relevant chunks with the given context.
+This workflow consists of three steps. It (1) ingests and chunks text data and creates a corpus, (2) which is converted into a retrieval index, (3) which is then queried to retrieve relevant chunks with the given context.
 
-Move into the correct directory:
+First, move into this directory:
 ```bash
 cd ~/tutorial/examples/sciunit/rag-lite
 ```
-Install and activate the conda environment to run this example:
-```
-source ./sciunit-env.sh 
+Make sure you are in the `raglite-sciunit-env` environment. If not, run the following command:
+```bash
+source /opt/tutorial/activate-raglite-sciunit.sh 
 ```
 
-## Executing RAG-Lite with Sciunit
+## Create your Sciunit Project
+Create another Sciunit project:
+```bash
+sciunit create project-raglite
+```
+This will show an output similar to this:
+```
+Opened empty sciunit at /home/user02/sciunit/project-raglite
+```
+
+## Executing RAG-Lite Workflow with Sciunit
 
 ### Step 1: Ingest and Chunk Text Data
 Read dataset of books in the text files, clean and chunk each one in parallel, and write the combined corpus to a json file.
-```
+```bash
 sciunit exec python 01_ingest_and_chunk_local.py --data-dir ./data --output gutenberg_corpus.json --workers 8
 ```
-It gives the following output:
+It will give an output similar to this:
 ```
 Found books:
  - alice.txt (151191 bytes)
@@ -55,28 +65,35 @@ Chunk length stats:
   min: 35
   max: 999
   avg: 822.2
+
+[project-raglite e1] python 01_ingest_and_chunk_local.py --data-dir ./data --output gutenberg_corpus.json --workers 8
+ Date: Mon, 21 Sep 2026 21:50:46 +0000
 ```
 
 ### Step 2: Build a BM25 Retrieval Index
 Loads the combined corpus, converts chunks into LangChain Document format,
 build a BM25Retriever index, and persist it to disk for later on-demand usage.
-```
+```bash
 sciunit exec python 02_build_bm25_index.py --corpus gutenberg_corpus.json --index-out bm25_index.pkl
 ```
-It gives an output like this:
+It will give an output similar to this:
 ```
 Loaded 8362 chunks from gutenberg_corpus.json
 Built 8362 Documents from corpus
 ✓ BM25 retriever ready (k=4)
 ✓ Saved BM25 index to bm25_index.pkl
+
+[project-raglite e2] python 02_build_bm25_index.py --corpus gutenberg_corpus.json --index-out bm25_index.pkl
+ Date: Mon, 21 Sep 2026 21:51:33 +0000
 ```
+_You can ignore any warning messages in the output_.
 
 ### Step 3: Context-based Retrieval from Index
 Load the persisted BM25Retriever index and run a query on the index to retrieve chunks with the given query context.
-```
+```bash
 sciunit exec python 03_query_rag.py --index bm25_index.pkl "What happens when Alice falls down the rabbit hole?" --k 4
 ```
-The first few lines of the output look like this:
+The first and the last few lines of the output will look like this:
 ```
 Loaded BM25 retriever from bm25_index.pkl
 
@@ -92,22 +109,57 @@ Retrieved 4 chunks:
     QUINTUS. My sight is very dull, whate’er it bodes.  MARTIUS. And mine, I promise you. Were it not for shame, Well could I leave our sport to sleep awhile.  [_He falls into the pit._]  QUINTUS. What, a...
 
 [3] book_id=alice  chunk_id=104  pos=55.3%
-    “Well, I’d hardly finished the first verse,” said the Hatter, “when the Queen jumped up and bawled out, ‘He’s murdering the time! Off with his head!’”  “How dreadfully savage!” exclaimed Alice.  “And ...
+    “Well, I’d hardly finished the first verse,” said the Hatter, “when the Queen jumped up and bawled out, ‘He’s murdering the time! Off with his head!’”  “How dreadfully savage!” exclaimed Alice. 
 ...................................................
 ...................................................
-```
+...................................................
+...................................................
 
-Verify all executions captured in this workflow which show an output like this:
+[project-raglite e3] python 03_query_rag.py --index bm25_index.pkl 'What happens when Alice falls down the rabbit hole?' --k 4
+ Date: Mon, 21 Sep 2026 21:52:28 +0000
 ```
-> sciunit list
+_You can ignore any warning messages in the output_.
+
+## Verify the Captured Workflow
+Verify all executions captured in this workflow:
+```bash
+sciunit list
+```
+This will show an output similar to this:
+```
    e1 Sep  8 23:42 python 01_ingest_and_chunk_local.py --data-dir ./data --output gutenberg_corpus.json --workers 8
    e2 Sep  8 23:43 python 03_query_rag.py 'What happens when Alice falls down the rabbit hole?' --k 4
    e3 Sep  8 23:45 python 03_query_rag.py --index bm25_index.pkl 'What happens when Alice falls down the rabbit hole?' --k 4
 ```
 
-These entire workflow could be reproduced by repeating the captured executions like this:
+## Repeat RAG-Lite Workflow with Sciunit
+
+This captured RAG-Lite workflow could be repeated in the same environment, or another environment which does not have the necessary dependenceis to execute it. 
+
+Run the following to go to the base environment.
+```bash
+source /opt/tutorial/activate.sh
 ```
+This environment has Sciunit installed in it, but does not have any of the core dependencies required to execute RAG-Lite workflow, including `langchain` and `rank-bm25`. You can confirm by running the following:
+```bash
+conda list | grep sciunit
+```
+You will see the following output:
+```
+sciunit2  0.4.post164.dev115100208  pypi_0  pypi
+```
+Now run these:
+```bash
+conda list | grep langchain
+conda list | grep rankbm25
+```
+You will not see any response since these do not exist in this environment.
+
+Now repeat the executions one by one:
+```bash
 sciunit repeat e1
 sciunit repeat e2
 sciunit repeat e3
 ```
+
+These will successfully execute the entire workflow and give the desired output as before.

@@ -2,8 +2,10 @@
 
 Workflows are most commonly executed in interactive environments like Jupyter notebooks. In order to achieve reproducibility in these environments, we use FLINC, which is built on top of Sciunit and extends the concept of application virtualization to such environments. It creates two new kernels: audit and repeat.
 
-<path to notebook comes here>
-
+Move into the correct directory:
+```bash
+cd ~/tutorial/examples/sciunit/rag-lite-flinc
+```
 
 ## Install FLINC
 ```
@@ -14,11 +16,18 @@ Find the path of the kernel you wish to audit:
 ```
 jupyter kernelspec list
 ```
-Execute install.sh from the command line:
+The output will be shown like this:
 ```
-./install.sh <user kernel path>
+Available kernels:
+  python3    /home/codespace/.local/share/jupyter/kernels/python3
+  rag-lite   <rag-lite kernel path>
 ```
-`<user kernel path>` is the path of the kernel that will execute your notebook code.
+`rag-lite` is the name of the kernel which contains necessary environment to to execute this notebook code.
+
+Execute FLINC from the command line:
+```
+./install.sh <rag-lite kernel path>
+```
 
 ## Auditing with FLINC
 Select the audit kernel from within the notebook and execute your notebook code. After execution completes, select 'No Kernel' from the list or shutdown the kernel. Wait anywhere from few seconds to few minutes to complete auditing and container creation in the background. Each audit run will create a new Sciunit container in the background.
