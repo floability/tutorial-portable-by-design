@@ -72,7 +72,7 @@ access works
 
 Your home directory and tutorial workspace belong to your account. Always use the username and server assigned to you.
 
-## 2. Find the tutorial materials
+## 2. Find the tutorial repository and examples
 
 All tutorial instructions, scripts, and examples are already available in your workspace. Do not clone another copy of the repository on the live server.
 

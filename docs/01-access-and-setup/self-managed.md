@@ -32,7 +32,6 @@ conda create -y -n portable-by-design \
   --strict-channel-priority \
   python=3.11 \
   pip \
-  setuptools=80.9.0 \
   git \
   jupyterlab \
   ndcctools \
@@ -48,12 +47,10 @@ conda activate portable-by-design
 Install the Sciunit command-line tool inside the active environment:
 
 ```bash
-python -m pip install sciunit2==0.4.post115.dev43584757
+python -m pip install sciunit2
 ```
 
-`setuptools=80.9.0` is a temporary compatibility pin for the current Sciunit CLI, which still uses the deprecated `pkg_resources` API.
-
-<!-- TODO: Revisit the Setuptools pin when Sciunit no longer imports pkg_resources. -->
+Pip will install the current Sciunit release and its declared dependencies.
 
 Whenever you open a new terminal and return to the tutorial, activate it again:
 
@@ -69,15 +66,19 @@ Run:
 python --version
 vine_worker --version
 sciunit --version
+python -c "from sciunit2.command.exec_ import ExecCommand; print('Sciunit: OK')"
 python -c "import ndcctools.taskvine; print('TaskVine: OK')"
 floability --help >/dev/null && echo "Floability: OK"
+python -m pip check
 ```
 
 You should finish with:
 
 ```text
+Sciunit: OK
 TaskVine: OK
 Floability: OK
+No broken requirements found.
 ```
 
 ## 4. Understand the environment layout

@@ -13,7 +13,7 @@ You can follow the tutorial in either of two ways:
 * **Live tutorial participant** — connect to the prepared tutorial server using the credentials provided during the session.
 * **Self-managed setup** — create the tutorial environment on your own Linux computer or server.
 
-## Tutorial Materials
+## Tutorial Content
 
 * **Slides** — coming soon.
 * **TaskVine exercises** — coming soon.
