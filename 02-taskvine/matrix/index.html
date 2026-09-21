@@ -552,6 +552,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#before-you-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you begin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Before you begin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-choose-an-example" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1146,6 +1185,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#before-you-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you begin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Before you begin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-choose-an-example" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1386,6 +1464,18 @@
 </tbody>
 </table>
 <p>You may run either example. Both use the same environment-creation and <code>vine_factory</code> procedure. During the live tutorial, the accompanying slides build the application piece by piece before reviewing the completed code.</p>
+<h2 id="before-you-begin">Before you begin</h2>
+<p>Check which Conda environment is active:</p>
+<pre><code class="language-bash">echo &quot;${CONDA_PREFIX:-No Conda environment is active}&quot;
+</code></pre>
+<p>The path should end in <code>/tutorial-env</code>. If it does not, activate the tutorial
+environment using the command for your setup:</p>
+<h3 id="live-tutorial">Live tutorial</h3>
+<pre><code class="language-bash">source /opt/tutorial/activate.sh
+</code></pre>
+<h3 id="self-managed">Self-managed</h3>
+<pre><code class="language-bash">conda activate tutorial-env
+</code></pre>
 <h2 id="1-choose-an-example">1. Choose an example</h2>
 <p>For the basic version:</p>
 <pre><code class="language-bash">cd ~/tutorial/examples/taskvine/matrix-basic

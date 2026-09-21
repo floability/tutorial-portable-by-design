@@ -1337,14 +1337,19 @@ matrix-multiplication program from the earlier TaskVine exercise.</p>
 <p>Both workflows are Python scripts, so run them non-interactively with
 <code>floability execute</code>.</p>
 <h2 id="before-you-begin">Before you begin</h2>
-<p>Activate the tutorial tools and return to the repository root.</p>
+<p>Check which Conda environment is active:</p>
+<pre><code class="language-bash">echo &quot;${CONDA_PREFIX:-No Conda environment is active}&quot;
+</code></pre>
+<p>The path should end in <code>/tutorial-env</code>. If it does not, activate the tutorial
+environment using the command for your setup:</p>
 <h3 id="live-tutorial">Live tutorial</h3>
 <pre><code class="language-bash">source /opt/tutorial/activate.sh
-cd ~/tutorial
 </code></pre>
 <h3 id="self-managed">Self-managed</h3>
-<pre><code class="language-bash">conda activate portable-by-design
-cd ~/tutorial
+<pre><code class="language-bash">conda activate tutorial-env
+</code></pre>
+<p>Return to the repository root:</p>
+<pre><code class="language-bash">cd ~/tutorial
 </code></pre>
 <p>Create a directory for the backpacks you build:</p>
 <pre><code class="language-bash">mkdir -p ~/tutorial/created-backpacks
