@@ -1,0 +1,13 @@
+name: raglite-flinc-env
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - jupyter
+  - ndcctools=7.17.1
+  - langchain=1.0.3
+  - langchain-community=0.3.31
+  - langchain-text-splitters=0.3.11
+  - rank-bm25=0.2.2
