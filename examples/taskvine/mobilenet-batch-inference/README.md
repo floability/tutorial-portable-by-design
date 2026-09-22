@@ -41,7 +41,7 @@ Open a second terminal, activate the same environment, and run the complete
 conda activate taskvine-mobilenet
 vine_factory -T local --min-workers=1 --max-workers=1 \
   --cores=1 \
-  --manager-name MANAGER_NAME
+  --manager-name <MANAGER_NAME>
 ```
 
 Use the actual manager name printed by the program. A successful run ends with:

@@ -20,17 +20,19 @@ echo "${CONDA_PREFIX:-No Conda environment is active}"
 The path should end in `/tutorial-env`. If it does not, activate the tutorial
 environment using the command for your setup:
 
-### Live tutorial
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
 
 ```bash
 source /opt/tutorial/activate.sh
 ```
 
-### Self-managed
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
 
 ```bash
 conda activate tutorial-env
 ```
+
+**Continue with either setup**
 
 Return to the repository root:
 
@@ -297,8 +299,8 @@ A successful run finishes with the same results as the standalone TaskVine
 program:
 
 ```text
-Completed A x B on WORKER_ADDRESS: [[19, 22], [43, 50]]
-Completed C x D on WORKER_ADDRESS: [[6, 2], [8, 4]]
+Completed A x B on <WORKER_ADDRESS>: [[19, 22], [43, 50]]
+Completed C x D on <WORKER_ADDRESS>: [[6, 2], [8, 4]]
 
 Basic PythonTask matrix multiplication complete.
 ```

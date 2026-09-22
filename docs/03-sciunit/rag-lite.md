@@ -6,13 +6,42 @@ Sciunit can be used to execute and containerize complex scientific workflows con
 ## RAG-Lite
 This workflow consists of three steps. It (1) ingests and chunks text data and creates a corpus, (2) which is converted into a retrieval index, (3) which is then queried to retrieve relevant chunks with the given context.
 
-First, move into this directory:
+## Before you begin
+
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
+
+Activate the prepared, read-only RAG-Lite environment:
+
+```bash
+source /opt/tutorial/activate-raglite-sciunit.sh
+```
+
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
+
+Create the RAG-Lite environment the first time you run this exercise:
+
+```bash
+conda create -y -n raglite-sciunit-env python=3.11 pip
+conda activate raglite-sciunit-env
+python -m pip install \
+  langchain-community \
+  langchain-text-splitters \
+  rank-bm25 \
+  sciunit2
+```
+
+If the environment already exists, activate it without recreating it:
+
+```bash
+conda activate raglite-sciunit-env
+```
+
+**Continue with either setup**
+
+Move into the example directory:
+
 ```bash
 cd ~/tutorial/examples/sciunit/rag-lite
-```
-Make sure you are in the `raglite-sciunit-env` environment. If not, run the following command:
-```bash
-source /opt/tutorial/activate-raglite-sciunit.sh 
 ```
 
 ## Create your Sciunit Project
@@ -136,10 +165,22 @@ This will show an output similar to this:
 
 This captured RAG-Lite workflow could be repeated in the same environment, or another environment which does not have the necessary dependenceis to execute it. 
 
-Run the following to go to the base environment.
+Switch to the base tutorial environment, which has Sciunit but not the RAG-Lite dependencies.
+
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
+
 ```bash
 source /opt/tutorial/activate.sh
 ```
+
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
+
+```bash
+conda activate tutorial-env
+```
+
+**Continue with either setup**
+
 This environment has Sciunit installed in it, but does not have any of the core dependencies required to execute RAG-Lite workflow, including `langchain` and `rank-bm25`. You can confirm by running the following:
 ```bash
 conda list | grep sciunit
@@ -163,3 +204,5 @@ sciunit repeat e3
 ```
 
 These will successfully execute the entire workflow and give the desired output as before.
+
+[**Next: Run an interactive workflow with FLINC →**](rag-lite-flinc.md)

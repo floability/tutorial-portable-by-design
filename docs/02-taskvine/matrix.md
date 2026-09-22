@@ -13,26 +13,7 @@ You may run either example. Both use the same environment-creation and `vine_fac
 
 ## Before you begin
 
-Check which Conda environment is active:
-
-```bash
-echo "${CONDA_PREFIX:-No Conda environment is active}"
-```
-
-The path should end in `/tutorial-env`. If it does not, activate the tutorial
-environment using the command for your setup:
-
-### Live tutorial
-
-```bash
-source /opt/tutorial/activate.sh
-```
-
-### Self-managed
-
-```bash
-conda activate tutorial-env
-```
+Complete [Access and Setup](../01-access-and-setup/index.md) before starting. Both setup routes place the repository at `~/tutorial`.
 
 ## 1. Choose an example
 
@@ -50,14 +31,32 @@ cd ~/tutorial/examples/taskvine/matrix-files
 
 The remainder of the run procedure is the same for either directory.
 
-## 2. Create the matrix environment
+## 2. Activate the matrix environment
 
-Create a new Conda environment from the selected example's `environment.yml`:
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
+
+Activate the prepared, read-only matrix environment:
+
+```bash
+source /opt/tutorial/activate-matrix.sh
+```
+
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
+
+Create a Conda environment from the selected example's `environment.yml`, then activate it:
 
 ```bash
 conda env create --file environment.yml
 conda activate taskvine-matrix
 ```
+
+If you already created the environment while running the other matrix version, activate it without recreating it:
+
+```bash
+conda activate taskvine-matrix
+```
+
+**Continue with either setup**
 
 Both examples provide the same environment specification:
 
@@ -78,13 +77,7 @@ Each dependency has a purpose:
 | `cloudpickle` | Serializes the Python function, its arguments, and its return value. |
 | NumPy | Implements matrix multiplication and reads or writes CSV matrices. |
 
-A PythonTask serializes Python code and values; it does not automatically install imported third-party libraries. Because `multiply_matrix` imports NumPy, NumPy must be available in the worker's Python environment. In this local exercise, starting both the manager and `vine_factory` after activating `taskvine-matrix` gives them the same environment.
-
-If you already created `taskvine-matrix` while running the other version, do not create it again. Activate the existing environment:
-
-```bash
-conda activate taskvine-matrix
-```
+A PythonTask serializes Python code and values; it does not automatically install imported third-party libraries. Because `multiply_matrix` imports NumPy, NumPy must be available in the worker's Python environment. In this local exercise, starting both the manager and `vine_factory` from the same matrix environment gives them the same dependencies.
 
 Confirm the important imports:
 
@@ -111,11 +104,11 @@ python matrix-files.py
 Each program creates a manager with a unique project name, submits two tasks, prints the manager's selected port, and waits:
 
 ```text
-Manager name: MANAGER_NAME
-Listening on port: PORT
+Manager name: <MANAGER_NAME>
+Listening on port: <PORT>
 
 In a second terminal, activate this environment and run:
-vine_factory ... --manager-name MANAGER_NAME
+vine_factory ... --manager-name <MANAGER_NAME>
 
 Submitted two PythonTasks. Waiting for the factory worker...
 ```
@@ -124,17 +117,31 @@ Leave the manager running.
 
 ## 4. Start a local TaskVine factory
 
-Open a second terminal on the same tutorial server or self-managed Linux system. Activate the matrix environment:
+Open a second terminal on the same tutorial server or self-managed Linux system.
+
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
+
+Connect to your assigned server if necessary, then activate the prepared matrix environment:
+
+```bash
+source /opt/tutorial/activate-matrix.sh
+```
+
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
+
+Activate the environment you created:
 
 ```bash
 conda activate taskvine-matrix
 ```
 
+**Continue with either setup**
+
 Copy the complete `vine_factory` command printed by the manager and run it in the second terminal. It will look like:
 
 ```bash
 vine_factory -T local --min-workers=1 --max-workers=2 \
-  --manager-name MANAGER_NAME
+  --manager-name <MANAGER_NAME>
 ```
 
 Use the actual manager name printed by your program.
@@ -159,8 +166,8 @@ Return to the manager terminal.
 The basic example should finish with:
 
 ```text
-Completed A x B on WORKER_ADDRESS: [[19, 22], [43, 50]]
-Completed C x D on WORKER_ADDRESS: [[6, 2], [8, 4]]
+Completed A x B on <WORKER_ADDRESS>: [[19, 22], [43, 50]]
+Completed C x D on <WORKER_ADDRESS>: [[6, 2], [8, 4]]
 
 Basic PythonTask matrix multiplication complete.
 ```
@@ -168,8 +175,8 @@ Basic PythonTask matrix multiplication complete.
 The file-based example returns the same Python values and two declared files:
 
 ```text
-Completed A x B on WORKER_ADDRESS: [[19.0, 22.0], [43.0, 50.0]]
-Completed C x D on WORKER_ADDRESS: [[6.0, 2.0], [8.0, 4.0]]
+Completed A x B on <WORKER_ADDRESS>: [[19.0, 22.0], [43.0, 50.0]]
+Completed C x D on <WORKER_ADDRESS>: [[6.0, 2.0], [8.0, 4.0]]
 
 File-based PythonTask matrix multiplication complete.
 Outputs: outputs/result-ab.csv and outputs/result-cd.csv

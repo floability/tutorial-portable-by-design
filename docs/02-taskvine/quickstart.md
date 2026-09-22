@@ -19,17 +19,19 @@ echo "${CONDA_PREFIX:-No Conda environment is active}"
 The path should end in `/tutorial-env`. If it does not, activate the tutorial
 environment using the command for your setup:
 
-### Live tutorial
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
 
 ```bash
 source /opt/tutorial/activate.sh
 ```
 
-### Self-managed
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
 
 ```bash
 conda activate tutorial-env
 ```
+
+**Continue with either setup**
 
 Enter the quickstart directory:
 
@@ -55,11 +57,11 @@ python taskvine-quickstart.py
 The program prints a manager name containing your username, selects an available port, submits five tasks, and waits:
 
 ```text
-Manager name: taskvine-quickstart-USERNAME
-Listening on port: PORT
+Manager name: taskvine-quickstart-<USERNAME>
+Listening on port: <PORT>
 
 In a second terminal, run:
-vine_worker ... localhost PORT
+vine_worker ... localhost <PORT>
 
 Submitting tasks...
 Waiting for a worker to connect and complete the tasks...
@@ -71,24 +73,29 @@ Leave this terminal running.
 
 ## 2. Open a second terminal
 
-### Live tutorial participants
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
 
-Open another terminal on your computer, connect to the same tutorial server, and activate the shared tools:
+Open another terminal on your computer and connect to the same tutorial server. Replace the highlighted placeholders with the username and server printed on your credential card:
 
 ```bash
-ssh USERNAME@SERVER
+ssh <USERNAME>@<SERVER>
+```
+
+After logging in, activate the shared tutorial tools:
+
+```bash
 source /opt/tutorial/activate.sh
 ```
 
-Use the username and server printed on your credential card.
-
-### Self-managed participants
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
 
 Open another terminal on the same Linux system and activate the tutorial environment:
 
 ```bash
 conda activate tutorial-env
 ```
+
+**Continue with either setup**
 
 ## 3. Start the worker directly
 
@@ -97,10 +104,10 @@ Return briefly to the manager terminal and copy the complete `vine_worker` comma
 It will look similar to:
 
 ```bash
-vine_worker localhost PORT
+vine_worker localhost <PORT>
 ```
 
-Use the actual port printed by your manager instead of `PORT`. Live participants should run this command on the tutorial server, not on their laptop.
+Use the actual port printed by your manager instead of `<PORT>`. Live participants should run this command on the tutorial server, not on their laptop.
 
 The worker connects directly to the manager and begins requesting tasks. This is the only primary tutorial example that starts a worker directly; later exercises use `vine_factory` to discover a named manager and maintain workers for it.
 

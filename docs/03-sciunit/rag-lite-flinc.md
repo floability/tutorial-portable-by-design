@@ -2,6 +2,8 @@
 
 Workflows are most commonly executed in interactive environments like Jupyter notebooks. In order to achieve reproducibility in these environments, we use FLINC, which is built on top of Sciunit and extends the concept of application virtualization to such environments. It creates two new kernels: audit and repeat.
 
+Complete the [RAG-Lite Sciunit exercise](rag-lite.md) before starting this page.
+
 First, move into this directory:
 ```bash
 cd ~/tutorial/examples/sciunit/flinc
@@ -119,3 +121,5 @@ This will show a single execution with an output similar to this:
 ```
    e1 Sep 22 17:13 /home/user02/.conda/envs/raglite-flinc-env/bin/python -Xfrozen_modules=off -m ipykernel_launcher -f /home/user02/.local/share/jupyter/runtime/kernel-0a74de29-2cd6-4ab8-9ce8-c006de09dd37.json
 ```
+
+[**Next: Floability overview →**](../04-floability/index.md)

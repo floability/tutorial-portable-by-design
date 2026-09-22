@@ -16,21 +16,23 @@ echo "${CONDA_PREFIX:-No Conda environment is active}"
 The path should end in `/tutorial-env`. If it does not, activate the tutorial
 environment using the command for your setup:
 
-### Live tutorial
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
 
 ```bash
 source /opt/tutorial/activate.sh
 ```
 
-### Self-managed
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
 
 ```bash
 conda activate tutorial-env
 ```
 
+**Continue with either setup**
+
 ## 1. Locate the backpack
 
-### Live tutorial environment
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
 
 The backpack is already available in your tutorial workspace. Do not clone
 another copy on the live server.
@@ -39,7 +41,7 @@ another copy on the live server.
 cd ~/tutorial/examples/backpacks/matrix-multiplication
 ```
 
-### Self-managed environment
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
 
 Download the backpack from
 [Floability Hub](https://github.com/floability-hub/matrix-multiplication):
@@ -50,6 +52,8 @@ git clone https://github.com/floability-hub/matrix-multiplication.git \
   ~/tutorial/examples/backpacks/matrix-multiplication
 cd ~/tutorial/examples/backpacks/matrix-multiplication
 ```
+
+**Continue with either setup**
 
 Both setup paths now use the same backpack directory.
 
@@ -95,39 +99,41 @@ creates the backpack's Conda environment. Leave this terminal open. It will
 eventually print a JupyterLab URL similar to:
 
 ```text
-http://localhost:REMOTE_PORT/lab?token=TOKEN
+http://localhost:<REMOTE_PORT>/lab?token=<TOKEN>
 ```
 
 ## 4. Open JupyterLab
 
-### Floability is running on your own computer
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
 
-Open the complete URL printed by Floability in your browser.
+Floability is running on your own computer. Open the complete URL printed by Floability in your browser.
 
-### Floability is running on a remote server
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
 
-The Jupyter server is intentionally not exposed to the public Internet. Open a
+Floability is running on a remote server. The Jupyter server is intentionally not exposed to the public Internet. Open a
 new terminal **on your own computer** and create an SSH tunnel:
 
 ```bash
-ssh -N -L 8888:localhost:REMOTE_PORT USERNAME@SERVER
+ssh -N -L 8888:localhost:<REMOTE_PORT> <USERNAME>@<SERVER>
 ```
 
 Replace:
 
-- `REMOTE_PORT` with the port in Floability's JupyterLab URL;
-- `USERNAME` with your assigned remote username; and
-- `SERVER` with your assigned server address.
+- `<REMOTE_PORT>` with the port in Floability's JupyterLab URL;
+- `<USERNAME>` with your assigned remote username; and
+- `<SERVER>` with your assigned server address.
 
 Keep the tunnel terminal open. In your browser, replace the remote port in the
 printed URL with local port `8888`:
 
 ```text
-http://localhost:8888/lab?token=TOKEN
+http://localhost:8888/lab?token=<TOKEN>
 ```
 
 If port `8888` is already in use on your computer, choose another local port,
 such as `8889`, in both the SSH command and browser URL.
+
+**Continue with either setup**
 
 ## 5. Run the workflow
 

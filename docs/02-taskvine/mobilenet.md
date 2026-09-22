@@ -47,17 +47,19 @@ echo "${CONDA_PREFIX:-No Conda environment is active}"
 The path should end in `/tutorial-env`. If it does not, activate the tutorial
 environment using the command for your setup:
 
-### Live tutorial
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
 
 ```bash
 source /opt/tutorial/activate.sh
 ```
 
-### Self-managed
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
 
 ```bash
 conda activate tutorial-env
 ```
+
+**Continue with either setup**
 
 ## 1. Create the environment
 
@@ -94,14 +96,18 @@ python mobilenet-python-task.py
 
 The program prints its manager name and waits for workers.
 
-Open a second terminal, activate the same environment, and run the complete
-`vine_factory` command printed by the manager. It will look like:
+Open a second terminal and activate the same environment:
 
 ```bash
 conda activate taskvine-mobilenet
+```
+
+Then copy the complete `vine_factory` command printed by the manager. It will look like:
+
+```bash
 vine_factory -T local --min-workers=1 --max-workers=1 \
   --cores=1 \
-  --manager-name MANAGER_NAME
+  --manager-name <MANAGER_NAME>
 ```
 
 Use the actual manager name printed by the program. The first run may pause
@@ -188,3 +194,5 @@ larger workload is needed for a meaningful timing comparison.
 - Review the [TaskVine Quickstart](quickstart.md).
 - Review [Matrix Multiplication with TaskVine](matrix.md).
 - Read the [official TaskVine Function Calls documentation](https://cctools.readthedocs.io/en/stable/taskvine/#serverless-computing-with-taskvine).
+
+[**Next: Sciunit overview →**](../03-sciunit/index.md)

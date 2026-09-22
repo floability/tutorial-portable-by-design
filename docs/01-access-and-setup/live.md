@@ -1,16 +1,21 @@
 # Connect to the Tutorial Server
 
+<span class="tutorial-route-badge tutorial-route--live">Live tutorial</span>
+
 Your credential card contains your **username**, **password**, and **server**.
+
+!!! tip "Angle-bracket values need editing"
+    Amber text inside angle brackets, such as `<USERNAME>` or `<SERVER>`, marks a value you must replace. The rest of the command remains unchanged.
 
 ## macOS and Linux
 
 Open Terminal and connect with:
 
 ```bash
-ssh USERNAME@SERVER
+ssh <USERNAME>@<SERVER>
 ```
 
-Replace `USERNAME` and `SERVER` with the values printed on your card.
+Replace `<USERNAME>` and `<SERVER>` with the values printed on your card.
 
 ## Windows — unverified
 
@@ -25,10 +30,10 @@ ssh -V
 If that prints an OpenSSH version, connect with:
 
 ```powershell
-ssh USERNAME@SERVER
+ssh <USERNAME>@<SERVER>
 ```
 
-Replace `USERNAME` and `SERVER` with the values printed on your card.
+Replace `<USERNAME>` and `<SERVER>` with the values printed on your card.
 
 The first connection may ask whether you want to trust the server. Enter:
 
@@ -53,7 +58,7 @@ pwd
 `whoami` should show the username printed on your card, and your home directory should be:
 
 ```text
-/home/USERNAME
+/home/<USERNAME>
 ```
 
 Now confirm that your tutorial workspace is writable:
@@ -147,7 +152,7 @@ These environments are separate from the shared tutorial tools. Repeated runs of
 Later notebook exercises will use SSH tunneling so Jupyter does not need a public network port. The instructions will provide the local and remote port numbers and use this pattern:
 
 ```bash
-ssh -L LOCAL_PORT:localhost:REMOTE_PORT USERNAME@SERVER
+ssh -L <LOCAL_PORT>:localhost:<REMOTE_PORT> <USERNAME>@<SERVER>
 ```
 
 The Windows version is expected to use the same options in PowerShell, but it remains unverified until tested on a Windows computer.

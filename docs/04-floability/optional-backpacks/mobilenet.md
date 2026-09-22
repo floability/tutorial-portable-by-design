@@ -20,22 +20,33 @@ echo "${CONDA_PREFIX:-No Conda environment is active}"
 The path should end in `/tutorial-env`. If it does not, activate the tutorial
 environment using the command for your setup:
 
-### Live tutorial
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
 
 ```bash
 source /opt/tutorial/activate.sh
 ```
 
-### Self-managed
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
 
 ```bash
 conda activate tutorial-env
 ```
 
+**Continue with either setup**
+
 ## 1. Get the backpack
 
-Clone the backpack from
-[Floability Hub](https://github.com/floability-hub/mobilenet-batch-inference):
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
+
+The backpack is already available in your tutorial workspace. Do not clone another copy on the live server.
+
+```bash
+cd ~/tutorial/examples/backpacks/mobilenet-batch-inference
+```
+
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
+
+Download the backpack from [Floability Hub](https://github.com/floability-hub/mobilenet-batch-inference):
 
 ```bash
 mkdir -p ~/tutorial/examples/backpacks
@@ -43,6 +54,8 @@ git clone https://github.com/floability-hub/mobilenet-batch-inference.git \
   ~/tutorial/examples/backpacks/mobilenet-batch-inference
 cd ~/tutorial/examples/backpacks/mobilenet-batch-inference
 ```
+
+**Continue with either setup**
 
 The initial run downloads the ONNX model and prepares an inference environment,
 so allow more time and disk space than the basic matrix exercise.
@@ -200,3 +213,5 @@ A successful run should:
 - report successful TaskVine calls for either distributed mode.
 
 For more examples, visit [Floability Hub](https://github.com/floability-hub).
+
+[**Return to the tutorial overview →**](../../index.md)

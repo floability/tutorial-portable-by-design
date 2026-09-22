@@ -44,4 +44,6 @@ Move on to [**Workflow Execution with Sciunit**](rag-lite.md). In this example, 
 ### 3. Executing an Interactive Workflow with FLINC
 Finally, you will open [**Notebook Execution with FLINC**](rag-lite-flinc.md). In this example, you will execute the same workflow as #2 above in an interactive Jupyter notebook environment.
 
-These exercices demonstrate how to create a reproducible execution in a shell environment using Sciunit and in an interactive environment using FLINC. 
+These exercises demonstrate how to create a reproducible execution in a shell environment using Sciunit and in an interactive environment using FLINC.
+
+[**Start with the Sciunit Quickstart →**](quickstart.md)

@@ -13,6 +13,12 @@ theme:
     - navigation.indexes
     - content.code.copy
 
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra_javascript:
+  - assets/javascripts/placeholders.js
+
 nav:
   - Home: index.md
   - Access and Setup:

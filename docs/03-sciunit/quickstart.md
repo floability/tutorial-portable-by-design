@@ -1,9 +1,26 @@
 # Sciunit Quickstart
 
-Activate the conda environment as the first step:
+## Before you begin
+
+Complete [Access and Setup](../01-access-and-setup/index.md) before starting.
+
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
+
+Activate the shared tutorial environment:
+
 ```bash
-source /opt/tutorial/activate-raglite-sciunit.sh 
+source /opt/tutorial/activate.sh
 ```
+
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
+
+Activate the environment you created during setup:
+
+```bash
+conda activate tutorial-env
+```
+
+**Continue with either setup**
 
 ## Creating your Sciunit Project
 Create your first Sciunit project. This will help to keep all related executions in one place:
@@ -123,3 +140,5 @@ This will show an output similar to this:
 ```
 /home/user02
 ```
+
+[**Next: Run a multi-step workflow with Sciunit →**](rag-lite.md)

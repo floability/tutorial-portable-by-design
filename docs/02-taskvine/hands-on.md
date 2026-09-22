@@ -30,3 +30,5 @@ Function Library.
 
 This is the advanced exercise. It may be demonstrated during the live session
 and completed independently afterward.
+
+[**Start with the TaskVine Quickstart →**](quickstart.md)

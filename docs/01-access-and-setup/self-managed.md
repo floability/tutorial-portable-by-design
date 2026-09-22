@@ -1,5 +1,7 @@
 # Create Your Own Environment
 
+<span class="tutorial-route-badge tutorial-route--self-managed">Self-managed</span>
+
 Use this setup if you are following the tutorial on your own x86-64 Linux computer or server.
 
 You need:
@@ -35,7 +37,10 @@ conda create -y -n tutorial-env \
   git \
   jupyterlab \
   ndcctools \
-  floability
+  floability \
+  numpy \
+  pandas \
+  matplotlib
 ```
 
 Activate it:
