@@ -10,7 +10,8 @@ The TaskVine section includes a small MobileNet serverless program. The
 [MobileNet batch-inference backpack](mobilenet.md) develops the same idea into
 a portable workflow with:
 
-- a notebook and a non-interactive Python entrypoint;
+- separate notebooks for ordinary PythonTasks and stateful Function Calls;
+- a non-interactive Python entrypoint supporting both distributed modes and a worker-free baseline;
 - a pinned CPU inference environment;
 - a manifest-defined image dataset;
 - a versioned ONNX model and ImageNet labels;

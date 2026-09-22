@@ -47,13 +47,14 @@ cd ~/tutorial/examples/backpacks/mobilenet-batch-inference
 The initial run downloads the ONNX model and prepares an inference environment,
 so allow more time and disk space than the basic matrix exercise.
 
-## 2. Run the notebook
+## 2. Run the stateful notebook
 
-Start the backpack with local workers and ask Floability to copy the generated
-output directory back into the backpack:
+The backpack has multiple eligible workflows, so every Floability command must select an entrypoint explicitly. Start the stateful Function Library notebook with local workers and ask Floability to copy its generated output directory back into the backpack:
 
 ```bash
-floability run --backpack . --sync-path outputs
+floability run --backpack . \
+  --entrypoint mobilenet-serverless-taskvine.ipynb \
+  --sync-path outputs
 ```
 
 Open JupyterLab using the printed URL. If Floability is running on a remote
@@ -63,14 +64,7 @@ system, follow the
 Open:
 
 ```text
-workflow/mobilenet-batch-inference.ipynb
-```
-
-The first code cell selects the execution mode. Leave the default for the
-first run:
-
-```python
-EXECUTION_MODE = "stateful-serverless"
+workflow/mobilenet-serverless-taskvine.ipynb
 ```
 
 Run all cells, save the notebook, and stop Floability with `Ctrl-C`. Inspect the
@@ -80,8 +74,7 @@ generated files under:
 workflow/outputs/
 ```
 
-The stateful run produces a JSON summary and a contact sheet of the classified
-images.
+The stateful run produces `stateful-serverless-summary.json` and `stateful-serverless-contact-sheet.jpg`.
 
 ## 3. Compare the execution modes
 
@@ -89,26 +82,27 @@ The backpack supports three ways to execute the same classification logic:
 
 | Mode | Where inference runs | Model-loading behavior |
 | --- | --- | --- |
-| `in-process` | In the notebook or Python process | Loaded once in that process; no TaskVine worker |
+| `in-process` | In the Python process | Loaded once in that process; no TaskVine worker |
 | `python-task` | In ordinary TaskVine PythonTasks | Each microbatch creates its own model session |
 | `stateful-serverless` | In TaskVine library functions | A worker-side library can reuse its loaded model session |
 
-To compare the two distributed modes, restart the notebook kernel, change the
-first configuration cell to:
-
-```python
-EXECUTION_MODE = "python-task"
-```
-
-Then run all cells again. Compare the mode, timing, task metadata, and
-predictions recorded in the two JSON summaries. This small dataset illustrates
-the execution models, but it is not a performance benchmark.
-
-To try the worker-free mode in a separate Floability run, stop the distributed
-run and use:
+After stopping the stateful run, launch the ordinary PythonTask notebook:
 
 ```bash
 floability run --backpack . \
+  --entrypoint mobilenet-python-task.ipynb \
+  --sync-path outputs
+```
+
+Open `workflow/mobilenet-python-task.ipynb`, run all cells, save the notebook, and stop Floability with `Ctrl-C`. This run produces `python-task-summary.json` and `python-task-contact-sheet.jpg`.
+
+Compare the mode, timing, task metadata, model-load identifiers, and predictions recorded in the two JSON summaries. This small dataset illustrates the execution models, but it is not a performance benchmark.
+
+To try the worker-free mode, execute the Python entrypoint separately:
+
+```bash
+floability execute --backpack . \
+  --entrypoint mobilenet-batch-inference.py \
   --no-worker \
   --env-vars MOBILENET_EXECUTION_MODE=in-process \
   --sync-path outputs
@@ -117,10 +111,17 @@ floability run --backpack . \
 `--no-worker` is required because `in-process` deliberately runs without a
 TaskVine worker.
 
-## 4. Run without a browser
+## 4. Run a distributed workflow without a browser
 
-The backpack also provides a Python entrypoint. Select it explicitly because
-the backpack contains both a notebook and a Python file:
+Either notebook can be executed non-interactively. For example, execute the stateful notebook with:
+
+```bash
+floability execute --backpack . \
+  --entrypoint mobilenet-serverless-taskvine.ipynb \
+  --sync-path outputs
+```
+
+The backpack also provides a headless Python entrypoint:
 
 ```bash
 floability execute --backpack . \
@@ -128,8 +129,7 @@ floability execute --backpack . \
   --sync-path outputs
 ```
 
-The Python entrypoint defaults to `stateful-serverless`. Use `--env-vars` to
-select another mode.
+The Python entrypoint defaults to `stateful-serverless`. To select ordinary PythonTask execution, add `--env-vars MOBILENET_EXECUTION_MODE=python-task`.
 
 ## How the workflow is organized
 
@@ -154,9 +154,9 @@ different number of images without introducing another classification path.
 
 ### `workflow/`
 
-- `mobilenet-batch-inference.ipynb` presents the workflow interactively.
-- `mobilenet-batch-inference.py` provides the headless entrypoint used by
-  `floability execute`.
+- `mobilenet-serverless-taskvine.ipynb` uses a persistent TaskVine Function Library and Function Calls.
+- `mobilenet-python-task.ipynb` uses ordinary TaskVine PythonTasks.
+- `mobilenet-batch-inference.py` provides the headless entrypoint and supports `stateful-serverless`, `python-task`, and `in-process` modes.
 - `mobilenet_helpers.py` contains model preprocessing, classification, library
   setup, output validation, and contact-sheet helpers.
 - `outputs/` receives mode-specific JSON summaries and contact sheets.
