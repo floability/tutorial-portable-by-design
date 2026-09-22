@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../rag-lite/">
+      
+      
+        <link rel="next" href="../../04-floability/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>Running Multi-Step Workflow with FLINC - Portable by Design Tutorial</title>
+        <title>Interactive Execution with FLINC - Portable by Design Tutorial</title>
       
     
     
@@ -43,6 +47,8 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -98,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Running Multi-Step Workflow with FLINC
+              Interactive Execution with FLINC
             
           </span>
         </div>
@@ -546,11 +552,42 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+  
+    
+    
+      
         
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -564,7 +601,217 @@
   
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sciunit
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rag-lite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow Execution with Sciunit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interactive Execution with FLINC
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interactive Execution with FLINC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you begin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-flinc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install FLINC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auditing-with-flinc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auditing with FLINC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repeating-with-flinc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repeating with FLINC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-notebook-executions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspecting Notebook Executions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -894,6 +1141,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#before-you-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you begin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-flinc" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -956,26 +1214,43 @@
 
 <h1 id="running-multi-step-workflow-with-flinc">Running Multi-Step Workflow with FLINC</h1>
 <p>Workflows are most commonly executed in interactive environments like Jupyter notebooks. In order to achieve reproducibility in these environments, we use FLINC, which is built on top of Sciunit and extends the concept of application virtualization to such environments. It creates two new kernels: audit and repeat.</p>
-<p><path to notebook comes here></p>
+<p>Complete the <a href="../rag-lite/">RAG-Lite Sciunit exercise</a> before starting this page.</p>
+<h2 id="before-you-begin">Before you begin</h2>
+<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
+<pre><code class="language-bash">source /opt/tutorial/activate-raglite-sciunit.sh
+</code></pre>
+<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
+<pre><code class="language-bash">conda activate raglite-sciunit-env
+</code></pre>
+<p><strong>Continue with either setup</strong></p>
+<p>Move into the correct directory:</p>
+<pre><code class="language-bash">cd ~/tutorial/examples/sciunit/flinc
+</code></pre>
 <h2 id="install-flinc">Install FLINC</h2>
-<pre><code>git clone https://github.com/radiant-systems-lab/Flinc
+<pre><code class="language-bash">git clone https://github.com/radiant-systems-lab/Flinc
 cd Flinc
 </code></pre>
 <p>Find the path of the kernel you wish to audit:</p>
-<pre><code>jupyter kernelspec list
+<pre><code class="language-bash">jupyter kernelspec list
 </code></pre>
-<p>Execute install.sh from the command line:</p>
-<pre><code>./install.sh &lt;user kernel path&gt;
+<p>The output will be shown like this:</p>
+<pre><code class="language-text">Available kernels:
+  python3    /home/codespace/.local/share/jupyter/kernels/python3
+  rag-lite   &lt;RAG_LITE_KERNEL_PATH&gt;
 </code></pre>
-<p><code>&lt;user kernel path&gt;</code> is the path of the kernel that will execute your notebook code.</p>
+<p><code>rag-lite</code> is the name of the kernel which contains necessary environment to to execute this notebook code.</p>
+<p>Execute FLINC from the command line:</p>
+<pre><code class="language-bash">./install.sh &lt;RAG_LITE_KERNEL_PATH&gt;
+</code></pre>
 <h2 id="auditing-with-flinc">Auditing with FLINC</h2>
 <p>Select the audit kernel from within the notebook and execute your notebook code. After execution completes, select 'No Kernel' from the list or shutdown the kernel. Wait anywhere from few seconds to few minutes to complete auditing and container creation in the background. Each audit run will create a new Sciunit container in the background.</p>
 <h2 id="repeating-with-flinc">Repeating with FLINC</h2>
 <p>Repeat your notebook code on the same or different machine by selecting the repeat kernel. It will repeat the last audited execution. After using the repeat kernel, select 'No Kernel' again to finish.</p>
 <h2 id="inspecting-notebook-executions">Inspecting Notebook Executions</h2>
 <p>FILNC will store your notebook as an executable which you can view from the command line:</p>
-<pre><code>sciunit list
+<pre><code class="language-bash">sciunit list
 </code></pre>
+<p><a href="../../04-floability/"><strong>Next: Floability overview →</strong></a></p>
 
 
 
@@ -1029,6 +1304,8 @@ cd Flinc
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/javascripts/placeholders.js"></script>
       
     
   </body>

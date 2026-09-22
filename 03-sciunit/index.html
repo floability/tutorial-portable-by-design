@@ -14,7 +14,7 @@
         <link rel="prev" href="../02-taskvine/mobilenet/">
       
       
-        <link rel="next" href="../04-floability/">
+        <link rel="next" href="quickstart/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Sciunit - Portable by Design Tutorial</title>
+        <title>Overview - Portable by Design Tutorial</title>
       
     
     
@@ -47,6 +47,8 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../assets/stylesheets/extra.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -102,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sciunit
+              Overview
             
           </span>
         </div>
@@ -554,16 +556,38 @@
   
   
   
-    <li class="md-nav__item md-nav__item--active">
+    
+    
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
+        
+          
+        
       
         
       
+        
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
           
+          <div class="md-nav__link md-nav__container">
+            <a href="./" class="md-nav__link md-nav__link--active">
+              
   
   
   <span class="md-ellipsis">
@@ -577,17 +601,43 @@
   
   
 
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sciunit
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Sciunit
+    Quickstart
   
 
     
@@ -596,47 +646,69 @@
   
 
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+              
+            
+              
+                
   
   
   
+  
+    <li class="md-nav__item">
+      <a href="rag-lite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
+    Workflow Execution with Sciunit
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#sciunit-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sciunit Workflow
-      
-    </span>
-  </a>
+
+    
+  </span>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-sciunit-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Sciunit Commands
-      
-    </span>
-  </a>
   
-</li>
-      
-    </ul>
+
+      </a>
+    </li>
   
-</nav>
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rag-lite-flinc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interactive Execution with FLINC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -1034,7 +1106,8 @@ Show detailed information about a specific execution in the currently-opened Sci
 <p>Move on to <a href="rag-lite/"><strong>Workflow Execution with Sciunit</strong></a>. In this example, you will run a multi-step workflow using Sciunit audit and then reproduce it using Sciunit repeat.</p>
 <h3 id="3-executing-an-interactive-workflow-with-flinc">3. Executing an Interactive Workflow with FLINC</h3>
 <p>Finally, you will open <a href="rag-lite-flinc/"><strong>Notebook Execution with FLINC</strong></a>. In this example, you will execute the same workflow as #2 above in an interactive Jupyter notebook environment.</p>
-<p>These exercices demonstrate how to create a reproducible execution in a shell environment using Sciunit and in an interactive environment using FLINC. </p>
+<p>These exercises demonstrate how to create a reproducible execution in a shell environment using Sciunit and in an interactive environment using FLINC.</p>
+<p><a href="quickstart/"><strong>Start with the Sciunit Quickstart →</strong></a></p>
 
 
 
@@ -1088,6 +1161,8 @@ Show detailed information about a specific execution in the currently-opened Sci
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../assets/javascripts/placeholders.js"></script>
       
     
   </body>

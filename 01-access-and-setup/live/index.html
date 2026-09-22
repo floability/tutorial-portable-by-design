@@ -48,6 +48,8 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -689,9 +691,38 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../03-sciunit/" class="md-nav__link">
+    
+    
+      
         
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03-sciunit/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -705,7 +736,115 @@
   
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sciunit
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-sciunit/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-sciunit/rag-lite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow Execution with Sciunit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-sciunit/rag-lite-flinc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interactive Execution with FLINC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1140,12 +1279,17 @@
 
 
 <h1 id="connect-to-the-tutorial-server">Connect to the Tutorial Server</h1>
+<p><span class="tutorial-route-badge tutorial-route--live">Live tutorial</span></p>
 <p>Your credential card contains your <strong>username</strong>, <strong>password</strong>, and <strong>server</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Angle-bracket values need editing</p>
+<p>Amber text inside angle brackets, such as <code>&lt;USERNAME&gt;</code> or <code>&lt;SERVER&gt;</code>, marks a value you must replace. The rest of the command remains unchanged.</p>
+</div>
 <h2 id="macos-and-linux">macOS and Linux</h2>
 <p>Open Terminal and connect with:</p>
-<pre><code class="language-bash">ssh USERNAME@SERVER
+<pre><code class="language-bash">ssh &lt;USERNAME&gt;@&lt;SERVER&gt;
 </code></pre>
-<p>Replace <code>USERNAME</code> and <code>SERVER</code> with the values printed on your card.</p>
+<p>Replace <code>&lt;USERNAME&gt;</code> and <code>&lt;SERVER&gt;</code> with the values printed on your card.</p>
 <h2 id="windows-unverified">Windows — unverified</h2>
 <blockquote>
 <p><strong>These Windows instructions have not been verified yet.</strong> We will remove this notice after testing password login and SSH tunneling on a Windows computer.</p>
@@ -1154,9 +1298,9 @@
 <pre><code class="language-powershell">ssh -V
 </code></pre>
 <p>If that prints an OpenSSH version, connect with:</p>
-<pre><code class="language-powershell">ssh USERNAME@SERVER
+<pre><code class="language-powershell">ssh &lt;USERNAME&gt;@&lt;SERVER&gt;
 </code></pre>
-<p>Replace <code>USERNAME</code> and <code>SERVER</code> with the values printed on your card.</p>
+<p>Replace <code>&lt;USERNAME&gt;</code> and <code>&lt;SERVER&gt;</code> with the values printed on your card.</p>
 <p>The first connection may ask whether you want to trust the server. Enter:</p>
 <pre><code class="language-text">yes
 </code></pre>
@@ -1171,7 +1315,7 @@ hostname
 pwd
 </code></pre>
 <p><code>whoami</code> should show the username printed on your card, and your home directory should be:</p>
-<pre><code class="language-text">/home/USERNAME
+<pre><code class="language-text">/home/&lt;USERNAME&gt;
 </code></pre>
 <p>Now confirm that your tutorial workspace is writable:</p>
 <pre><code class="language-bash">printf 'access works\n' &gt; ~/tutorial/access-test.txt
@@ -1207,10 +1351,12 @@ echo &quot;$CONDA_PREFIX&quot;
 <pre><code class="language-bash">vine_worker --version
 python -c &quot;import ndcctools.taskvine; print('TaskVine: OK')&quot;
 floability --help &gt;/dev/null &amp;&amp; echo &quot;Floability: OK&quot;
+sciunit --version &gt;/dev/null &amp;&amp; echo &quot;Sciunit: OK&quot;
 </code></pre>
 <p>You should finish with:</p>
 <pre><code class="language-text">TaskVine: OK
 Floability: OK
+Sciunit: OK
 </code></pre>
 <h2 id="you-are-ready">You are ready</h2>
 <p>Your setup now has two separate areas:</p>
@@ -1221,7 +1367,7 @@ Floability: OK
 <p>These environments are separate from the shared tutorial tools. Repeated runs of the same backpack may reuse your cached environment, but environments are not shared between participants.</p>
 <h2 id="ssh-tunneling-for-notebook-exercises">SSH tunneling for notebook exercises</h2>
 <p>Later notebook exercises will use SSH tunneling so Jupyter does not need a public network port. The instructions will provide the local and remote port numbers and use this pattern:</p>
-<pre><code class="language-bash">ssh -L LOCAL_PORT:localhost:REMOTE_PORT USERNAME@SERVER
+<pre><code class="language-bash">ssh -L &lt;LOCAL_PORT&gt;:localhost:&lt;REMOTE_PORT&gt; &lt;USERNAME&gt;@&lt;SERVER&gt;
 </code></pre>
 <p>The Windows version is expected to use the same options in PowerShell, but it remains unverified until tested on a Windows computer.</p>
 <p>Continue to <a href="../../02-taskvine/quickstart/"><strong>TaskVine Quickstart</strong></a>.</p>
@@ -1278,6 +1424,8 @@ Floability: OK
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/javascripts/placeholders.js"></script>
       
     
   </body>

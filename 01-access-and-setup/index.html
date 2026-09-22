@@ -48,6 +48,8 @@
       
     
     
+      <link rel="stylesheet" href="../assets/stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -554,9 +556,38 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../03-sciunit/" class="md-nav__link">
+    
+    
+      
         
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../03-sciunit/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -570,7 +601,115 @@
   
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sciunit
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-sciunit/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-sciunit/rag-lite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow Execution with Sciunit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-sciunit/rag-lite-flinc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interactive Execution with FLINC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -941,6 +1080,7 @@
 <h1 id="access-and-setup">Access and Setup</h1>
 <p>Choose the setup that matches how you are taking the tutorial.</p>
 <h2 id="attending-the-live-tutorial">Attending the live tutorial</h2>
+<p><span class="tutorial-route-badge tutorial-route--live">Live tutorial</span></p>
 <p>You should have received a credential card containing:</p>
 <ul>
 <li>Your username.</li>
@@ -950,6 +1090,7 @@
 <p>Continue to <a href="live/"><strong>Connect to the tutorial server</strong></a>.</p>
 <p>The live environment is already prepared. You do <strong>not</strong> need to install Conda, TaskVine, Floability, or any other tutorial software.</p>
 <h2 id="following-the-tutorial-on-your-own">Following the tutorial on your own</h2>
+<p><span class="tutorial-route-badge tutorial-route--self-managed">Self-managed</span></p>
 <p>If you are running the exercises on your own x86-64 Linux computer or server, continue to <a href="self-managed/"><strong>Create your own environment</strong></a>.</p>
 <p>You will create a local Conda environment containing the tools used in the tutorial.</p>
 <hr />
@@ -1009,6 +1150,8 @@
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../assets/javascripts/placeholders.js"></script>
       
     
   </body>
