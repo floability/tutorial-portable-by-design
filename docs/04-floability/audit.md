@@ -122,6 +122,7 @@ Before running the audit, let's determine your **manager port** from your assign
 > Add the **numeric part** of your **username** to **9123**.
 >
 > **Examples:**
+>
 > - `user03` → `9123 + 3 = 9126`
 > - `user11` → `9123 + 11 = 9134`
 >
