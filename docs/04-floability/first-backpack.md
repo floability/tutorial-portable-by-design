@@ -95,8 +95,9 @@ TaskVine workers on the tutorial machine. You do not need to start
 workers for this backpack.
 
 The first run may take a few minutes while Floability downloads input data and
-creates the backpack's Conda environment. Leave this terminal open. It will
-eventually print a JupyterLab URL similar to:
+creates the backpack's Conda environment. Leave this terminal open. When
+startup finishes, Floability prints the JupyterLab URLs and, for remote access,
+an SSH tunnel command.
 
 ```text
 http://localhost:<REMOTE_PORT>/lab?token=<TOKEN>
@@ -106,12 +107,20 @@ http://localhost:<REMOTE_PORT>/lab?token=<TOKEN>
 
 <span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
 
-Floability is running on your own computer. Open the complete URL printed by Floability in your browser.
+Floability is running on your own computer. Open the complete URL printed by
+Floability in your browser.
 
 <span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
 
-Floability is running on a remote server. The Jupyter server is intentionally not exposed to the public Internet. Open a
-new terminal **on your own computer** and create an SSH tunnel:
+Floability is running on a remote server. The Jupyter server is intentionally
+not exposed to the public Internet. Open a new terminal **on your own
+computer** and create an SSH tunnel:
+
+!!! important "Floability prints a ready-to-copy command"
+
+    When startup finishes, Floability prints the complete SSH tunnel command
+    with the correct server address and port. You can copy and run that command
+    directly. The pattern below is available if you need to enter it manually.
 
 ```bash
 ssh -N -L 8888:localhost:<REMOTE_PORT> <USERNAME>@<SERVER>

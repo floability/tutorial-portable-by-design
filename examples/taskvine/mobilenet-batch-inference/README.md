@@ -12,19 +12,15 @@ Both versions use the same four images, batches, model, labels, manager pattern,
 file declarations, and result format. This makes the execution mechanism the
 important difference.
 
-## Create the environment
+## Activate the tutorial environment
+
+The tutorial's `tutorial-env` already contains all dependencies declared in `environment.yml`. Activate it using the command for your setup, then enter the example directory:
 
 ```bash
 cd ~/tutorial/examples/taskvine/mobilenet-batch-inference
-conda env create --file environment.yml
-conda activate taskvine-mobilenet
 ```
 
-If the environment already exists, only activate it:
-
-```bash
-conda activate taskvine-mobilenet
-```
+See the complete [MobileNet participant instructions](../../../docs/02-taskvine/mobilenet.md) for the live and self-managed activation commands.
 
 ## Run the PythonTask version
 
@@ -34,11 +30,10 @@ In the first terminal:
 python mobilenet-python-task.py
 ```
 
-Open a second terminal, activate the same environment, and run the complete
+Open a second terminal, activate `tutorial-env`, and run the complete
 `vine_factory` command printed by the manager. It will look like:
 
 ```bash
-conda activate taskvine-mobilenet
 vine_factory -T local --min-workers=1 --max-workers=1 \
   --cores=1 \
   --manager-name <MANAGER_NAME>

@@ -36,11 +36,14 @@ conda create -y -n tutorial-env \
   pip \
   git \
   jupyterlab \
-  ndcctools \
-  floability \
-  numpy \
+  ndcctools=7.17.1 \
+  floability=0.3.0 \
+  cloudpickle=3.1.2 \
+  numpy=2.4.3 \
   pandas \
-  matplotlib
+  matplotlib \
+  onnxruntime=1.28.0 \
+  pillow=12.1.1
 ```
 
 Activate it:
@@ -49,13 +52,17 @@ Activate it:
 conda activate tutorial-env
 ```
 
-Install the Sciunit command-line tool inside the active environment:
+Install Sciunit and the RAG-Lite dependencies inside the active environment:
 
 ```bash
-python -m pip install sciunit2
+python -m pip install --upgrade \
+  sciunit2 \
+  langchain-community \
+  langchain-text-splitters \
+  rank-bm25
 ```
 
-Pip will install the current Sciunit release and its declared dependencies.
+Pip will install the current Sciunit release, the RAG-Lite packages, and their declared dependencies.
 
 Whenever you open a new terminal and return to the tutorial, activate it again:
 
@@ -73,6 +80,8 @@ vine_worker --version
 sciunit --version
 python -c "from sciunit2.command.exec_ import ExecCommand; print('Sciunit: OK')"
 python -c "import ndcctools.taskvine; print('TaskVine: OK')"
+python -c "import cloudpickle, matplotlib, numpy, onnxruntime, pandas; from PIL import Image; print('Scientific examples: OK')"
+python -c "import langchain_community, langchain_text_splitters, rank_bm25; print('RAG-Lite: OK')"
 floability --help >/dev/null && echo "Floability: OK"
 python -m pip check
 ```
@@ -82,13 +91,15 @@ You should finish with:
 ```text
 Sciunit: OK
 TaskVine: OK
+Scientific examples: OK
+RAG-Lite: OK
 Floability: OK
 No broken requirements found.
 ```
 
 ## 4. Understand the environment layout
 
-The `tutorial-env` environment contains the tools needed to follow the tutorial.
+The `tutorial-env` environment contains the same participant-facing package set as the live AWS environment. It supports the TaskVine, matrix, MobileNet, Sciunit, RAG-Lite, and Floability exercises without requiring another manually activated tutorial environment.
 
 During later exercises, Floability may create additional software environments for individual backpacks. Those environments are separate from this tutorial tools environment and may be cached for reuse.
 

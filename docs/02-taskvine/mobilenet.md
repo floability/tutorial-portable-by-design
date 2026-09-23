@@ -61,7 +61,7 @@ conda activate tutorial-env
 
 **Continue with either setup**
 
-## 1. Create the environment
+## 1. Enter the example directory
 
 Move to the example directory:
 
@@ -69,22 +69,13 @@ Move to the example directory:
 cd ~/tutorial/examples/taskvine/mobilenet-batch-inference
 ```
 
-Create and activate its Conda environment:
+The example includes a standalone `environment.yml`, but `tutorial-env` already contains TaskVine, cloudpickle, ONNX Runtime, NumPy, and Pillow. Confirm those imports:
 
 ```bash
-conda env create --file environment.yml
-conda activate taskvine-mobilenet
+python -c "import cloudpickle, numpy, onnxruntime; from PIL import Image; import ndcctools.taskvine; print('MobileNet environment: OK')"
 ```
 
-If you already created it, only activate it:
-
-```bash
-conda activate taskvine-mobilenet
-```
-
-The environment provides TaskVine and `cloudpickle` for Python task transport,
-ONNX Runtime for CPU inference, NumPy for tensor preparation, and Pillow for
-image loading and resizing.
+These packages provide Python task transport, CPU inference, tensor preparation, and image loading and resizing.
 
 ## 2. Run the ordinary PythonTask version
 
@@ -96,11 +87,21 @@ python mobilenet-python-task.py
 
 The program prints its manager name and waits for workers.
 
-Open a second terminal and activate the same environment:
+Open a second terminal and activate `tutorial-env` using the command for your setup.
+
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
 
 ```bash
-conda activate taskvine-mobilenet
+source /opt/tutorial/activate.sh
 ```
+
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
+
+```bash
+conda activate tutorial-env
+```
+
+**Continue with either setup**
 
 Then copy the complete `vine_factory` command printed by the manager. It will look like:
 

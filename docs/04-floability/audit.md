@@ -39,6 +39,19 @@ Instead of manually identifying every software dependency and input file, `floab
 > **Important:** Audit does not create the notebook's environment or recover missing input data. The notebook must already run successfully with its required environment and input files available. Audit is currently experimental, so the generated backpack should be reviewed and tested before being shared or used for larger runs.
 
 
+<!--
+## Learning goals
+
+By the end of this tutorial, you will be able to:
+
+- run Floability Audit on an existing working notebook;
+- understand what Audit observes during execution;
+- inspect the generated software, data, workflow, and compute specifications; and
+- validate and run the generated backpack.
+
+In this tutorial, we will use a [Matrix Multiplication notebook](https://github.com/floability/tutorial-portable-by-design/blob/main/examples/audit/matrix-multiplication.ipynb).
+-->
+
 ---
 
 ## 1. Before we begin
@@ -66,6 +79,7 @@ conda activate tutorial-env
 **Continue with either setup**
 
 The environment supplied to `floability audit` must already contain the dependencies required to run the notebook successfully. The tutorial environment includes NumPy, pandas, Matplotlib, and TaskVine for this notebook.
+
 ---
 
 ## 2. Check the Notebook and Input Data availability
@@ -223,6 +237,45 @@ floability run --backpack matrix-backpack
 ```
 
 Floability uses the generated specifications to prepare the workflow and launch JupyterLab.
+
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
+
+Floability is running on your own computer. Open the complete URL printed by
+Floability in your browser.
+
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
+
+Floability is running on a remote server. The Jupyter server is intentionally
+not exposed to the public Internet. Open a new terminal **on your own
+computer** and create an SSH tunnel:
+
+!!! important "Floability prints a ready-to-copy command"
+
+    When startup finishes, Floability prints the complete SSH tunnel command
+    with the correct server address and port. You can copy and run that command
+    directly. The pattern below is available if you need to enter it manually.
+
+```bash
+ssh -N -L 8888:localhost:<REMOTE_PORT> <USERNAME>@<SERVER>
+```
+
+Replace:
+
+- `<REMOTE_PORT>` with the port in Floability's JupyterLab URL;
+- `<USERNAME>` with your assigned remote username; and
+- `<SERVER>` with your assigned server address.
+
+Keep the tunnel terminal open. In your browser, replace the remote port in the
+printed URL with local port `8888`:
+
+```text
+http://localhost:8888/lab?token=<TOKEN>
+```
+
+If port `8888` is already in use on your computer, choose another local port,
+such as `8889`, in both the SSH command and browser URL.
+
+**Continue with either setup**
 
 You can also execute the notebook without opening Jupyter:
 

@@ -70,9 +70,46 @@ floability run --backpack . \
   --sync-path outputs
 ```
 
-Open JupyterLab using the printed URL. If Floability is running on a remote
-system, follow the
-[SSH tunnel instructions](../first-backpack.md#4-open-jupyterlab).
+### Open JupyterLab
+
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
+
+Floability is running on your own computer. Open the complete URL printed by
+Floability in your browser.
+
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
+
+Floability is running on a remote server. The Jupyter server is intentionally
+not exposed to the public Internet. Open a new terminal **on your own
+computer** and create an SSH tunnel:
+
+!!! important "Floability prints a ready-to-copy command"
+
+    When startup finishes, Floability prints the complete SSH tunnel command
+    with the correct server address and port. You can copy and run that command
+    directly. The pattern below is available if you need to enter it manually.
+
+```bash
+ssh -N -L 8888:localhost:<REMOTE_PORT> <USERNAME>@<SERVER>
+```
+
+Replace:
+
+- `<REMOTE_PORT>` with the port in Floability's JupyterLab URL;
+- `<USERNAME>` with your assigned remote username; and
+- `<SERVER>` with your assigned server address.
+
+Keep the tunnel terminal open. In your browser, replace the remote port in the
+printed URL with local port `8888`:
+
+```text
+http://localhost:8888/lab?token=<TOKEN>
+```
+
+If port `8888` is already in use on your computer, choose another local port,
+such as `8889`, in both the SSH command and browser URL.
+
+**Continue with either setup**
 
 Open:
 
@@ -107,7 +144,10 @@ floability run --backpack . \
   --sync-path outputs
 ```
 
-Open `workflow/mobilenet-python-task.ipynb`, run all cells, save the notebook, and stop Floability with `Ctrl-C`. This run produces `python-task-summary.json` and `python-task-contact-sheet.jpg`.
+Open JupyterLab using the URL and, if needed, the SSH tunnel steps above. Open
+`workflow/mobilenet-python-task.ipynb`, run all cells, save the notebook, and
+stop Floability with `Ctrl-C`. This run produces `python-task-summary.json` and
+`python-task-contact-sheet.jpg`.
 
 Compare the mode, timing, task metadata, model-load identifiers, and predictions recorded in the two JSON summaries. This small dataset illustrates the execution models, but it is not a performance benchmark.
 

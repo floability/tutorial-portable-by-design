@@ -9,11 +9,25 @@ Two complete versions are provided:
 | `matrix-basic` | Four matrices hardcoded in Python | Python functions, PythonTask arguments, return values, and manual task submission |
 | `matrix-files` | Four matrices stored as CSV files | PythonTask plus declared inputs, sandbox filenames, and declared outputs |
 
-You may run either example. Both use the same environment-creation and `vine_factory` procedure. During the live tutorial, the accompanying slides build the application piece by piece before reviewing the completed code.
+You may run either example. Both use the shared tutorial environment and the same `vine_factory` procedure. During the live tutorial, the accompanying slides build the application piece by piece before reviewing the completed code.
 
 ## Before you begin
 
-Complete [Access and Setup](../01-access-and-setup/index.md) before starting. Both setup routes place the repository at `~/tutorial`.
+Complete [Access and Setup](../01-access-and-setup/index.md) before starting. Both setup routes place the repository at `~/tutorial` and provide the matrix dependencies in `tutorial-env`.
+
+<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
+
+```bash
+source /opt/tutorial/activate.sh
+```
+
+<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
+
+```bash
+conda activate tutorial-env
+```
+
+**Continue with either setup**
 
 ## 1. Choose an example
 
@@ -31,34 +45,9 @@ cd ~/tutorial/examples/taskvine/matrix-files
 
 The remainder of the run procedure is the same for either directory.
 
-## 2. Activate the matrix environment
+## 2. Review and check the matrix dependencies
 
-<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
-
-Activate the prepared, read-only matrix environment:
-
-```bash
-source /opt/tutorial/activate-matrix.sh
-```
-
-<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
-
-Create a Conda environment from the selected example's `environment.yml`, then activate it:
-
-```bash
-conda env create --file environment.yml
-conda activate taskvine-matrix
-```
-
-If you already created the environment while running the other matrix version, activate it without recreating it:
-
-```bash
-conda activate taskvine-matrix
-```
-
-**Continue with either setup**
-
-Both examples provide the same environment specification:
+Both examples provide the same standalone environment specification. You do not need to create it during this tutorial because `tutorial-env` already contains these packages:
 
 ```yaml
 dependencies:
@@ -77,7 +66,7 @@ Each dependency has a purpose:
 | `cloudpickle` | Serializes the Python function, its arguments, and its return value. |
 | NumPy | Implements matrix multiplication and reads or writes CSV matrices. |
 
-A PythonTask serializes Python code and values; it does not automatically install imported third-party libraries. Because `multiply_matrix` imports NumPy, NumPy must be available in the worker's Python environment. In this local exercise, starting both the manager and `vine_factory` from the same matrix environment gives them the same dependencies.
+A PythonTask serializes Python code and values; it does not automatically install imported third-party libraries. Because `multiply_matrix` imports NumPy, NumPy must be available in the worker's Python environment. Starting both the manager and `vine_factory` from `tutorial-env` gives them the same dependencies.
 
 Confirm the important imports:
 
@@ -121,18 +110,18 @@ Open a second terminal on the same tutorial server or self-managed Linux system.
 
 <span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
 
-Connect to your assigned server if necessary, then activate the prepared matrix environment:
+Connect to your assigned server if necessary, then activate the shared tutorial environment:
 
 ```bash
-source /opt/tutorial/activate-matrix.sh
+source /opt/tutorial/activate.sh
 ```
 
 <span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
 
-Activate the environment you created:
+Activate the tutorial environment:
 
 ```bash
-conda activate taskvine-matrix
+conda activate tutorial-env
 ```
 
 **Continue with either setup**

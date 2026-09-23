@@ -122,6 +122,8 @@ Run:
 ```bash
 vine_worker --version
 python -c "import ndcctools.taskvine; print('TaskVine: OK')"
+python -c "import cloudpickle, matplotlib, numpy, onnxruntime, pandas; from PIL import Image; print('Scientific examples: OK')"
+python -c "import langchain_community, langchain_text_splitters, rank_bm25; print('RAG-Lite: OK')"
 floability --help >/dev/null && echo "Floability: OK"
 sciunit --version >/dev/null && echo "Sciunit: OK"
 ```
@@ -130,6 +132,8 @@ You should finish with:
 
 ```text
 TaskVine: OK
+Scientific examples: OK
+RAG-Lite: OK
 Floability: OK
 Sciunit: OK
 ```
