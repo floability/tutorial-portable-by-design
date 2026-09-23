@@ -48,8 +48,6 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -746,10 +744,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
+  <a href="#install-flinc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Before you begin
+        Install FLINC
       
     </span>
   </a>
@@ -757,10 +755,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-flinc" class="md-nav__link">
+  <a href="#starting-the-notebook-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install FLINC
+        Starting the Notebook Server
       
     </span>
   </a>
@@ -1141,10 +1139,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
+  <a href="#install-flinc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Before you begin
+        Install FLINC
       
     </span>
   </a>
@@ -1152,10 +1150,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-flinc" class="md-nav__link">
+  <a href="#starting-the-notebook-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install FLINC
+        Starting the Notebook Server
       
     </span>
   </a>
@@ -1214,43 +1212,95 @@
 
 <h1 id="running-multi-step-workflow-with-flinc">Running Multi-Step Workflow with FLINC</h1>
 <p>Workflows are most commonly executed in interactive environments like Jupyter notebooks. In order to achieve reproducibility in these environments, we use FLINC, which is built on top of Sciunit and extends the concept of application virtualization to such environments. It creates two new kernels: audit and repeat.</p>
-<p>Complete the <a href="../rag-lite/">RAG-Lite Sciunit exercise</a> before starting this page.</p>
-<h2 id="before-you-begin">Before you begin</h2>
-<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
-<pre><code class="language-bash">source /opt/tutorial/activate-raglite-sciunit.sh
+<p>First, move into this directory:</p>
+<pre><code class="language-bash">cd ~/tutorial/examples/sciunit/flinc
 </code></pre>
-<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
-<pre><code class="language-bash">conda activate raglite-sciunit-env
+<p>This directory will have the <code>.ipynb</code> file to run.</p>
+<p>Install the <code>raglite-flinc-env</code> environment:</p>
+<pre><code class="language-bash">conda env create --file environment.yml
+conda activate raglite-flinc-env
 </code></pre>
-<p><strong>Continue with either setup</strong></p>
+<h2 id="install-flinc">Install FLINC</h2>
+<p>Change directory:</p>
+<pre><code class="language-bash">cd Flinc
+</code></pre>
+<p>Install jupyter kernel to execute your notebook. This kernel will connect with the existing conda environment to access all necessary dependencies to run the notebook code:</p>
+<pre><code class="language-bash">python -m ipykernel install --sys-prefix --name=raglite-flinc-env --display-name=rag-lite
+</code></pre>
+<p>This will show an output similar to this:</p>
+<pre><code>Installed kernelspec raglite-flinc-env in /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/raglite-flinc-env
+</code></pre>
+<p>See the newly installed rag-lite kernel in the list of Jupyter kernels:</p>
+<pre><code class="language-bash">jupyter kernelspec list
+</code></pre>
+<p>The output will be shown similar to this:</p>
+<pre><code>Available kernels:
+  python3    /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/python3
+  rag-lite   Installed kernelspec raglite-flinc-env in /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/raglite-flinc-env
+</code></pre>
+<p>Install FLINC and pass it the full path of the rag-lite kernel:</p>
+<pre><code class="language-bash">./install.sh /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/rag-lite
+</code></pre>
+<h2 id="starting-the-notebook-server">Starting the Notebook Server</h2>
 <p>Move into the correct directory:</p>
 <pre><code class="language-bash">cd ~/tutorial/examples/sciunit/flinc
 </code></pre>
-<h2 id="install-flinc">Install FLINC</h2>
-<pre><code class="language-bash">git clone https://github.com/radiant-systems-lab/Flinc
-cd Flinc
+<p>You can start the Jupyter server to open the notebook:</p>
+<pre><code>jupyter notebook
 </code></pre>
-<p>Find the path of the kernel you wish to audit:</p>
-<pre><code class="language-bash">jupyter kernelspec list
+<p>This will start the server and an output similar to this will be displayed:</p>
+<pre><code>[I 2026-09-22 17:05:06.967 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2026-09-22 17:05:06.969 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2026-09-22 17:05:06.971 ServerApp] jupyterlab | extension was successfully linked.
+[I 2026-09-22 17:05:06.973 ServerApp] notebook | extension was successfully linked.
+[I 2026-09-22 17:05:06.974 ServerApp] Writing Jupyter server cookie secret to /home/user02/.local/share/jupyter/runtime/jupyter_cookie_secret
+[I 2026-09-22 17:05:06.996 ServerApp] notebook_shim | extension was successfully linked.
+[I 2026-09-22 17:05:07.035 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2026-09-22 17:05:07.036 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2026-09-22 17:05:07.036 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2026-09-22 17:05:07.050 LabApp] JupyterLab extension loaded from /home/user02/.conda/envs/raglite-flinc-env/lib/python3.11/site-packages/jupyterlab
+[I 2026-09-22 17:05:07.050 LabApp] JupyterLab application directory is /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/lab
+[I 2026-09-22 17:05:07.051 LabApp] Extension Manager is 'pypi'.
+[I 2026-09-22 17:05:07.155 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2026-09-22 17:05:07.157 ServerApp] notebook | extension was successfully loaded.
+[I 2026-09-22 17:05:07.157 ServerApp] Serving notebooks from local directory: /home/user02/tutorial/examples/sciunit/flinc/Flinc
+[I 2026-09-22 17:05:07.157 ServerApp] Jupyter Server 2.21.1 is running at:
+[I 2026-09-22 17:05:07.157 ServerApp] http://localhost:8888/tree?token=e5540ab7284f7c02bbbc6374aac9ebe37ad21e2f228bfaf7
+[I 2026-09-22 17:05:07.157 ServerApp]     http://127.0.0.1:8888/tree?token=e5540ab7284f7c02bbbc6374aac9ebe37ad21e2f228bfaf7
+[I 2026-09-22 17:05:07.157 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[W 2026-09-22 17:05:07.162 ServerApp] No web browser found: Error('could not locate runnable browser').
+[C 2026-09-22 17:05:07.162 ServerApp] 
+
+    To access the server, open this file in a browser:
+        file:///home/user02/.local/share/jupyter/runtime/jpserver-22381-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8888/tree?token=e5540ab7284f7c02bbbc6374aac9ebe37ad21e2f228bfaf7
+        http://127.0.0.1:8888/tree?token=e5540ab7284f7c02bbbc6374aac9ebe37ad21e2f228bfaf7
+[I 2026-09-22 17:05:07.171 ServerApp] Skipped non-installed server(s): basedpyright, bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyrefly, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
 </code></pre>
-<p>The output will be shown like this:</p>
-<pre><code class="language-text">Available kernels:
-  python3    /home/codespace/.local/share/jupyter/kernels/python3
-  rag-lite   &lt;RAG_LITE_KERNEL_PATH&gt;
+<p>You will copy paste the above link starting with <code>http://localhost:</code> and paste it in your local machine's browser. </p>
+<p><strong>If the URL does NOT open</strong><br>
+You may need to set up SSH tunneling first. You will need to run a command with the following pattern on your local machine:</p>
+<pre><code class="language-bash">ssh -L &lt;LOCAL_PORT&gt;:localhost:&lt;REMOTE_PORT&gt; &lt;USERNAME&gt;@&lt;SERVER&gt;
 </code></pre>
-<p><code>rag-lite</code> is the name of the kernel which contains necessary environment to to execute this notebook code.</p>
-<p>Execute FLINC from the command line:</p>
-<pre><code class="language-bash">./install.sh &lt;RAG_LITE_KERNEL_PATH&gt;
+<p>Your <code>USERNAME</code> and <code>SERVER</code> are already provided to you. <code>REMOTE_PORT</code> will be given in the output shown above for the previous command. For example, the actual command to run on your local machine will look similar to this:</p>
+<pre><code class="language-bash">ssh -L localhost:8891:localhost:8891 user02@34.250.253.140
 </code></pre>
+<p>You will be asked to enter your password. </p>
+<p><strong>If the URL opens</strong><br>
+Navigate to the browser link where you can visualize and open the notebook <code>rag-lite_workflow.ipynb</code>.</p>
 <h2 id="auditing-with-flinc">Auditing with FLINC</h2>
-<p>Select the audit kernel from within the notebook and execute your notebook code. After execution completes, select 'No Kernel' from the list or shutdown the kernel. Wait anywhere from few seconds to few minutes to complete auditing and container creation in the background. Each audit run will create a new Sciunit container in the background.</p>
+<p>Select the <code>Sciunit Audit(rag-lite)</code> kernel in the notebook and execute your notebook code. FLINC will audit this entire notebook execution. After execution completes, select 'No Kernel' from the list to explicitly mark the end of audit process. Wait a few seconds to let the audit process complete and create the container in the background. Each audit run will create a new Sciunit execution.</p>
 <h2 id="repeating-with-flinc">Repeating with FLINC</h2>
-<p>Repeat your notebook code on the same or different machine by selecting the repeat kernel. It will repeat the last audited execution. After using the repeat kernel, select 'No Kernel' again to finish.</p>
+<p>You can repeat your notebook code on the same or different machine. Select the <code>Sciunit Repeat</code> kernel and execute the notebook code. This will repeat the last audited execution successfully. After using the repeat kernel, select 'No Kernel' from the list of kernels to finish. </p>
+<p>Go back to the terminal and press Ctrl+C to terminate the Jupyter server process.</p>
 <h2 id="inspecting-notebook-executions">Inspecting Notebook Executions</h2>
 <p>FILNC will store your notebook as an executable which you can view from the command line:</p>
 <pre><code class="language-bash">sciunit list
 </code></pre>
-<p><a href="../../04-floability/"><strong>Next: Floability overview →</strong></a></p>
+<p>This will show a single execution with an output similar to this:</p>
+<pre><code>   e1 Sep 22 17:13 /home/user02/.conda/envs/raglite-flinc-env/bin/python -Xfrozen_modules=off -m ipykernel_launcher -f /home/user02/.local/share/jupyter/runtime/kernel-0a74de29-2cd6-4ab8-9ce8-c006de09dd37.json
+</code></pre>
 
 
 
@@ -1304,8 +1354,6 @@ cd Flinc
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
-      
-        <script src="../../assets/javascripts/placeholders.js"></script>
       
     
   </body>

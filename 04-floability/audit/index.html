@@ -48,8 +48,6 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -1016,6 +1014,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#learning-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-check-your-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Check Your Environment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Check Your Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-check-the-notebook-and-input-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Check the Notebook and Input Data
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1239,6 +1298,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#learning-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-check-your-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Check Your Environment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Check Your Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-check-the-notebook-and-input-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Check the Notebook and Input Data
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1304,18 +1424,19 @@ In this tutorial, we will use a [Matrix Multiplication notebook](https://github.
 
 <hr />
 <h2 id="1-before-we-begin">1. Before we begin</h2>
-<p>Check which Conda environment is active:</p>
+<p>First, activate the correct environment for this demo</p>
+<pre><code class="language-bash">source /opt/tutorial/activate-matrix.sh
+</code></pre>
+<p>Let's verify if we are in the correct environment.</p>
 <pre><code class="language-bash">echo &quot;${CONDA_PREFIX:-No Conda environment is active}&quot;
 </code></pre>
-<p>The path should end in <code>/tutorial-env</code>. If it does not, activate the environment for your setup.</p>
-<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
-<pre><code class="language-bash">source /opt/tutorial/activate.sh
+<p>The path should end in:</p>
+<pre><code class="language-text">/matrix-env
 </code></pre>
-<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
-<pre><code class="language-bash">conda activate tutorial-env
+<p>If it does not, activate the tutorial environment.</p>
+<pre><code class="language-bash">conda activate matrix-env
 </code></pre>
-<p><strong>Continue with either setup</strong></p>
-<p>The environment supplied to <code>floability audit</code> must already contain the dependencies required to run the notebook successfully. The tutorial environment includes NumPy, pandas, Matplotlib, and TaskVine for this notebook.</p>
+<p>The environment supplied to  <code>floability audit</code> must already contain the dependencies required to run the notebook successfully.</p>
 <hr />
 <h2 id="2-check-the-notebook-and-input-data-availability">2. Check the Notebook and Input Data availability</h2>
 <p>Navigate to the audit example directory:</p>
@@ -1442,7 +1563,61 @@ In this tutorial, we will use a [Matrix Multiplication notebook](https://github.
        🎒 Generated Backpack
 </code></pre>
 <p>Instead of manually specifying everything the notebook requires, we let Floability observe a successful execution and generate the initial backpack specifications.</p>
-<p><a href="../optional-backpacks/"><strong>Next: Optional backpack examples →</strong></a></p>
+<p>&lt;!--</p>
+<p>The key point is:</p>
+<blockquote>
+<p><strong>Audit helps turn an already working notebook into a backpack. It does not make a broken or incomplete notebook environment work automatically.</strong></p>
+</blockquote>
+<p>From here, you can review the generated specifications, validate the backpack, and use it to reproduce the workflow on another supported system.
+Instead of manually identifying every software dependency and input file, <code>floability audit</code> executes the notebook and observes what it actually uses.</p>
+<blockquote>
+<p><strong>Important:</strong> Audit does not create the notebook's environment or recover missing input data. The notebook must already run successfully with its required environment and input files available.</p>
+</blockquote>
+<p>Audit is currently experimental, so the generated backpack should be reviewed and tested before being shared or used for larger runs.</p>
+<h2 id="learning-goals">Learning goals</h2>
+<p>By the end of this tutorial, you will be able to:</p>
+<ul>
+<li>run Floability Audit on an existing working notebook;</li>
+<li>understand what Audit observes during execution;</li>
+<li>inspect the generated software, data, workflow, and compute specifications; and</li>
+<li>validate and run the generated backpack.</li>
+</ul>
+<p>In this tutorial, we will use a <a href="https://github.com/floability/tutorial-portable-by-design/blob/main/examples/audit/matrix-multiplication.ipynb">Matrix Multiplication notebook</a>.</p>
+<p><a href="../"><strong>Return to the Floability overview →</strong></a></p>
+<hr />
+<h2 id="1-check-your-environment">1. Check Your Environment</h2>
+<p>First, check which Conda environment is currently active:</p>
+<pre><code class="language-bash">echo &quot;${CONDA_PREFIX:-No Conda environment is active}&quot;
+</code></pre>
+<p>The path should end in:</p>
+<pre><code class="language-text">/tutorial-env
+</code></pre>
+<p>If it does not, activate the tutorial environment.</p>
+<h3 id="live-tutorial">Live tutorial</h3>
+<pre><code class="language-bash">source /opt/tutorial/activate.sh
+</code></pre>
+<h3 id="self-managed-setup">Self-managed setup</h3>
+<pre><code class="language-bash">conda activate tutorial-env
+</code></pre>
+<p>The environment supplied to Audit must already contain the dependencies required to run the notebook successfully.</p>
+<hr />
+<h2 id="2-check-the-notebook-and-input-data">2. Check the Notebook and Input Data</h2>
+<p>Navigate to the audit example directory:</p>
+<pre><code class="language-bash">cd ~/tutorial/examples/audit
+</code></pre>
+<p>Check its contents:</p>
+<pre><code class="language-bash">ls -lah
+</code></pre>
+<p>You should see the matrix multiplication notebook and a <code>data</code> directory.</p>
+<p>Now inspect the input data:</p>
+<pre><code class="language-bash">ls -lah data/matrices
+</code></pre>
+<p>The example is already set up with everything Audit needs:</p>
+<p>```text
+audit/
+├── matrix-multiplication.ipynb
+└── data/</p>
+<p><a href="../"><strong>Return to the Floability overview →</strong></a></p>
 
 
 
@@ -1496,8 +1671,6 @@ In this tutorial, we will use a [Matrix Multiplication notebook](https://github.
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
-      
-        <script src="../../assets/javascripts/placeholders.js"></script>
       
     
   </body>

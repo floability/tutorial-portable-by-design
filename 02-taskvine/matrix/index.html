@@ -48,8 +48,6 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -562,6 +560,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Before you begin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -576,10 +602,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-activate-the-matrix-environment" class="md-nav__link">
+  <a href="#2-create-the-matrix-environment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Activate the matrix environment
+        2. Create the matrix environment
       
     </span>
   </a>
@@ -1304,6 +1330,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Before you begin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1318,10 +1372,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-activate-the-matrix-environment" class="md-nav__link">
+  <a href="#2-create-the-matrix-environment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Activate the matrix environment
+        2. Create the matrix environment
       
     </span>
   </a>
@@ -1548,7 +1602,17 @@
 </table>
 <p>You may run either example. Both use the same environment-creation and <code>vine_factory</code> procedure. During the live tutorial, the accompanying slides build the application piece by piece before reviewing the completed code.</p>
 <h2 id="before-you-begin">Before you begin</h2>
-<p>Complete <a href="../../01-access-and-setup/">Access and Setup</a> before starting. Both setup routes place the repository at <code>~/tutorial</code>.</p>
+<p>Check which Conda environment is active:</p>
+<pre><code class="language-bash">echo &quot;${CONDA_PREFIX:-No Conda environment is active}&quot;
+</code></pre>
+<p>The path should end in <code>/tutorial-env</code>. If it does not, activate the tutorial
+environment using the command for your setup:</p>
+<h3 id="live-tutorial">Live tutorial</h3>
+<pre><code class="language-bash">source /opt/tutorial/activate.sh
+</code></pre>
+<h3 id="self-managed">Self-managed</h3>
+<pre><code class="language-bash">conda activate tutorial-env
+</code></pre>
 <h2 id="1-choose-an-example">1. Choose an example</h2>
 <p>For the basic version:</p>
 <pre><code class="language-bash">cd ~/tutorial/examples/taskvine/matrix-basic
@@ -1557,20 +1621,11 @@
 <pre><code class="language-bash">cd ~/tutorial/examples/taskvine/matrix-files
 </code></pre>
 <p>The remainder of the run procedure is the same for either directory.</p>
-<h2 id="2-activate-the-matrix-environment">2. Activate the matrix environment</h2>
-<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
-<p>Activate the prepared, read-only matrix environment:</p>
-<pre><code class="language-bash">source /opt/tutorial/activate-matrix.sh
-</code></pre>
-<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
-<p>Create a Conda environment from the selected example's <code>environment.yml</code>, then activate it:</p>
+<h2 id="2-create-the-matrix-environment">2. Create the matrix environment</h2>
+<p>Create a new Conda environment from the selected example's <code>environment.yml</code>:</p>
 <pre><code class="language-bash">conda env create --file environment.yml
 conda activate taskvine-matrix
 </code></pre>
-<p>If you already created the environment while running the other matrix version, activate it without recreating it:</p>
-<pre><code class="language-bash">conda activate taskvine-matrix
-</code></pre>
-<p><strong>Continue with either setup</strong></p>
 <p>Both examples provide the same environment specification:</p>
 <pre><code class="language-yaml">dependencies:
   - python=3.11
@@ -1605,7 +1660,10 @@ conda activate taskvine-matrix
 </tr>
 </tbody>
 </table>
-<p>A PythonTask serializes Python code and values; it does not automatically install imported third-party libraries. Because <code>multiply_matrix</code> imports NumPy, NumPy must be available in the worker's Python environment. In this local exercise, starting both the manager and <code>vine_factory</code> from the same matrix environment gives them the same dependencies.</p>
+<p>A PythonTask serializes Python code and values; it does not automatically install imported third-party libraries. Because <code>multiply_matrix</code> imports NumPy, NumPy must be available in the worker's Python environment. In this local exercise, starting both the manager and <code>vine_factory</code> after activating <code>taskvine-matrix</code> gives them the same environment.</p>
+<p>If you already created <code>taskvine-matrix</code> while running the other version, do not create it again. Activate the existing environment:</p>
+<pre><code class="language-bash">conda activate taskvine-matrix
+</code></pre>
 <p>Confirm the important imports:</p>
 <pre><code class="language-bash">python -c &quot;import cloudpickle, numpy; import ndcctools.taskvine; print('PythonTask environment: OK')&quot;
 </code></pre>
@@ -1618,29 +1676,22 @@ conda activate taskvine-matrix
 <pre><code class="language-bash">python matrix-files.py
 </code></pre>
 <p>Each program creates a manager with a unique project name, submits two tasks, prints the manager's selected port, and waits:</p>
-<pre><code class="language-text">Manager name: &lt;MANAGER_NAME&gt;
-Listening on port: &lt;PORT&gt;
+<pre><code class="language-text">Manager name: MANAGER_NAME
+Listening on port: PORT
 
 In a second terminal, activate this environment and run:
-vine_factory ... --manager-name &lt;MANAGER_NAME&gt;
+vine_factory ... --manager-name MANAGER_NAME
 
 Submitted two PythonTasks. Waiting for the factory worker...
 </code></pre>
 <p>Leave the manager running.</p>
 <h2 id="4-start-a-local-taskvine-factory">4. Start a local TaskVine factory</h2>
-<p>Open a second terminal on the same tutorial server or self-managed Linux system.</p>
-<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
-<p>Connect to your assigned server if necessary, then activate the prepared matrix environment:</p>
-<pre><code class="language-bash">source /opt/tutorial/activate-matrix.sh
-</code></pre>
-<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
-<p>Activate the environment you created:</p>
+<p>Open a second terminal on the same tutorial server or self-managed Linux system. Activate the matrix environment:</p>
 <pre><code class="language-bash">conda activate taskvine-matrix
 </code></pre>
-<p><strong>Continue with either setup</strong></p>
 <p>Copy the complete <code>vine_factory</code> command printed by the manager and run it in the second terminal. It will look like:</p>
 <pre><code class="language-bash">vine_factory -T local --min-workers=1 --max-workers=2 \
-  --manager-name &lt;MANAGER_NAME&gt;
+  --manager-name MANAGER_NAME
 </code></pre>
 <p>Use the actual manager name printed by your program.</p>
 <p>The options have distinct purposes:</p>
@@ -1675,14 +1726,14 @@ Submitted two PythonTasks. Waiting for the factory worker...
 <h2 id="5-inspect-the-results">5. Inspect the results</h2>
 <p>Return to the manager terminal.</p>
 <p>The basic example should finish with:</p>
-<pre><code class="language-text">Completed A x B on &lt;WORKER_ADDRESS&gt;: [[19, 22], [43, 50]]
-Completed C x D on &lt;WORKER_ADDRESS&gt;: [[6, 2], [8, 4]]
+<pre><code class="language-text">Completed A x B on WORKER_ADDRESS: [[19, 22], [43, 50]]
+Completed C x D on WORKER_ADDRESS: [[6, 2], [8, 4]]
 
 Basic PythonTask matrix multiplication complete.
 </code></pre>
 <p>The file-based example returns the same Python values and two declared files:</p>
-<pre><code class="language-text">Completed A x B on &lt;WORKER_ADDRESS&gt;: [[19.0, 22.0], [43.0, 50.0]]
-Completed C x D on &lt;WORKER_ADDRESS&gt;: [[6.0, 2.0], [8.0, 4.0]]
+<pre><code class="language-text">Completed A x B on WORKER_ADDRESS: [[19.0, 22.0], [43.0, 50.0]]
+Completed C x D on WORKER_ADDRESS: [[6.0, 2.0], [8.0, 4.0]]
 
 File-based PythonTask matrix multiplication complete.
 Outputs: outputs/result-ab.csv and outputs/result-cd.csv
@@ -1867,8 +1918,6 @@ task_ab.add_output(result_ab, &quot;result.csv&quot;)
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
-      
-        <script src="../../assets/javascripts/placeholders.js"></script>
       
     
   </body>

@@ -48,8 +48,6 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -600,6 +598,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Before you begin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1182,6 +1208,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Before you begin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1315,13 +1369,12 @@ manages the model state.</p>
 </code></pre>
 <p>The path should end in <code>/tutorial-env</code>. If it does not, activate the tutorial
 environment using the command for your setup:</p>
-<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
+<h3 id="live-tutorial">Live tutorial</h3>
 <pre><code class="language-bash">source /opt/tutorial/activate.sh
 </code></pre>
-<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
+<h3 id="self-managed">Self-managed</h3>
 <pre><code class="language-bash">conda activate tutorial-env
 </code></pre>
-<p><strong>Continue with either setup</strong></p>
 <h2 id="1-create-the-environment">1. Create the environment</h2>
 <p>Move to the example directory:</p>
 <pre><code class="language-bash">cd ~/tutorial/examples/taskvine/mobilenet-batch-inference
@@ -1341,13 +1394,12 @@ image loading and resizing.</p>
 <pre><code class="language-bash">python mobilenet-python-task.py
 </code></pre>
 <p>The program prints its manager name and waits for workers.</p>
-<p>Open a second terminal and activate the same environment:</p>
+<p>Open a second terminal, activate the same environment, and run the complete
+<code>vine_factory</code> command printed by the manager. It will look like:</p>
 <pre><code class="language-bash">conda activate taskvine-mobilenet
-</code></pre>
-<p>Then copy the complete <code>vine_factory</code> command printed by the manager. It will look like:</p>
-<pre><code class="language-bash">vine_factory -T local --min-workers=1 --max-workers=1 \
+vine_factory -T local --min-workers=1 --max-workers=1 \
   --cores=1 \
-  --manager-name &lt;MANAGER_NAME&gt;
+  --manager-name MANAGER_NAME
 </code></pre>
 <p>Use the actual manager name printed by the program. The first run may pause
 while TaskVine retrieves the pinned 13.3 MiB model and ImageNet label file.
@@ -1410,7 +1462,6 @@ larger workload is needed for a meaningful timing comparison.</p>
 <li>Review <a href="../matrix/">Matrix Multiplication with TaskVine</a>.</li>
 <li>Read the <a href="https://cctools.readthedocs.io/en/stable/taskvine/#serverless-computing-with-taskvine">official TaskVine Function Calls documentation</a>.</li>
 </ul>
-<p><a href="../../03-sciunit/"><strong>Next: Sciunit overview →</strong></a></p>
 
 
 
@@ -1464,8 +1515,6 @@ larger workload is needed for a meaningful timing comparison.</p>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
-      
-        <script src="../../assets/javascripts/placeholders.js"></script>
       
     
   </body>

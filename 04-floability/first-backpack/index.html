@@ -48,8 +48,6 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -864,6 +862,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Before you begin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -874,6 +900,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="1. Locate the backpack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -907,6 +961,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="4. Open JupyterLab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#floability-is-running-on-your-own-computer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Floability is running on your own computer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floability-is-running-on-a-remote-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Floability is running on a remote server
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1182,6 +1264,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Before you begin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1192,6 +1302,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="1. Locate the backpack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1225,6 +1363,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="4. Open JupyterLab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#floability-is-running-on-your-own-computer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Floability is running on your own computer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floability-is-running-on-a-remote-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Floability is running on a remote server
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1288,20 +1454,19 @@ its notebook, and observe its TaskVine tasks.</p>
 </code></pre>
 <p>The path should end in <code>/tutorial-env</code>. If it does not, activate the tutorial
 environment using the command for your setup:</p>
-<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
+<h3 id="live-tutorial">Live tutorial</h3>
 <pre><code class="language-bash">source /opt/tutorial/activate.sh
 </code></pre>
-<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
+<h3 id="self-managed">Self-managed</h3>
 <pre><code class="language-bash">conda activate tutorial-env
 </code></pre>
-<p><strong>Continue with either setup</strong></p>
 <h2 id="1-locate-the-backpack">1. Locate the backpack</h2>
-<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
+<h3 id="live-tutorial-environment">Live tutorial environment</h3>
 <p>The backpack is already available in your tutorial workspace. Do not clone
 another copy on the live server.</p>
 <pre><code class="language-bash">cd ~/tutorial/examples/backpacks/matrix-multiplication
 </code></pre>
-<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
+<h3 id="self-managed-environment">Self-managed environment</h3>
 <p>Download the backpack from
 <a href="https://github.com/floability-hub/matrix-multiplication">Floability Hub</a>:</p>
 <pre><code class="language-bash">mkdir -p ~/tutorial/examples/backpacks
@@ -1309,7 +1474,6 @@ git clone https://github.com/floability-hub/matrix-multiplication.git \
   ~/tutorial/examples/backpacks/matrix-multiplication
 cd ~/tutorial/examples/backpacks/matrix-multiplication
 </code></pre>
-<p><strong>Continue with either setup</strong></p>
 <p>Both setup paths now use the same backpack directory.</p>
 <h2 id="2-recognize-the-backpack-root">2. Recognize the backpack root</h2>
 <p>List its contents:</p>
@@ -1338,29 +1502,28 @@ workers for this backpack.</p>
 <p>The first run may take a few minutes while Floability downloads input data and
 creates the backpack's Conda environment. Leave this terminal open. It will
 eventually print a JupyterLab URL similar to:</p>
-<pre><code class="language-text">http://localhost:&lt;REMOTE_PORT&gt;/lab?token=&lt;TOKEN&gt;
+<pre><code class="language-text">http://localhost:REMOTE_PORT/lab?token=TOKEN
 </code></pre>
 <h2 id="4-open-jupyterlab">4. Open JupyterLab</h2>
-<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
-<p>Floability is running on your own computer. Open the complete URL printed by Floability in your browser.</p>
-<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
-<p>Floability is running on a remote server. The Jupyter server is intentionally not exposed to the public Internet. Open a
+<h3 id="floability-is-running-on-your-own-computer">Floability is running on your own computer</h3>
+<p>Open the complete URL printed by Floability in your browser.</p>
+<h3 id="floability-is-running-on-a-remote-server">Floability is running on a remote server</h3>
+<p>The Jupyter server is intentionally not exposed to the public Internet. Open a
 new terminal <strong>on your own computer</strong> and create an SSH tunnel:</p>
-<pre><code class="language-bash">ssh -N -L 8888:localhost:&lt;REMOTE_PORT&gt; &lt;USERNAME&gt;@&lt;SERVER&gt;
+<pre><code class="language-bash">ssh -N -L 8888:localhost:REMOTE_PORT USERNAME@SERVER
 </code></pre>
 <p>Replace:</p>
 <ul>
-<li><code>&lt;REMOTE_PORT&gt;</code> with the port in Floability's JupyterLab URL;</li>
-<li><code>&lt;USERNAME&gt;</code> with your assigned remote username; and</li>
-<li><code>&lt;SERVER&gt;</code> with your assigned server address.</li>
+<li><code>REMOTE_PORT</code> with the port in Floability's JupyterLab URL;</li>
+<li><code>USERNAME</code> with your assigned remote username; and</li>
+<li><code>SERVER</code> with your assigned server address.</li>
 </ul>
 <p>Keep the tunnel terminal open. In your browser, replace the remote port in the
 printed URL with local port <code>8888</code>:</p>
-<pre><code class="language-text">http://localhost:8888/lab?token=&lt;TOKEN&gt;
+<pre><code class="language-text">http://localhost:8888/lab?token=TOKEN
 </code></pre>
 <p>If port <code>8888</code> is already in use on your computer, choose another local port,
 such as <code>8889</code>, in both the SSH command and browser URL.</p>
-<p><strong>Continue with either setup</strong></p>
 <h2 id="5-run-the-workflow">5. Run the workflow</h2>
 <p>In JupyterLab, open:</p>
 <pre><code class="language-text">workflow/matrix-multiplication.ipynb
@@ -1445,8 +1608,6 @@ the SSH tunnel with <code>Ctrl-C</code> after JupyterLab has stopped.</p>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
-      
-        <script src="../../assets/javascripts/placeholders.js"></script>
       
     
   </body>
