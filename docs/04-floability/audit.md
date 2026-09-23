@@ -39,29 +39,11 @@ Instead of manually identifying every software dependency and input file, `floab
 > **Important:** Audit does not create the notebook's environment or recover missing input data. The notebook must already run successfully with its required environment and input files available. Audit is currently experimental, so the generated backpack should be reviewed and tested before being shared or used for larger runs.
 
 
-<!--
-## Learning goals
-
-By the end of this tutorial, you will be able to:
-
-- run Floability Audit on an existing working notebook;
-- understand what Audit observes during execution;
-- inspect the generated software, data, workflow, and compute specifications; and
-- validate and run the generated backpack.
-
-In this tutorial, we will use a [Matrix Multiplication notebook](https://github.com/floability/tutorial-portable-by-design/blob/main/examples/audit/matrix-multiplication.ipynb).
--->
-
 ---
 
 ## 1. Before we begin
 
-First, activate the correct environment for this demo
-
-```bash
-source /opt/tutorial/activate-matrix.sh
-```
-Let's verify if we are in the correct environment.
+First, let's verify if we are in the correct environment.
 
 ```bash
 echo "${CONDA_PREFIX:-No Conda environment is active}"
@@ -70,17 +52,15 @@ echo "${CONDA_PREFIX:-No Conda environment is active}"
 The path should end in:
 
 ```text
-/matrix-env
+/tutorial-env
 ```
 
 If it does not, activate the tutorial environment.
 
 
 ```bash
-conda activate matrix-env
+source /opt/tutorial/activate.sh
 ```
-
-The environment supplied to  `floability audit` must already contain the dependencies required to run the notebook successfully.
 
 ---
 
@@ -133,6 +113,20 @@ At this point, we have the three things needed for an audit:
 
 ## 3. Run Floability Audit
 
+Before running the audit, let's determine your **manager port** from your assigned **username**.
+
+> ⚠️ **Important: Use your own manager port**
+>
+> **Each user must use a different manager port to avoid conflicts when running the tutorial concurrently.**
+>
+> Add the **numeric part** of your **username** to **9123**.
+>
+> **Examples:**
+> - `user03` → `9123 + 3 = 9126`
+> - `user11` → `9123 + 11 = 9134`
+>
+> ⚠️ **Make sure to replace `YOUR_MANAGER_PORT` in the command below with your calculated port number.**
+
 Now run:
 
 ```bash
@@ -140,20 +134,9 @@ floability audit \
     --notebook matrix-multiplication.ipynb \
     --conda-env "$CONDA_PREFIX" \
     --data-dirs ./data \
-    --backpack-name matrix-backpack
+    --manager-port YOUR_MANAGER_PORT \
+    --backpack-name matrix-backpack 
 ```
-
-The important options are:
-
-| Option | What it does |
-| --- | --- |
-| `--notebook` | Specifies the notebook to execute and audit |
-| `--conda-env` | Specifies the working Conda environment |
-| `--data-dirs` | Tells Audit where possible input data files are located |
-| `--backpack-name` | Sets the name of the generated backpack |
-
-There are several additional options that you can check using `floability audit -h`
-
 During the audit, Floability executes the notebook and observes the dependencies used during that execution.
 
 Instead of manually specifying things, Floability collects this information from the execution and uses it to create an initial backpack.
