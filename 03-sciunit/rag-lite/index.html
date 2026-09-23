@@ -48,8 +48,6 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -729,17 +727,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Before you begin
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#create-your-sciunit-project" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1202,17 +1189,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Before you begin
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#create-your-sciunit-project" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1316,27 +1292,11 @@
 <p>Sciunit can be used to execute and containerize complex scientific workflows consisting of multiple steps. The whole workflow can be repeated at a later stage with the same fidelity. We share a real-life workflow of a lightweight retrieval-augmented generation (RAG) pipeline as an example to demonstrate this.</p>
 <h2 id="rag-lite">RAG-Lite</h2>
 <p>This workflow consists of three steps. It (1) ingests and chunks text data and creates a corpus, (2) which is converted into a retrieval index, (3) which is then queried to retrieve relevant chunks with the given context.</p>
-<h2 id="before-you-begin">Before you begin</h2>
-<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
-<p>Activate the prepared, read-only RAG-Lite environment:</p>
-<pre><code class="language-bash">source /opt/tutorial/activate-raglite-sciunit.sh
-</code></pre>
-<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
-<p>Create the RAG-Lite environment the first time you run this exercise:</p>
-<pre><code class="language-bash">conda create -y -n raglite-sciunit-env python=3.11 pip
-conda activate raglite-sciunit-env
-python -m pip install \
-  langchain-community \
-  langchain-text-splitters \
-  rank-bm25 \
-  sciunit2
-</code></pre>
-<p>If the environment already exists, activate it without recreating it:</p>
-<pre><code class="language-bash">conda activate raglite-sciunit-env
-</code></pre>
-<p><strong>Continue with either setup</strong></p>
-<p>Move into the example directory:</p>
+<p>First, move into this directory:</p>
 <pre><code class="language-bash">cd ~/tutorial/examples/sciunit/rag-lite
+</code></pre>
+<p>Make sure you are in the <code>raglite-sciunit-env</code> environment. If not, run the following command:</p>
+<pre><code class="language-bash">source /opt/tutorial/activate-raglite-sciunit.sh 
 </code></pre>
 <h2 id="create-your-sciunit-project">Create your Sciunit Project</h2>
 <p>Create another Sciunit project:</p>
@@ -1441,14 +1401,9 @@ Retrieved 4 chunks:
 </code></pre>
 <h2 id="repeat-rag-lite-workflow-with-sciunit">Repeat RAG-Lite Workflow with Sciunit</h2>
 <p>This captured RAG-Lite workflow could be repeated in the same environment, or another environment which does not have the necessary dependenceis to execute it. </p>
-<p>Switch to the base tutorial environment, which has Sciunit but not the RAG-Lite dependencies.</p>
-<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
+<p>Run the following to go to the base environment.</p>
 <pre><code class="language-bash">source /opt/tutorial/activate.sh
 </code></pre>
-<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
-<pre><code class="language-bash">conda activate tutorial-env
-</code></pre>
-<p><strong>Continue with either setup</strong></p>
 <p>This environment has Sciunit installed in it, but does not have any of the core dependencies required to execute RAG-Lite workflow, including <code>langchain</code> and <code>rank-bm25</code>. You can confirm by running the following:</p>
 <pre><code class="language-bash">conda list | grep sciunit
 </code></pre>
@@ -1466,7 +1421,6 @@ sciunit repeat e2
 sciunit repeat e3
 </code></pre>
 <p>These will successfully execute the entire workflow and give the desired output as before.</p>
-<p><a href="../rag-lite-flinc/"><strong>Next: Run an interactive workflow with FLINC →</strong></a></p>
 
 
 
@@ -1520,8 +1474,6 @@ sciunit repeat e3
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
-      
-        <script src="../../assets/javascripts/placeholders.js"></script>
       
     
   </body>

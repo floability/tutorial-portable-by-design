@@ -48,8 +48,6 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -690,17 +688,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Before you begin
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#creating-your-sciunit-project" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1169,17 +1156,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Before you begin
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#creating-your-sciunit-project" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1269,17 +1245,9 @@
 
 
 <h1 id="sciunit-quickstart">Sciunit Quickstart</h1>
-<h2 id="before-you-begin">Before you begin</h2>
-<p>Complete <a href="../../01-access-and-setup/">Access and Setup</a> before starting.</p>
-<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
-<p>Activate the shared tutorial environment:</p>
-<pre><code class="language-bash">source /opt/tutorial/activate.sh
+<p>Activate the conda environment as the first step:</p>
+<pre><code class="language-bash">source /opt/tutorial/activate-raglite-sciunit.sh 
 </code></pre>
-<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
-<p>Activate the environment you created during setup:</p>
-<pre><code class="language-bash">conda activate tutorial-env
-</code></pre>
-<p><strong>Continue with either setup</strong></p>
 <h2 id="creating-your-sciunit-project">Creating your Sciunit Project</h2>
 <p>Create your first Sciunit project. This will help to keep all related executions in one place:</p>
 <pre><code class="language-bash">sciunit create project-quickstart
@@ -1368,7 +1336,6 @@ echo 'hello, world'
 <p>This will show an output similar to this:</p>
 <pre><code>/home/user02
 </code></pre>
-<p><a href="../rag-lite/"><strong>Next: Run a multi-step workflow with Sciunit →</strong></a></p>
 
 
 
@@ -1422,8 +1389,6 @@ echo 'hello, world'
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
-      
-        <script src="../../assets/javascripts/placeholders.js"></script>
       
     
   </body>

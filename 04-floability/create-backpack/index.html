@@ -48,8 +48,6 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -920,6 +918,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Before you begin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1249,6 +1275,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Before you begin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live tutorial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-managed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-managed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1425,13 +1479,12 @@ matrix-multiplication program from the earlier TaskVine exercise.</p>
 </code></pre>
 <p>The path should end in <code>/tutorial-env</code>. If it does not, activate the tutorial
 environment using the command for your setup:</p>
-<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
+<h3 id="live-tutorial">Live tutorial</h3>
 <pre><code class="language-bash">source /opt/tutorial/activate.sh
 </code></pre>
-<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
+<h3 id="self-managed">Self-managed</h3>
 <pre><code class="language-bash">conda activate tutorial-env
 </code></pre>
-<p><strong>Continue with either setup</strong></p>
 <p>Return to the repository root:</p>
 <pre><code class="language-bash">cd ~/tutorial
 </code></pre>
@@ -1601,8 +1654,8 @@ this compute specification.</p>
 </code></pre>
 <p>A successful run finishes with the same results as the standalone TaskVine
 program:</p>
-<pre><code class="language-text">Completed A x B on &lt;WORKER_ADDRESS&gt;: [[19, 22], [43, 50]]
-Completed C x D on &lt;WORKER_ADDRESS&gt;: [[6, 2], [8, 4]]
+<pre><code class="language-text">Completed A x B on WORKER_ADDRESS: [[19, 22], [43, 50]]
+Completed C x D on WORKER_ADDRESS: [[6, 2], [8, 4]]
 
 Basic PythonTask matrix multiplication complete.
 </code></pre>
@@ -1670,8 +1723,6 @@ Basic PythonTask matrix multiplication complete.
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
-      
-        <script src="../../assets/javascripts/placeholders.js"></script>
       
     
   </body>
