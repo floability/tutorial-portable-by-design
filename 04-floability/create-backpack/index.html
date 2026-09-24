@@ -1009,10 +1009,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-validate-and-execute-the-backpack" class="md-nav__link">
+  <a href="#5-execute-the-backpack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Validate and execute the backpack
+        5. Execute the backpack
       
     </span>
   </a>
@@ -1070,10 +1070,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-validate-and-execute-the-converted-workflow" class="md-nav__link">
+  <a href="#4-execute-the-converted-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Validate and execute the converted workflow
+        4. Execute the converted workflow
       
     </span>
   </a>
@@ -1338,10 +1338,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-validate-and-execute-the-backpack" class="md-nav__link">
+  <a href="#5-execute-the-backpack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Validate and execute the backpack
+        5. Execute the backpack
       
     </span>
   </a>
@@ -1399,10 +1399,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-validate-and-execute-the-converted-workflow" class="md-nav__link">
+  <a href="#4-execute-the-converted-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Validate and execute the converted workflow
+        4. Execute the converted workflow
       
     </span>
   </a>
@@ -1531,11 +1531,7 @@ and distributes to the TaskVine worker.</p>
   disk: 4096
 </code></pre>
 <p>Floability reads this file and starts one local worker for the exercise.</p>
-<h3 id="5-validate-and-execute-the-backpack">5. Validate and execute the backpack</h3>
-<pre><code class="language-bash">floability backpack validate --strict \
-  ~/tutorial/created-backpacks/my-taskvine-backpack
-</code></pre>
-<p>The command should report that the backpack is valid. Now execute it:</p>
+<h3 id="5-execute-the-backpack">5. Execute the backpack</h3>
 <pre><code class="language-bash">floability execute \
   --backpack ~/tutorial/created-backpacks/my-taskvine-backpack \
   --base-dir ~/floability-runs
@@ -1621,10 +1617,7 @@ started by Floability connect to the correct manager.</p>
 </code></pre>
 <p>Do not start <code>vine_factory</code> in another terminal. Floability launches it from
 this compute specification.</p>
-<h3 id="4-validate-and-execute-the-converted-workflow">4. Validate and execute the converted workflow</h3>
-<pre><code class="language-bash">floability backpack validate --strict \
-  ~/tutorial/created-backpacks/matrix-basic
-</code></pre>
+<h3 id="4-execute-the-converted-workflow">4. Execute the converted workflow</h3>
 <pre><code class="language-bash">floability execute \
   --backpack ~/tutorial/created-backpacks/matrix-basic \
   --base-dir ~/floability-runs
