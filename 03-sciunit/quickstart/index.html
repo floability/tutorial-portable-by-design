@@ -1355,9 +1355,11 @@ command: pwd
 started: 2026-09-11 17:07
 </code></pre>
 <h3 id="hello-world-script">Hello World Script</h3>
-<p>Now, you can execute and audit a simple bash script. Open a new file in your favorite text editor and copy paste the following text into it. Save the file with the name <code>hello.sh</code>.</p>
-<pre><code class="language-bash">#!/bin/sh
+<p>Now, you can execute and audit a simple bash script. Create a new file named <code>hello.sh</code> as follows:</p>
+<pre><code class="language-bash">cat &gt; hello.sh &lt;&lt;'EOF'
+#!/bin/sh
 echo 'hello, world'
+EOF
 </code></pre>
 <p>Update file permissions to execute it:</p>
 <pre><code class="language-bash">chmod u+x hello.sh
