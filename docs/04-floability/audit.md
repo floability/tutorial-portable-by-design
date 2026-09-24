@@ -218,17 +218,7 @@ cat matrix-backpack/data/data.yml
 
 ---
 
-## 5. Validate the Backpack
-
-Check that the generated backpack has a valid Floability structure:
-
-```bash
-floability backpack validate matrix-backpack
-```
-
----
-
-## 6. Run the Backpack
+## 5. Run the Backpack
 
 Run the backpack interactively:
 

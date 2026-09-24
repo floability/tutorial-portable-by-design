@@ -147,14 +147,7 @@ vine_factory_config:
 
 Floability reads this file and starts one local worker for the exercise.
 
-### 5. Validate and execute the backpack
-
-```bash
-floability backpack validate --strict \
-  ~/tutorial/created-backpacks/my-taskvine-backpack
-```
-
-The command should report that the backpack is valid. Now execute it:
+### 5. Execute the backpack
 
 ```bash
 floability execute \
@@ -282,12 +275,7 @@ vine_factory_config:
 Do not start `vine_factory` in another terminal. Floability launches it from
 this compute specification.
 
-### 4. Validate and execute the converted workflow
-
-```bash
-floability backpack validate --strict \
-  ~/tutorial/created-backpacks/matrix-basic
-```
+### 4. Execute the converted workflow
 
 ```bash
 floability execute \

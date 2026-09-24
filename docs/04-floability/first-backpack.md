@@ -56,7 +56,7 @@ cd ~/tutorial/examples/backpacks/matrix-multiplication-script
 
 **Continue with either setup**
 
-## 2. Check the backpack
+## 2. Inspect the backpack
 
 List its contents:
 
@@ -68,18 +68,6 @@ You should see:
 
 ```text
 README.md  compute  data  software  workflow
-```
-
-Validate the backpack before running it:
-
-```bash
-floability backpack validate --strict .
-```
-
-The validation should finish with:
-
-```text
-Backpack Validation: VALID
 ```
 
 ## 3. Execute the workflow
