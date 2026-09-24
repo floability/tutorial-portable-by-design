@@ -84,10 +84,12 @@ started: 2026-09-11 17:07
 ```
 
 ### Hello World Script
-Now, you can execute and audit a simple bash script. Open a new file in your favorite text editor and copy paste the following text into it. Save the file with the name `hello.sh`.
+Now, you can execute and audit a simple bash script. Create a new file named `hello.sh` as follows:
 ```bash
+cat > hello.sh <<'EOF'
 #!/bin/sh
 echo 'hello, world'
+EOF
 ```
 Update file permissions to execute it:
 ```bash
