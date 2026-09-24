@@ -11,7 +11,7 @@
       
       
       
-        <link rel="prev" href="../first-backpack/">
+        <link rel="prev" href="../first-interactive-backpack/">
       
       
         <link rel="next" href="../create-backpack/">
@@ -735,6 +735,8 @@
       
         
       
+        
+      
     
     
     
@@ -821,6 +823,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../first-interactive-backpack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Run Your First Interactive Backpack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -888,6 +918,72 @@
     <span class="md-ellipsis">
       
         Learning goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-compare-the-two-backpacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Compare the two backpacks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-workflow-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Workflow specification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-software-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Software specification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-data-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Data specification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-compute-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Compute specification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-portability-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The portability boundary
       
     </span>
   </a>
@@ -1107,6 +1203,72 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#1-compare-the-two-backpacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Compare the two backpacks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-workflow-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Workflow specification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-software-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Software specification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-data-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Data specification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-compute-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Compute specification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-portability-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The portability boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1126,17 +1288,134 @@
 
 <h1 id="structure-of-a-floability-backpack">Structure of a Floability Backpack</h1>
 <p><strong>Session time:</strong> 10 minutes</p>
-<p>This section opens the backpack used in the first exercise and connects each
-directory to a deployment responsibility.</p>
+<p>You have now run two versions of the matrix-multiplication workflow: a Python
+script with <code>floability execute</code> and a notebook with <code>floability run</code>. This
+section compares their contents and connects each directory to a deployment
+responsibility.</p>
 <h2 id="learning-goals">Learning goals</h2>
 <ul>
-<li>locate the workflow entrypoint under <code>workflow/</code>;</li>
+<li>identify the workflow entrypoint under <code>workflow/</code>;</li>
 <li>read the Conda specification under <code>software/</code>;</li>
-<li>understand optional data profiles and integrity information under <code>data/</code>;</li>
-<li>read worker and resource intent under <code>compute/</code>; and</li>
-<li>distinguish portable backpack specifications from site-specific overrides.</li>
+<li>understand data sources and integrity information under <code>data/</code>;</li>
+<li>read worker and resource requirements under <code>compute/</code>; and</li>
+<li>distinguish portable backpack requirements from site-specific choices.</li>
 </ul>
-<p>The walkthrough will use real files from the selected tutorial backpack.</p>
+<h2 id="1-compare-the-two-backpacks">1. Compare the two backpacks</h2>
+<p>Return to the backpack directory:</p>
+<pre><code class="language-bash">cd ~/tutorial/examples/backpacks
+</code></pre>
+<p>List the files in both backpacks:</p>
+<pre><code class="language-bash">find matrix-multiplication-script -maxdepth 2 -type f | sort
+find matrix-multiplication -maxdepth 2 -type f | sort
+</code></pre>
+<p>Both use the same backpack structure:</p>
+<pre><code class="language-text">backpack/
+├── compute/
+│   └── compute.yml
+├── data/
+│   └── data.yml
+├── software/
+│   └── environment.yml
+└── workflow/
+    └── entrypoint
+</code></pre>
+<p>The entrypoint and execution mode differ, but the deployment responsibilities
+remain in the same locations:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Script backpack</th>
+<th>Interactive backpack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workflow</td>
+<td>Python script</td>
+<td>Jupyter notebook</td>
+</tr>
+<tr>
+<td>Command</td>
+<td><code>floability execute</code></td>
+<td><code>floability run</code></td>
+</tr>
+<tr>
+<td>Interface</td>
+<td>Terminal output</td>
+<td>JupyterLab</td>
+</tr>
+<tr>
+<td>Software</td>
+<td><code>software/environment.yml</code></td>
+<td><code>software/environment.yml</code></td>
+</tr>
+<tr>
+<td>Data</td>
+<td><code>data/data.yml</code></td>
+<td><code>data/data.yml</code></td>
+</tr>
+<tr>
+<td>Compute</td>
+<td><code>compute/compute.yml</code></td>
+<td><code>compute/compute.yml</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-workflow-specification">2. Workflow specification</h2>
+<p>The script backpack contains a Python entrypoint:</p>
+<pre><code class="language-bash">ls matrix-multiplication-script/workflow
+sed -n '1,220p' \
+  matrix-multiplication-script/workflow/matrix-multiplication-script.py
+</code></pre>
+<p>The interactive backpack contains a notebook:</p>
+<pre><code class="language-bash">ls matrix-multiplication/workflow
+</code></pre>
+<p>Floability runs the Python entrypoint to completion with <code>execute</code>. With
+<code>run</code>, it starts JupyterLab and lets you control the notebook interactively.
+In both cases, the workflow creates a TaskVine manager and submits the matrix
+tasks.</p>
+<h2 id="3-software-specification">3. Software specification</h2>
+<p>Compare the requested Conda environments:</p>
+<pre><code class="language-bash">cat matrix-multiplication-script/software/environment.yml
+cat matrix-multiplication/software/environment.yml
+</code></pre>
+<p>Each file records the direct software requirements for its workflow, including
+Python, NumPy, and TaskVine. Floability creates the environment once, packs it
+for workers, makes the prepared copy immutable, and can reuse it in later
+runs.</p>
+<h2 id="4-data-specification">4. Data specification</h2>
+<p>Inspect the beginning of each data specification:</p>
+<pre><code class="language-bash">sed -n '1,80p' matrix-multiplication-script/data/data.yml
+sed -n '1,80p' matrix-multiplication/data/data.yml
+</code></pre>
+<p>The entries describe where each matrix comes from and where it should appear
+inside the workflow directory. The script backpack also records exact file
+sizes and SHA-256 checksums. Floability can download the inputs once, verify
+them, cache them, and stage them into later run instances.</p>
+<h2 id="5-compute-specification">5. Compute specification</h2>
+<p>Compare the worker requests:</p>
+<pre><code class="language-bash">cat matrix-multiplication-script/compute/compute.yml
+cat matrix-multiplication/compute/compute.yml
+</code></pre>
+<p>The compute specification records the intended worker range and the cores,
+memory, and disk requested for each worker. For the tutorial, both backpacks
+use small local workers.</p>
+<p>The backpack does not hard-code the site's scheduler. A deployment can select
+an available batch system at run time, for example:</p>
+<pre><code class="language-bash">floability execute --backpack matrix-multiplication-script \
+  --entrypoint matrix-multiplication-script.py \
+  --batch-type slurm
+</code></pre>
+<p>Do not run that command during the live exercise. The tutorial uses local
+workers, and a Slurm deployment would require a configured Slurm site.</p>
+<h2 id="the-portability-boundary">The portability boundary</h2>
+<p>The backpack carries the application requirements:</p>
+<pre><code class="language-text">workflow + software + data + compute intent
+</code></pre>
+<p>The execution site supplies operational details such as storage locations,
+network access, scheduler availability, and policy. Floability combines those
+two sides when it creates a run instance.</p>
 <p><a href="../create-backpack/"><strong>Next: Create and run a backpack →</strong></a></p>
 
 
