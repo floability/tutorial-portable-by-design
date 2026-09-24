@@ -48,6 +48,8 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -532,34 +534,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Before you begin">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#live-tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Live tutorial
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#self-managed" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Self-managed
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -581,34 +555,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="2. Open a second terminal">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#live-tutorial-participants" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Live tutorial participants
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#self-managed-participants" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Self-managed participants
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1247,34 +1193,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Before you begin">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#live-tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Live tutorial
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#self-managed" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Self-managed
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1296,34 +1214,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="2. Open a second terminal">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#live-tutorial-participants" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Live tutorial participants
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#self-managed-participants" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Self-managed participants
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1421,12 +1311,13 @@
 </code></pre>
 <p>The path should end in <code>/tutorial-env</code>. If it does not, activate the tutorial
 environment using the command for your setup:</p>
-<h3 id="live-tutorial">Live tutorial</h3>
+<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
 <pre><code class="language-bash">source /opt/tutorial/activate.sh
 </code></pre>
-<h3 id="self-managed">Self-managed</h3>
+<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
 <pre><code class="language-bash">conda activate tutorial-env
 </code></pre>
+<p><strong>Continue with either setup</strong></p>
 <p>Enter the quickstart directory:</p>
 <pre><code class="language-bash">cd ~/tutorial/examples/taskvine/quickstart
 ls
@@ -1439,11 +1330,11 @@ ls
 <pre><code class="language-bash">python taskvine-quickstart.py
 </code></pre>
 <p>The program prints a manager name containing your username, selects an available port, submits five tasks, and waits:</p>
-<pre><code class="language-text">Manager name: taskvine-quickstart-USERNAME
-Listening on port: PORT
+<pre><code class="language-text">Manager name: taskvine-quickstart-&lt;USERNAME&gt;
+Listening on port: &lt;PORT&gt;
 
 In a second terminal, run:
-vine_worker ... localhost PORT
+vine_worker ... localhost &lt;PORT&gt;
 
 Submitting tasks...
 Waiting for a worker to connect and complete the tasks...
@@ -1451,22 +1342,24 @@ Waiting for a worker to connect and complete the tasks...
 <p>Nothing is wrong when the program waits here. The manager has work to perform but does not yet have a worker.</p>
 <p>Leave this terminal running.</p>
 <h2 id="2-open-a-second-terminal">2. Open a second terminal</h2>
-<h3 id="live-tutorial-participants">Live tutorial participants</h3>
-<p>Open another terminal on your computer, connect to the same tutorial server, and activate the shared tools:</p>
-<pre><code class="language-bash">ssh USERNAME@SERVER
-source /opt/tutorial/activate.sh
+<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
+<p>Open another terminal on your computer and connect to the same tutorial server. Replace the highlighted placeholders with the username and server printed on your credential card:</p>
+<pre><code class="language-bash">ssh &lt;USERNAME&gt;@&lt;SERVER&gt;
 </code></pre>
-<p>Use the username and server printed on your credential card.</p>
-<h3 id="self-managed-participants">Self-managed participants</h3>
+<p>After logging in, activate the shared tutorial tools:</p>
+<pre><code class="language-bash">source /opt/tutorial/activate.sh
+</code></pre>
+<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
 <p>Open another terminal on the same Linux system and activate the tutorial environment:</p>
 <pre><code class="language-bash">conda activate tutorial-env
 </code></pre>
+<p><strong>Continue with either setup</strong></p>
 <h2 id="3-start-the-worker-directly">3. Start the worker directly</h2>
 <p>Return briefly to the manager terminal and copy the complete <code>vine_worker</code> command it printed. Run that command in the second terminal.</p>
 <p>It will look similar to:</p>
-<pre><code class="language-bash">vine_worker localhost PORT
+<pre><code class="language-bash">vine_worker localhost &lt;PORT&gt;
 </code></pre>
-<p>Use the actual port printed by your manager instead of <code>PORT</code>. Live participants should run this command on the tutorial server, not on their laptop.</p>
+<p>Use the actual port printed by your manager instead of <code>&lt;PORT&gt;</code>. Live participants should run this command on the tutorial server, not on their laptop.</p>
 <p>The worker connects directly to the manager and begins requesting tasks. This is the only primary tutorial example that starts a worker directly; later exercises use <code>vine_factory</code> to discover a named manager and maintain workers for it.</p>
 <h2 id="4-confirm-success">4. Confirm success</h2>
 <p>Return to the manager terminal. The five tasks may finish in a different order from the order in which they were submitted.</p>
@@ -1556,6 +1449,8 @@ manager.submit(task)
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/javascripts/placeholders.js"></script>
       
     
   </body>

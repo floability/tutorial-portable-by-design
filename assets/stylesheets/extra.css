@@ -1,0 +1,49 @@
+:root {
+  --tutorial-placeholder-fg: #a85d00;
+  --tutorial-live-fg: #21675a;
+  --tutorial-live-bg: rgba(45, 132, 116, 0.1);
+  --tutorial-self-fg: #585d91;
+  --tutorial-self-bg: rgba(88, 93, 145, 0.1);
+}
+
+[data-md-color-scheme="slate"] {
+  --tutorial-placeholder-fg: #ffb866;
+  --tutorial-live-fg: #75cdbc;
+  --tutorial-live-bg: rgba(117, 205, 188, 0.12);
+  --tutorial-self-fg: #b8bdf2;
+  --tutorial-self-bg: rgba(184, 189, 242, 0.12);
+}
+
+.md-typeset code .tutorial-placeholder,
+.md-typeset :not(pre) > code .tutorial-placeholder {
+  padding: 0;
+  color: var(--tutorial-placeholder-fg) !important;
+  background: transparent;
+  font-weight: 700;
+}
+
+.tutorial-route-badge,
+.tutorial-route-label {
+  display: inline-block;
+  padding: 0.14rem 0.48rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  line-height: 1.45;
+  vertical-align: middle;
+}
+
+.tutorial-route-badge {
+  margin: 0 0 0.75rem;
+}
+
+.tutorial-route--live {
+  color: var(--tutorial-live-fg);
+  background: var(--tutorial-live-bg);
+}
+
+.tutorial-route--self-managed {
+  color: var(--tutorial-self-fg);
+  background: var(--tutorial-self-bg);
+}

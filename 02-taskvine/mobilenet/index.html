@@ -48,6 +48,8 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -599,41 +601,13 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Before you begin">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#live-tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Live tutorial
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#self-managed" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Self-managed
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-create-the-environment" class="md-nav__link">
+  <a href="#1-enter-the-example-directory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Create the environment
+        1. Enter the example directory
       
     </span>
   </a>
@@ -1208,41 +1182,13 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Before you begin">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#live-tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Live tutorial
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#self-managed" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Self-managed
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-create-the-environment" class="md-nav__link">
+  <a href="#1-enter-the-example-directory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Create the environment
+        1. Enter the example directory
       
     </span>
   </a>
@@ -1369,37 +1315,38 @@ manages the model state.</p>
 </code></pre>
 <p>The path should end in <code>/tutorial-env</code>. If it does not, activate the tutorial
 environment using the command for your setup:</p>
-<h3 id="live-tutorial">Live tutorial</h3>
+<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
 <pre><code class="language-bash">source /opt/tutorial/activate.sh
 </code></pre>
-<h3 id="self-managed">Self-managed</h3>
+<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
 <pre><code class="language-bash">conda activate tutorial-env
 </code></pre>
-<h2 id="1-create-the-environment">1. Create the environment</h2>
+<p><strong>Continue with either setup</strong></p>
+<h2 id="1-enter-the-example-directory">1. Enter the example directory</h2>
 <p>Move to the example directory:</p>
 <pre><code class="language-bash">cd ~/tutorial/examples/taskvine/mobilenet-batch-inference
 </code></pre>
-<p>Create and activate its Conda environment:</p>
-<pre><code class="language-bash">conda env create --file environment.yml
-conda activate taskvine-mobilenet
+<p>The example includes a standalone <code>environment.yml</code>, but <code>tutorial-env</code> already contains TaskVine, cloudpickle, ONNX Runtime, NumPy, and Pillow. Confirm those imports:</p>
+<pre><code class="language-bash">python -c &quot;import cloudpickle, numpy, onnxruntime; from PIL import Image; import ndcctools.taskvine; print('MobileNet environment: OK')&quot;
 </code></pre>
-<p>If you already created it, only activate it:</p>
-<pre><code class="language-bash">conda activate taskvine-mobilenet
-</code></pre>
-<p>The environment provides TaskVine and <code>cloudpickle</code> for Python task transport,
-ONNX Runtime for CPU inference, NumPy for tensor preparation, and Pillow for
-image loading and resizing.</p>
+<p>These packages provide Python task transport, CPU inference, tensor preparation, and image loading and resizing.</p>
 <h2 id="2-run-the-ordinary-pythontask-version">2. Run the ordinary PythonTask version</h2>
 <p>In the first terminal, start the manager application:</p>
 <pre><code class="language-bash">python mobilenet-python-task.py
 </code></pre>
 <p>The program prints its manager name and waits for workers.</p>
-<p>Open a second terminal, activate the same environment, and run the complete
-<code>vine_factory</code> command printed by the manager. It will look like:</p>
-<pre><code class="language-bash">conda activate taskvine-mobilenet
-vine_factory -T local --min-workers=1 --max-workers=1 \
+<p>Open a second terminal and activate <code>tutorial-env</code> using the command for your setup.</p>
+<p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
+<pre><code class="language-bash">source /opt/tutorial/activate.sh
+</code></pre>
+<p><span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span></p>
+<pre><code class="language-bash">conda activate tutorial-env
+</code></pre>
+<p><strong>Continue with either setup</strong></p>
+<p>Then copy the complete <code>vine_factory</code> command printed by the manager. It will look like:</p>
+<pre><code class="language-bash">vine_factory -T local --min-workers=1 --max-workers=1 \
   --cores=1 \
-  --manager-name MANAGER_NAME
+  --manager-name &lt;MANAGER_NAME&gt;
 </code></pre>
 <p>Use the actual manager name printed by the program. The first run may pause
 while TaskVine retrieves the pinned 13.3 MiB model and ImageNet label file.
@@ -1462,6 +1409,7 @@ larger workload is needed for a meaningful timing comparison.</p>
 <li>Review <a href="../matrix/">Matrix Multiplication with TaskVine</a>.</li>
 <li>Read the <a href="https://cctools.readthedocs.io/en/stable/taskvine/#serverless-computing-with-taskvine">official TaskVine Function Calls documentation</a>.</li>
 </ul>
+<p><a href="../../03-sciunit/"><strong>Next: Sciunit overview →</strong></a></p>
 
 
 
@@ -1515,6 +1463,8 @@ larger workload is needed for a meaningful timing comparison.</p>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/javascripts/placeholders.js"></script>
       
     
   </body>
