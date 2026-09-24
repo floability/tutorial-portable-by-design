@@ -1,6 +1,6 @@
 # Create and Run Your Own Backpack
 
-**Session time:** 20 minutes
+**Session time:** 15 minutes
 
 This exercise uses two creation paths. First, you create a working backpack
 from a built-in template and make a small change. Then you package the basic

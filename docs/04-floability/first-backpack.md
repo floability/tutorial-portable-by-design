@@ -1,9 +1,11 @@
 # Run Your First Backpack
 
-**Session time:** 15 minutes
+**Session time:** 10 minutes
 
-In this exercise, you will deploy the **matrix-multiplication** backpack, run
-its notebook, and observe its TaskVine tasks.
+In this exercise, you will run the
+[matrix-multiplication-script](https://github.com/floability-hub/matrix-multiplication-script)
+backpack. The workflow runs as a Python script, so its TaskVine activity and
+results appear directly in the terminal. No browser or SSH tunnel is needed.
 
 ## Before you begin
 
@@ -38,26 +40,23 @@ The backpack is already available in your tutorial workspace. Do not clone
 another copy on the live server.
 
 ```bash
-cd ~/tutorial/examples/backpacks/matrix-multiplication
+cd ~/tutorial/examples/backpacks/matrix-multiplication-script
 ```
 
 <span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
 
-Download the backpack from
-[Floability Hub](https://github.com/floability-hub/matrix-multiplication):
+Clone the backpack from Floability Hub:
 
 ```bash
 mkdir -p ~/tutorial/examples/backpacks
-git clone https://github.com/floability-hub/matrix-multiplication.git \
-  ~/tutorial/examples/backpacks/matrix-multiplication
-cd ~/tutorial/examples/backpacks/matrix-multiplication
+git clone https://github.com/floability-hub/matrix-multiplication-script.git \
+  ~/tutorial/examples/backpacks/matrix-multiplication-script
+cd ~/tutorial/examples/backpacks/matrix-multiplication-script
 ```
 
 **Continue with either setup**
 
-Both setup paths now use the same backpack directory.
-
-## 2. Recognize the backpack root
+## 2. Check the backpack
 
 List its contents:
 
@@ -71,121 +70,71 @@ You should see:
 README.md  compute  data  software  workflow
 ```
 
-These directories are the backpack's workflow, software, data, and compute
-specifications. We will examine them in the next section.
-
-For this example:
-
-- `workflow/` contains the matrix-multiplication notebook;
-- `software/` requests Python, NumPy, and TaskVine;
-- `data/` declares ten public 200 by 200 matrix files; and
-- `compute/` requests two to four one-core workers.
-
-## 3. Start the backpack
-
-Run Floability from the backpack root:
+Validate the backpack before running it:
 
 ```bash
-floability run --backpack .
+floability backpack validate --strict .
 ```
 
-Do not add `--batch-type` for this exercise. Floability will launch local
-TaskVine workers on the tutorial machine. You do not need to start
-`vine_factory` or `vine_worker` in another terminal; Floability manages the
-workers for this backpack.
-
-The first run may take a few minutes while Floability downloads input data and
-creates the backpack's Conda environment. Leave this terminal open. When
-startup finishes, Floability prints the JupyterLab URLs and, for remote access,
-an SSH tunnel command.
+The validation should finish with:
 
 ```text
-http://localhost:<REMOTE_PORT>/lab?token=<TOKEN>
+Backpack Validation: VALID
 ```
 
-## 4. Open JupyterLab
+## 3. Execute the workflow
 
-<span class="tutorial-route-label tutorial-route--self-managed">Self-managed</span>
-
-Floability is running on your own computer. Open the complete URL printed by
-Floability in your browser.
-
-<span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
-
-Floability is running on a remote server. The Jupyter server is intentionally
-not exposed to the public Internet. Open a new terminal **on your own
-computer** and create an SSH tunnel:
-
-!!! important "Floability prints a ready-to-copy command"
-
-    When startup finishes, Floability prints the complete SSH tunnel command
-    with the correct server address and port. You can copy and run that command
-    directly. The pattern below is available if you need to enter it manually.
+Run the Python entrypoint:
 
 ```bash
-ssh -N -L 8888:localhost:<REMOTE_PORT> <USERNAME>@<SERVER>
+floability execute \
+  --backpack . \
+  --entrypoint matrix-multiplication-script.py
 ```
 
-Replace:
+Do not add `--batch-type` for this exercise. Floability launches the local
+TaskVine workers described by the backpack. You do not need to start
+`vine_factory` or `vine_worker` in another terminal.
 
-- `<REMOTE_PORT>` with the port in Floability's JupyterLab URL;
-- `<USERNAME>` with your assigned remote username; and
-- `<SERVER>` with your assigned server address.
-
-Keep the tunnel terminal open. In your browser, replace the remote port in the
-printed URL with local port `8888`:
+The first run may take a few minutes while Floability downloads the matrix
+files and prepares the backpack's Conda environment. The workflow then prints
+each submitted task and each completed result directly in the terminal:
 
 ```text
-http://localhost:8888/lab?token=<TOKEN>
+[manager] Found 10 matrix files
+[submit 01/45] matrix_dense_00 × matrix_dense_01
+...
+[manager] Submitted 45 tasks
+[done 01/45] matrix_dense_00 × matrix_dense_01 = 200×200 matrix; norm=93,676.2841
+...
+[manager] Completed all 45 tasks
 ```
 
-If port `8888` is already in use on your computer, choose another local port,
-such as `8889`, in both the SSH command and browser URL.
+Task completion order may differ between runs.
 
-**Continue with either setup**
+## 4. Confirm success
 
-## 5. Run the workflow
-
-In JupyterLab, open:
+Your run succeeded if it reached:
 
 ```text
-workflow/matrix-multiplication.ipynb
+[manager] Completed all 45 tasks
 ```
 
-Run the notebook cells in order. The notebook discovers ten staged matrix
-files and submits one multiplication for every unique pair:
-
-```text
-10 × 9 / 2 = 45 tasks
-```
-
-A successful run completes all 45 TaskVine tasks and reports the five matrix
-pairs with the largest Frobenius norms. Task completion order and worker
-addresses may differ between runs.
-
-## 6. Save and stop the run
-
-Save the notebook in JupyterLab. Return to the terminal running Floability and
-press `Ctrl-C` once:
-
-```text
-Ctrl-C
-```
-
-Floability stops JupyterLab and the worker factory, cleans up their processes,
-and synchronizes the edited notebook back to the backpack. You may also close
-the SSH tunnel with `Ctrl-C` after JupyterLab has stopped.
+Floability also records the complete terminal output in the run instance's
+`logs/workflow.log` file.
 
 ## What Floability handled
 
-During this one command, Floability:
+With one command, Floability:
 
-1. validated the backpack;
-2. created an isolated run instance;
-3. downloaded and cached the matrix inputs;
-4. created and packed the declared software environment;
-5. launched local TaskVine workers;
-6. started JupyterLab inside the prepared environment; and
-7. cleaned up the processes when you stopped the run.
+1. validated and copied the backpack into an isolated run instance;
+2. downloaded, verified, and cached ten matrix files;
+3. created and packed the declared Conda environment;
+4. launched local TaskVine workers using `compute/compute.yml`;
+5. executed the Python workflow in the prepared environment; and
+6. stopped the worker processes when execution finished.
 
-[**Next: Structure of a backpack →**](backpack-structure.md)
+Next, you will run the same scientific workload interactively from a Jupyter
+notebook.
+
+[**Next: Run your first interactive backpack →**](first-interactive-backpack.md)

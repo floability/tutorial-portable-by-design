@@ -5,19 +5,22 @@ Floability deploys scientific workflows as portable units called
 needed to prepare its software, locate its data, and connect it to computing
 resources.
 
-This part of the tutorial progresses from using an existing backpack to
-creating one and, finally, generating initial specifications from an observed
-notebook execution.
+This part of the tutorial begins by running the same scientific workload in
+two modes: a Python script that prints results in the terminal and an
+interactive notebook served through JupyterLab. You will then compare their
+backpack structures, create a backpack, and generate initial specifications
+from an observed notebook execution.
 
 ## Floability sessions
 
 | Time | Session | What you will do |
 | ---: | --- | --- |
 | 10 min | Floability overview | Understand the deployment problem and backpack model |
-| 15 min | [Run your first backpack](first-backpack.md) | Deploy an existing notebook workflow |
-| 10 min | [Structure of a backpack](backpack-structure.md) | Examine workflow, software, data, and compute specifications |
-| 20 min | [Create and run a backpack](create-backpack.md) | Package a workflow and run the resulting backpack |
-| 15 min | [Generate a backpack automatically](audit.md) | Use Audit to create initial specifications from a working notebook environment |
+| 10 min | [Run your first backpack](first-backpack.md) | Execute a Python workflow and watch its results in the terminal |
+| 15 min | [Run your first interactive backpack](first-interactive-backpack.md) | Run the same workload from a notebook through JupyterLab |
+| 10 min | [Structure of a backpack](backpack-structure.md) | Compare their workflow, software, data, and compute specifications |
+| 15 min | [Create and run a backpack](create-backpack.md) | Package a workflow and run the resulting backpack |
+| 10 min | [Generate a backpack automatically](audit.md) | Use Audit to create initial specifications from a working notebook environment |
 | 5 min | Wrap-up and questions | Review the portability model and next steps |
 
 ## The backpack model

@@ -36,10 +36,11 @@ Short presentations introduce each concept, followed immediately by guided exerc
 | Time | Topic | Materials |
 | ---: | --- | --- |
 | 10 min | **Floability overview** — portable workflow deployment and the backpack model | [Slides](https://docs.google.com/presentation/d/1Ne_OXoEx7dqW7Nbf-Z9U6Llm1kdjDUyIV8fopiBsprg/edit?usp=sharing) · [Overview](04-floability/index.md) |
-| 15 min | **Run your first backpack** — deploy and interact with an existing notebook workflow | [Hands-on](04-floability/first-backpack.md) |
-| 10 min | **Structure of a backpack** — workflow, software, data, and compute specifications | [Slides](https://docs.google.com/presentation/d/1Ne_OXoEx7dqW7Nbf-Z9U6Llm1kdjDUyIV8fopiBsprg/edit?usp=sharing) · [Guide](04-floability/backpack-structure.md) |
-| 20 min | **Create and run a backpack** — package a workflow and complete its specifications | [Hands-on](04-floability/create-backpack.md) |
-| 15 min | **Generate a backpack automatically** — use Audit to produce initial specifications from a working notebook environment | [Hands-on](04-floability/audit.md) |
+| 10 min | **Run your first backpack** — execute a Python workflow and watch its results in the terminal | [Hands-on](04-floability/first-backpack.md) |
+| 15 min | **Run your first interactive backpack** — run the same workload from a notebook through JupyterLab | [Hands-on](04-floability/first-interactive-backpack.md) |
+| 10 min | **Structure of a backpack** — compare their workflow, software, data, and compute specifications | [Slides](https://docs.google.com/presentation/d/1Ne_OXoEx7dqW7Nbf-Z9U6Llm1kdjDUyIV8fopiBsprg/edit?usp=sharing) · [Guide](04-floability/backpack-structure.md) |
+| 15 min | **Create and run a backpack** — package a workflow and complete its specifications | [Hands-on](04-floability/create-backpack.md) |
+| 10 min | **Generate a backpack automatically** — use Audit to produce initial specifications from a working notebook environment | [Hands-on](04-floability/audit.md) |
 | 5 min | **Wrap-up and questions** | Key takeaways and next steps |
 
 ## How the tools fit together
@@ -57,7 +58,7 @@ By the end of the tutorial, you will be able to:
 - build and execute a distributed workflow with TaskVine;
 - explain TaskVine's manager-worker execution model;
 - capture and reproduce a workflow execution with Sciunit;
-- run a notebook workflow packaged as a Floability backpack;
+- run script and notebook workflows packaged as Floability backpacks;
 - identify the workflow, software, data, and compute specifications in a backpack;
 - create and run a backpack from an existing workflow; and
 - use Floability Audit to generate initial backpack specifications for manual review.

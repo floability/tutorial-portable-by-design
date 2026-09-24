@@ -1,6 +1,6 @@
 # Generate a Backpack Automatically
 
-**Session time:** 15 minutes
+**Session time:** 10 minutes
 
 > **You already have a Jupyter notebook that works. But how do you turn it into a Floability Backpack without manually specifying all of its software and data dependencies?**
 
