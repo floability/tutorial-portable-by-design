@@ -52,17 +52,16 @@ Activate it:
 conda activate tutorial-env
 ```
 
-Install Sciunit and the RAG-Lite dependencies inside the active environment:
+Install Sciunit inside the active environment:
 
 ```bash
-python -m pip install --upgrade \
-  sciunit2 \
-  langchain-community \
-  langchain-text-splitters \
-  rank-bm25
+python -m pip install --upgrade sciunit2
 ```
 
-Pip will install the current Sciunit release, the RAG-Lite packages, and their declared dependencies.
+The RAG-Lite exercise intentionally uses a separate environment containing its
+application dependencies. Keeping those packages out of `tutorial-env` lets
+you demonstrate that Sciunit can repeat a captured execution without them
+being installed in the active environment.
 
 Whenever you open a new terminal and return to the tutorial, activate it again:
 
@@ -81,7 +80,6 @@ sciunit --version
 python -c "from sciunit2.command.exec_ import ExecCommand; print('Sciunit: OK')"
 python -c "import ndcctools.taskvine; print('TaskVine: OK')"
 python -c "import cloudpickle, matplotlib, numpy, onnxruntime, pandas; from PIL import Image; print('Scientific examples: OK')"
-python -c "import langchain_community, langchain_text_splitters, rank_bm25; print('RAG-Lite: OK')"
 floability --help >/dev/null && echo "Floability: OK"
 python -m pip check
 ```
@@ -92,14 +90,17 @@ You should finish with:
 Sciunit: OK
 TaskVine: OK
 Scientific examples: OK
-RAG-Lite: OK
 Floability: OK
 No broken requirements found.
 ```
 
 ## 4. Understand the environment layout
 
-The `tutorial-env` environment contains the same participant-facing package set as the live AWS environment. It supports the TaskVine, matrix, MobileNet, Sciunit, RAG-Lite, and Floability exercises without requiring another manually activated tutorial environment.
+The `tutorial-env` environment contains the same participant-facing package set
+as the live AWS environment. It supports the TaskVine, matrix, MobileNet,
+Sciunit, and Floability exercises. The RAG-Lite Sciunit exercise creates a
+separate `raglite-sciunit-env` for its application dependencies, then returns
+to `tutorial-env` to demonstrate dependency-free replay.
 
 During later exercises, Floability may create additional software environments for individual backpacks. Those environments are separate from this tutorial tools environment and may be cached for reuse.
 

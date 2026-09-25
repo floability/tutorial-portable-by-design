@@ -14,6 +14,15 @@ Complete [Access and Setup](../01-access-and-setup/index.md) before starting.
 Both setup routes place the repository at `~/tutorial` and provide the matrix
 dependencies in `tutorial-env`.
 
+Check which Conda environment is active:
+
+```bash
+echo "${CONDA_PREFIX:-No Conda environment is active}"
+```
+
+The path should end in `/tutorial-env`. If it does not, activate the tutorial
+environment using the command for your setup:
+
 <span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
 
 ```bash
