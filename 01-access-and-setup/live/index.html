@@ -436,17 +436,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#ssh-tunneling-for-notebook-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SSH tunneling for notebook exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1280,17 +1269,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#ssh-tunneling-for-notebook-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SSH tunneling for notebook exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1381,17 +1359,17 @@ echo &quot;$CONDA_PREFIX&quot;
 <pre><code class="language-bash">vine_worker --version
 python -c &quot;import ndcctools.taskvine; print('TaskVine: OK')&quot;
 python -c &quot;import cloudpickle, matplotlib, numpy, onnxruntime, pandas; from PIL import Image; print('Scientific examples: OK')&quot;
-python -c &quot;import langchain_community, langchain_text_splitters, rank_bm25; print('RAG-Lite: OK')&quot;
 floability --help &gt;/dev/null &amp;&amp; echo &quot;Floability: OK&quot;
 sciunit --version &gt;/dev/null &amp;&amp; echo &quot;Sciunit: OK&quot;
 </code></pre>
 <p>You should finish with:</p>
 <pre><code class="language-text">TaskVine: OK
 Scientific examples: OK
-RAG-Lite: OK
 Floability: OK
 Sciunit: OK
 </code></pre>
+<p>The RAG-Lite exercise uses a separate prepared environment for its application
+dependencies. You will activate that environment when the exercise begins.</p>
 <h2 id="you-are-ready">You are ready</h2>
 <p>Your setup now has two separate areas:</p>
 <pre><code class="language-text">/opt/tutorial/       shared tutorial software
@@ -1399,11 +1377,6 @@ Sciunit: OK
 </code></pre>
 <p>Later, Floability will create and cache backpack-specific software environments inside your own user space.</p>
 <p>These environments are separate from the shared tutorial tools. Repeated runs of the same backpack may reuse your cached environment, but environments are not shared between participants.</p>
-<h2 id="ssh-tunneling-for-notebook-exercises">SSH tunneling for notebook exercises</h2>
-<p>Later notebook exercises will use SSH tunneling so Jupyter does not need a public network port. The instructions will provide the local and remote port numbers and use this pattern:</p>
-<pre><code class="language-bash">ssh -L &lt;LOCAL_PORT&gt;:localhost:&lt;REMOTE_PORT&gt; &lt;USERNAME&gt;@&lt;SERVER&gt;
-</code></pre>
-<p>The Windows version is expected to use the same options in PowerShell, but it remains unverified until tested on a Windows computer.</p>
 <p>Continue to <a href="../../02-taskvine/quickstart/"><strong>TaskVine Quickstart</strong></a>.</p>
 
 

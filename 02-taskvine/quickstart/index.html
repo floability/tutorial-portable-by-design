@@ -537,10 +537,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-start-the-manager" class="md-nav__link">
+  <a href="#1-enter-the-quickstart-directory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Start the manager
+        1. Enter the quickstart directory
       
     </span>
   </a>
@@ -548,10 +548,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-open-a-second-terminal" class="md-nav__link">
+  <a href="#2-start-the-manager" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Open a second terminal
+        2. Start the manager
       
     </span>
   </a>
@@ -559,10 +559,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-start-the-worker-directly" class="md-nav__link">
+  <a href="#3-open-a-second-terminal" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Start the worker directly
+        3. Open a second terminal
       
     </span>
   </a>
@@ -570,10 +570,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-confirm-success" class="md-nav__link">
+  <a href="#4-start-the-worker-directly" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Confirm success
+        4. Start the worker directly
       
     </span>
   </a>
@@ -581,10 +581,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-connect-the-code-to-the-execution-model" class="md-nav__link">
+  <a href="#5-confirm-success" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Connect the code to the execution model
+        5. Confirm success
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-connect-the-code-to-the-execution-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Connect the code to the execution model
       
     </span>
   </a>
@@ -1226,10 +1237,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-start-the-manager" class="md-nav__link">
+  <a href="#1-enter-the-quickstart-directory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Start the manager
+        1. Enter the quickstart directory
       
     </span>
   </a>
@@ -1237,10 +1248,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-open-a-second-terminal" class="md-nav__link">
+  <a href="#2-start-the-manager" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Open a second terminal
+        2. Start the manager
       
     </span>
   </a>
@@ -1248,10 +1259,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-start-the-worker-directly" class="md-nav__link">
+  <a href="#3-open-a-second-terminal" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Start the worker directly
+        3. Open a second terminal
       
     </span>
   </a>
@@ -1259,10 +1270,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-confirm-success" class="md-nav__link">
+  <a href="#4-start-the-worker-directly" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Confirm success
+        4. Start the worker directly
       
     </span>
   </a>
@@ -1270,10 +1281,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-connect-the-code-to-the-execution-model" class="md-nav__link">
+  <a href="#5-confirm-success" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Connect the code to the execution model
+        5. Confirm success
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-connect-the-code-to-the-execution-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Connect the code to the execution model
       
     </span>
   </a>
@@ -1348,14 +1370,14 @@ environment using the command for your setup:</p>
 <pre><code class="language-bash">conda activate tutorial-env
 </code></pre>
 <p><strong>Continue with either setup</strong></p>
-<p>Enter the quickstart directory:</p>
+<h2 id="1-enter-the-quickstart-directory">1. Enter the quickstart directory</h2>
 <pre><code class="language-bash">cd ~/tutorial/examples/taskvine/quickstart
 ls
 </code></pre>
 <p>You should see:</p>
 <pre><code class="language-text">README.md  taskvine-quickstart.py
 </code></pre>
-<h2 id="1-start-the-manager">1. Start the manager</h2>
+<h2 id="2-start-the-manager">2. Start the manager</h2>
 <p>In your current terminal, run:</p>
 <pre><code class="language-bash">python taskvine-quickstart.py
 </code></pre>
@@ -1371,7 +1393,7 @@ Waiting for a worker to connect and complete the tasks...
 </code></pre>
 <p>Nothing is wrong when the program waits here. The manager has work to perform but does not yet have a worker.</p>
 <p>Leave this terminal running.</p>
-<h2 id="2-open-a-second-terminal">2. Open a second terminal</h2>
+<h2 id="3-open-a-second-terminal">3. Open a second terminal</h2>
 <p><span class="tutorial-route-label tutorial-route--live">Live tutorial</span></p>
 <p>Open another terminal on your computer and connect to the same tutorial server. Replace the highlighted placeholders with the username and server printed on your credential card:</p>
 <pre><code class="language-bash">ssh &lt;USERNAME&gt;@&lt;SERVER&gt;
@@ -1384,20 +1406,20 @@ Waiting for a worker to connect and complete the tasks...
 <pre><code class="language-bash">conda activate tutorial-env
 </code></pre>
 <p><strong>Continue with either setup</strong></p>
-<h2 id="3-start-the-worker-directly">3. Start the worker directly</h2>
+<h2 id="4-start-the-worker-directly">4. Start the worker directly</h2>
 <p>Return briefly to the manager terminal and copy the complete <code>vine_worker</code> command it printed. Run that command in the second terminal.</p>
 <p>It will look similar to:</p>
 <pre><code class="language-bash">vine_worker localhost &lt;PORT&gt;
 </code></pre>
 <p>Use the actual port printed by your manager instead of <code>&lt;PORT&gt;</code>. Live participants should run this command on the tutorial server, not on their laptop.</p>
 <p>The worker connects directly to the manager and begins requesting tasks. This is the only primary tutorial example that starts a worker directly; later exercises use <code>vine_factory</code> to discover a named manager and maintain workers for it.</p>
-<h2 id="4-confirm-success">4. Confirm success</h2>
+<h2 id="5-confirm-success">5. Confirm success</h2>
 <p>Return to the manager terminal. The five tasks may finish in a different order from the order in which they were submitted.</p>
 <p>You should finish with:</p>
 <pre><code class="language-text">Quickstart complete: 5 of 5 tasks succeeded.
 </code></pre>
 <p>The manager declared one remote file, attached it to five tasks, and captured the standard output from each Linux command.</p>
-<h2 id="5-connect-the-code-to-the-execution-model">5. Connect the code to the execution model</h2>
+<h2 id="6-connect-the-code-to-the-execution-model">6. Connect the code to the execution model</h2>
 <p>The essential task definition is:</p>
 <pre><code class="language-python">task = vine.Task(f&quot;grep -i {keyword} warandpeace.txt | wc&quot;)
 task.add_input(shared_text, &quot;warandpeace.txt&quot;)

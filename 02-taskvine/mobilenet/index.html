@@ -1376,12 +1376,18 @@ environment using the command for your setup:</p>
 <p>Then copy the complete <code>vine_factory</code> command printed by the manager. It will look like:</p>
 <pre><code class="language-bash">vine_factory -T local --min-workers=1 --max-workers=1 \
   --cores=1 \
+  --timeout=60 \
+  --scratch-dir &quot;$HOME/vine_scratch/&lt;MANAGER_NAME&gt;&quot; \
   --manager-name &lt;MANAGER_NAME&gt;
 </code></pre>
-<p>Use the actual manager name printed by the program. The first run may pause
-while TaskVine retrieves the pinned 13.3 MiB model and ImageNet label file.
-The one-core worker also ensures that the serverless comparison uses one
-one-core Function Library instance.</p>
+<p>Use the complete command printed by the program. It contains the actual
+manager name and a matching run-specific scratch directory. This prevents a
+lingering worker from an earlier run from blocking the next factory while it
+stages its <code>vine_worker</code> executable. The 60-second timeout limits how long an
+idle worker can remain after shutdown. The first run may pause while TaskVine
+retrieves the pinned 13.3 MiB model and ImageNet label file. The one-core worker
+also ensures that the serverless comparison uses one one-core Function Library
+instance.</p>
 <p>The run should finish with:</p>
 <pre><code class="language-text">MobileNet PythonTask batch inference complete.
 Classified 4 images in 2 batches using 2 independent model loads.
