@@ -1269,10 +1269,20 @@ conda activate raglite-flinc-env
 <p>The output will be shown similar to this:</p>
 <pre><code>Available kernels:
   python3    /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/python3
-  rag-lite   Installed kernelspec raglite-flinc-env in /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/raglite-flinc-env
+  rag-lite   /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/raglite-flinc-env
 </code></pre>
 <p>Install FLINC and pass it the full path of the rag-lite kernel:</p>
-<pre><code class="language-bash">./install.sh /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/rag-lite
+<pre><code class="language-bash">./install.sh $HOME/.conda/envs/raglite-flinc-env/share/jupyter/kernels/raglite-flinc-env
+</code></pre>
+<p>See the newly installed two kernels in the list of Jupyter kernels:</p>
+<pre><code class="language-bash">jupyter kernelspec list
+</code></pre>
+<p>The output will be shown similar to this:</p>
+<pre><code>Available kernels:
+  audit-kernel    /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/audit-kernel
+  python3         /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/python3
+  rag-lite-flinc-env    /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/raglite-flinc-env
+  repeat-kernel   /home/user03/.conda/envs/raglite-flinc-env/share/jupyter/kernels/repeat-kernel
 </code></pre>
 <h2 id="starting-the-notebook-server">Starting the Notebook Server</h2>
 <p>Move into the correct directory:</p>
