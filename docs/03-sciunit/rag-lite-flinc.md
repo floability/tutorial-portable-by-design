@@ -38,13 +38,27 @@ The output will be shown similar to this:
 ```
 Available kernels:
   python3    /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/python3
-  rag-lite   Installed kernelspec raglite-flinc-env in /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/raglite-flinc-env
+  rag-lite   /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/raglite-flinc-env
 ```
 
 Install FLINC and pass it the full path of the rag-lite kernel:
 ```bash
-./install.sh /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/rag-lite
+./install.sh $HOME/.conda/envs/raglite-flinc-env/share/jupyter/kernels/raglite-flinc-env
 ```
+
+See the newly installed two kernels in the list of Jupyter kernels:
+```bash
+jupyter kernelspec list
+```
+The output will be shown similar to this:
+```
+Available kernels:
+  audit-kernel    /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/audit-kernel
+  python3         /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/python3
+  rag-lite-flinc-env    /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/raglite-flinc-env
+  repeat-kernel   /home/user03/.conda/envs/raglite-flinc-env/share/jupyter/kernels/repeat-kernel
+```
+
 
 ## Starting the Notebook Server 
 Move into the correct directory:
@@ -90,11 +104,15 @@ This will start the server and an output similar to this will be displayed:
 You will copy paste the above link starting with `http://localhost:` and paste it in your local machine's browser. 
 
 **If the URL does NOT open**<br>
-You may need to set up SSH tunneling first. You will need to run a command with the following pattern on your local machine:
+You may need to set up SSH tunneling first.
+
+**Open a new terminal.**
+
+You will need to run a command with the following pattern on the new terminal on your local machine:
 ```bash
-ssh -L <LOCAL_PORT>:localhost:<REMOTE_PORT> <USERNAME>@<SERVER>
+ssh -L <JUPYTER_PORT>:localhost:<JUPYTER_PORT> <USERNAME>@<SERVER>
 ```
-Your `USERNAME` and `SERVER` are already provided to you. `REMOTE_PORT` will be given in the output shown above for the previous command. For example, the actual command to run on your local machine will look similar to this:
+Your `USERNAME` and `SERVER` are already provided to you in your credentials card. `<JUPYTER_PORT>` is given in the output shown above for the previous command after `http://localhost:`. For example, the actual command to run on your local machine will look similar to this:
 ```bash
 ssh -L localhost:8891:localhost:8891 user02@34.250.253.140
 ```
