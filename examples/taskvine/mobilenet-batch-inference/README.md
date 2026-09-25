@@ -36,10 +36,14 @@ Open a second terminal, activate `tutorial-env`, and run the complete
 ```bash
 vine_factory -T local --min-workers=1 --max-workers=1 \
   --cores=1 \
+  --timeout=60 \
+  --scratch-dir "$HOME/vine_scratch/<MANAGER_NAME>" \
   --manager-name <MANAGER_NAME>
 ```
 
-Use the actual manager name printed by the program. A successful run ends with:
+Use the complete command printed by the program. Its run-specific scratch
+directory prevents a lingering worker from colliding with a later factory,
+and an idle worker exits after 60 seconds. A successful run ends with:
 
 ```text
 MobileNet PythonTask batch inference complete.

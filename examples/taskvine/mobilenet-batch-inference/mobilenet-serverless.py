@@ -140,15 +140,20 @@ def main():
 
     # Step 3: Create a named manager that vine_factory can discover.
     manager_name = f"mobilenet-serverless-{getpass.getuser()}-{os.getpid()}"
+    scratch_dir = Path.home() / "vine_scratch" / manager_name
+    scratch_dir.mkdir(parents=True, exist_ok=True)
     manager = vine.Manager(port=0, name=manager_name)
     manager.tune("watch-library-logfiles", 1)
 
     print(f"Manager name: {manager_name}")
     print(f"Listening on port: {manager.port}")
+    print(f"Factory scratch directory: {scratch_dir}")
     print("\nIn a second terminal, activate the same environment and run:")
     print(
         "vine_factory -T local --min-workers=1 --max-workers=1 "
         "--cores=1 "
+        "--timeout=60 "
+        f"--scratch-dir {scratch_dir} "
         f"--manager-name {manager_name}"
     )
 

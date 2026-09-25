@@ -151,14 +151,4 @@ Later, Floability will create and cache backpack-specific software environments 
 
 These environments are separate from the shared tutorial tools. Repeated runs of the same backpack may reuse your cached environment, but environments are not shared between participants.
 
-## SSH tunneling for notebook exercises
-
-Later notebook exercises will use SSH tunneling so Jupyter does not need a public network port. The instructions will provide the local and remote port numbers and use this pattern:
-
-```bash
-ssh -L <LOCAL_PORT>:localhost:<REMOTE_PORT> <USERNAME>@<SERVER>
-```
-
-The Windows version is expected to use the same options in PowerShell, but it remains unverified until tested on a Windows computer.
-
 Continue to [**TaskVine Quickstart**](../02-taskvine/quickstart.md).

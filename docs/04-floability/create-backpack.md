@@ -216,18 +216,23 @@ Open the copied workflow—not the original TaskVine example:
 nano ~/tutorial/created-backpacks/matrix-basic/workflow/matrix-basic.py
 ```
 
-Remove the unused `getpass` import. Then find the manager-creation and
-`vine_factory` instruction block at the beginning of `main()`:
+Remove the unused `getpass` and `Path` imports. Then find the manager-creation
+and `vine_factory` instruction block at the beginning of `main()`:
 
 ```python
 manager_name = f"taskvine-matrix-basic-{getpass.getuser()}-{os.getpid()}"
+scratch_dir = Path.home() / "vine_scratch" / manager_name
+scratch_dir.mkdir(parents=True, exist_ok=True)
 manager = vine.Manager(port=0, name=manager_name)
 
 print(f"Manager name: {manager_name}")
 print(f"Listening on port: {manager.port}")
+print(f"Factory scratch directory: {scratch_dir}")
 print("\nIn a second terminal, activate this environment and run:")
 print(
     "vine_factory -T local --min-workers=1 --max-workers=2 "
+    "--timeout=60 "
+    f"--scratch-dir {scratch_dir} "
     f"--manager-name {manager_name}"
 )
 ```

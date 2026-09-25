@@ -108,13 +108,19 @@ Then copy the complete `vine_factory` command printed by the manager. It will lo
 ```bash
 vine_factory -T local --min-workers=1 --max-workers=1 \
   --cores=1 \
+  --timeout=60 \
+  --scratch-dir "$HOME/vine_scratch/<MANAGER_NAME>" \
   --manager-name <MANAGER_NAME>
 ```
 
-Use the actual manager name printed by the program. The first run may pause
-while TaskVine retrieves the pinned 13.3 MiB model and ImageNet label file.
-The one-core worker also ensures that the serverless comparison uses one
-one-core Function Library instance.
+Use the complete command printed by the program. It contains the actual
+manager name and a matching run-specific scratch directory. This prevents a
+lingering worker from an earlier run from blocking the next factory while it
+stages its `vine_worker` executable. The 60-second timeout limits how long an
+idle worker can remain after shutdown. The first run may pause while TaskVine
+retrieves the pinned 13.3 MiB model and ImageNet label file. The one-core worker
+also ensures that the serverless comparison uses one one-core Function Library
+instance.
 
 The run should finish with:
 

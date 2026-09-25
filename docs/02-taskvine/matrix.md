@@ -95,9 +95,10 @@ Each program creates a manager with a unique project name, submits two tasks, pr
 ```text
 Manager name: <MANAGER_NAME>
 Listening on port: <PORT>
+Factory scratch directory: <SCRATCH_DIRECTORY>
 
 In a second terminal, activate this environment and run:
-vine_factory ... --manager-name <MANAGER_NAME>
+vine_factory ... --scratch-dir <SCRATCH_DIRECTORY> --manager-name <MANAGER_NAME>
 
 Submitted two PythonTasks. Waiting for the factory worker...
 ```
@@ -130,10 +131,13 @@ Copy the complete `vine_factory` command printed by the manager and run it in th
 
 ```bash
 vine_factory -T local --min-workers=1 --max-workers=2 \
+  --timeout=60 \
+  --scratch-dir "$HOME/vine_scratch/<MANAGER_NAME>" \
   --manager-name <MANAGER_NAME>
 ```
 
-Use the actual manager name printed by your program.
+Use the complete command printed by the program. It contains the actual
+manager name and the matching absolute scratch-directory path.
 
 The options have distinct purposes:
 
@@ -143,8 +147,18 @@ The options have distinct purposes:
 | `--manager-name` | Find the named manager through the TaskVine catalog. |
 | `--min-workers=1` | Maintain at least one worker while the manager is active. |
 | `--max-workers=2` | Allow the factory to scale up to two workers when tasks are waiting. |
+| `--timeout=60` | Stop a worker after 60 seconds without a manager connection or work. |
+| `--scratch-dir` | Keep this run's factory files and worker executable separate from other runs. |
 
 Unlike the direct worker command used by the quickstart, the factory uses the project name to discover the manager and maintains the requested worker population. Catalog discovery requires internet access.
+
+By default, `vine_factory` uses one shared factory scratch directory per user.
+A worker that remains briefly after `Ctrl-C` can keep files in that directory
+busy. These examples instead use `$HOME/vine_scratch/<MANAGER_NAME>`. The
+manager name includes the username and process ID, so every run receives a
+new factory scratch directory and does not overwrite another run's
+`vine_worker` executable. The 60-second worker timeout also limits how long a
+worker can remain after the manager or factory has stopped.
 
 This tutorial deliberately leaves worker cores, memory, and disk unspecified. For other applications and HPC batch systems, the factory can select a different batch type, request worker resources, read a configuration file, and manage a larger worker range. See the official [TaskVine factory overview](https://cctools.readthedocs.io/en/stable/taskvine/#managing-workers-with-the-taskvine-factory) and [`vine_factory` command reference](https://cctools.readthedocs.io/en/stable/man_pages/vine_factory/).
 
@@ -197,16 +211,18 @@ def multiply_matrix(matrix_a, matrix_b):
 
 The import is inside the function because this function executes on a worker. Serialization transfers the function definition, but the actual `numpy` package comes from the worker environment created from `environment.yml`.
 
-### Create a named manager
+### Create a named manager and factory scratch directory
 
 ```python
 manager_name = f"taskvine-matrix-basic-{getpass.getuser()}-{os.getpid()}"
+scratch_dir = Path.home() / "vine_scratch" / manager_name
+scratch_dir.mkdir(parents=True, exist_ok=True)
 manager = vine.Manager(port=0, name=manager_name)
 ```
 
 Port `0` selects an available port. The project name is advertised through the TaskVine catalog, allowing `vine_factory --manager-name` to discover the manager without copying its hostname and port.
 
-The username distinguishes participants, while the process ID gives every run a fresh name. This prevents a new factory from matching a briefly retained catalog record from an earlier run.
+The username distinguishes participants, while the process ID gives every run a fresh name. This prevents a new factory from matching a briefly retained catalog record from an earlier run. The same manager name also gives the factory an isolated scratch directory under the participant's home directory.
 
 ### Define four matrices
 
