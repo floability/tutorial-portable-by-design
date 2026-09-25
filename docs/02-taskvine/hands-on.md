@@ -15,8 +15,8 @@ This is the environment and access validation exercise.
 ## 2. Matrix Multiplication
 
 [Run Matrix Multiplication with TaskVine](matrix.md) to execute Python functions
-with `PythonTask` and start workers through `vine_factory`. Choose either the
-in-memory program or its file-based extension.
+with `PythonTask`, use declared CSV inputs and outputs, and start workers
+through `vine_factory`.
 
 This exercise introduces Python return values, resource requirements, declared
 inputs and outputs, and worker sandbox filenames.

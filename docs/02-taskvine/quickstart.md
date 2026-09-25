@@ -33,7 +33,7 @@ conda activate tutorial-env
 
 **Continue with either setup**
 
-Enter the quickstart directory:
+## 1. Enter the quickstart directory
 
 ```bash
 cd ~/tutorial/examples/taskvine/quickstart
@@ -46,7 +46,7 @@ You should see:
 README.md  taskvine-quickstart.py
 ```
 
-## 1. Start the manager
+## 2. Start the manager
 
 In your current terminal, run:
 
@@ -71,7 +71,7 @@ Nothing is wrong when the program waits here. The manager has work to perform bu
 
 Leave this terminal running.
 
-## 2. Open a second terminal
+## 3. Open a second terminal
 
 <span class="tutorial-route-label tutorial-route--live">Live tutorial</span>
 
@@ -97,7 +97,7 @@ conda activate tutorial-env
 
 **Continue with either setup**
 
-## 3. Start the worker directly
+## 4. Start the worker directly
 
 Return briefly to the manager terminal and copy the complete `vine_worker` command it printed. Run that command in the second terminal.
 
@@ -111,7 +111,7 @@ Use the actual port printed by your manager instead of `<PORT>`. Live participan
 
 The worker connects directly to the manager and begins requesting tasks. This is the only primary tutorial example that starts a worker directly; later exercises use `vine_factory` to discover a named manager and maintain workers for it.
 
-## 4. Confirm success
+## 5. Confirm success
 
 Return to the manager terminal. The five tasks may finish in a different order from the order in which they were submitted.
 
@@ -123,7 +123,7 @@ Quickstart complete: 5 of 5 tasks succeeded.
 
 The manager declared one remote file, attached it to five tasks, and captured the standard output from each Linux command.
 
-## 5. Connect the code to the execution model
+## 6. Connect the code to the execution model
 
 The essential task definition is:
 
