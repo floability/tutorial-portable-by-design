@@ -319,6 +319,6 @@ returned through `manager.wait`.
 
 ## TaskVine hands-on navigation
 
-- Return to the [TaskVine hands-on exercises](hands-on.md).
+- Return to the [TaskVine overview and exercises](index.md).
 - Review the [TaskVine Quickstart](quickstart.md).
 - Continue to [MobileNet Batch Inference](mobilenet.md).

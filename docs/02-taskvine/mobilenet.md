@@ -197,7 +197,7 @@ larger workload is needed for a meaningful timing comparison.
 
 ## TaskVine hands-on navigation
 
-- Return to the [TaskVine hands-on exercises](hands-on.md).
+- Return to the [TaskVine overview and exercises](index.md).
 - Review the [TaskVine Quickstart](quickstart.md).
 - Review [Matrix Multiplication with TaskVine](matrix.md).
 - Read the [official TaskVine Function Calls documentation](https://cctools.readthedocs.io/en/stable/taskvine/#serverless-computing-with-taskvine).

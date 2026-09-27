@@ -160,6 +160,6 @@ If the exercise is interrupted, press `Ctrl-C` once in each terminal. Restart th
 
 ## TaskVine hands-on navigation
 
-- Return to the [TaskVine hands-on exercises](hands-on.md).
+- Return to the [TaskVine overview and exercises](index.md).
 - Continue to [Matrix Multiplication with TaskVine](matrix.md).
 - Preview [MobileNet Batch Inference](mobilenet.md).

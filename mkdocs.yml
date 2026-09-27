@@ -26,8 +26,7 @@ nav:
       - Live Tutorial: 01-access-and-setup/live.md
       - Self-Managed Setup: 01-access-and-setup/self-managed.md
   - TaskVine:
-      - Overview: 02-taskvine/index.md
-      - Hands-on Exercises: 02-taskvine/hands-on.md
+      - Overview and Exercises: 02-taskvine/index.md
       - Quickstart: 02-taskvine/quickstart.md
       - Matrix PythonTasks: 02-taskvine/matrix.md
       - MobileNet Batch Inference: 02-taskvine/mobilenet.md
