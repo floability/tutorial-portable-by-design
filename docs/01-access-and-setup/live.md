@@ -17,17 +17,30 @@ ssh <USERNAME>@<SERVER>
 
 Replace `<USERNAME>` and `<SERVER>` with the values printed on your card.
 
-## Windows — unverified
+## Windows
 
-> **These Windows instructions have not been verified yet.** We will remove this notice after testing password login and SSH tunneling on a Windows computer.
 
-Open PowerShell or Windows Terminal and check whether the OpenSSH client is available:
+Open **PowerShell** or Windows Terminal to check whether SSH is already installed:
 
 ```powershell
 ssh -V
 ```
 
-If that prints an OpenSSH version, connect with:
+If that prints an OpenSSH version, you are ready to connect.
+
+If `ssh` is not recognized, open **PowerShell** as **Administrator** and **install** the OpenSSH Client:
+
+```powershell
+Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+```
+After installation, verify it:
+
+```powershell
+ssh -V
+```
+If that prints an OpenSSH version, SSH is ready to use.
+
+Connect with:
 
 ```powershell
 ssh <USERNAME>@<SERVER>
