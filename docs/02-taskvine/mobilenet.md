@@ -4,37 +4,8 @@ This exercise classifies four images with MobileNetV2. The same application is
 implemented twice so you can compare ordinary TaskVine PythonTasks with
 TaskVine's serverless-style Function Calls.
 
-The complete programs are in:
-
-```text
-examples/taskvine/mobilenet-batch-inference/
-├── mobilenet-python-task.py
-├── mobilenet-serverless.py
-├── environment.yml
-└── images/
-```
-
-## What stays the same
-
-Both programs:
-
-- sort the same four local images and divide them into two microbatches;
-- create a named TaskVine manager;
-- declare the same pinned MobileNet model, labels, and image inputs;
-- submit two independent image-classification operations;
-- use one core per operation; and
-- collect and validate the same predictions.
-
-The programs differ only in how TaskVine executes the inference function and
-manages the model state.
-
-| PythonTask version | Serverless version |
-| --- | --- |
-| Submits `vine.PythonTask` | Installs a Function Library and submits `vine.FunctionCall` |
-| Each task starts an ordinary Python process | Calls execute inside a persistent library process |
-| Each task loads a new ONNX session | The library loads one ONNX session during initialization |
-| Model and labels are inputs to every task | Model and labels are inputs to the library |
-| Two batches produce two model-load IDs | Two batches reuse one model-load ID |
+Run both versions first. A short explanation of the two execution models
+follows the exercise for anyone who wants to inspect how they differ.
 
 ## Before you begin
 
@@ -143,34 +114,6 @@ python mobilenet-serverless.py
 In the second terminal, run the new `vine_factory` command printed by this
 manager. Use the new manager name rather than the name from the previous run.
 
-The serverless version first creates a Function Library:
-
-```python
-library = manager.create_library_from_functions(
-    LIBRARY_NAME,
-    classify_image_batch,
-    library_context_info=[
-        initialize_mobilenet_library,
-        ["model.onnx", "labels.txt"],
-        {},
-    ],
-)
-manager.install_library(library)
-```
-
-`initialize_mobilenet_library` loads the model and labels once. The program
-then submits image microbatches as lightweight calls:
-
-```python
-call = vine.FunctionCall(
-    LIBRARY_NAME,
-    "classify_image_batch",
-    sandbox_image_paths,
-    TOP_K,
-)
-manager.submit(call)
-```
-
 A successful run ends with:
 
 ```text
@@ -181,7 +124,182 @@ Classified 4 images in 2 batches using 1 shared model load.
 Both results should print the same model-load ID, demonstrating that the
 Function Calls reused persistent state. Stop the factory with `Ctrl-C`.
 
-## Why use a Function Library?
+## TL;DR: two ways to run a Python function
+
+Both programs divide the same four images into two microbatches and run the
+same classification operation. They differ in what TaskVine starts for each
+operation and where the MobileNet model is loaded.
+
+### Ordinary PythonTask
+
+A [`PythonTask`](https://cctools.readthedocs.io/en/stable/taskvine/#python-tasks)
+packages a Python function and its arguments as one TaskVine task. Its Python
+return value becomes `completed.output`, while normal TaskVine file and
+resource controls still apply.
+
+In `mobilenet-python-task.py`, the manager submits one task per microbatch:
+
+```python
+task = vine.PythonTask(
+    classify_image_batch,
+    "model.onnx",
+    "labels.txt",
+    sandbox_image_paths,
+    TOP_K,
+)
+```
+
+The model and labels are inputs to each task. When a task starts,
+`classify_image_batch` creates its own ONNX inference session, classifies two
+images, returns the predictions, and exits. Two microbatches therefore create
+two independent sessions and print two different model-load IDs.
+
+### Function Library and FunctionCall
+
+A [Function Library](https://cctools.readthedocs.io/en/stable/taskvine/#serverless-computing)
+is a persistent task that makes named Python functions available on a worker.
+After the manager installs the library, it submits `FunctionCall` tasks that
+invoke those functions by name.
+
+In `mobilenet-serverless.py`, making the classification function available
+requires five steps.
+
+#### 1. Initialize the shared model state
+
+The initializer receives the model and label filenames, creates the ONNX
+session, and returns a dictionary of values that later calls can retrieve:
+
+```python
+def initialize_mobilenet_library(model_path, labels_path):
+    import uuid
+    import onnxruntime as ort
+
+    session = ort.InferenceSession(
+        model_path,
+        providers=["CPUExecutionProvider"],
+    )
+
+    with open(labels_path, encoding="utf-8") as labels_file:
+        labels = [
+            line.strip().split(" ", 1)[1]
+            for line in labels_file
+            if line.strip()
+        ]
+
+    return {
+        "inference_session": session,
+        "imagenet_labels": labels,
+        "model_load_id": uuid.uuid4().hex[:8],
+    }
+```
+
+This function runs when the Function Library starts, not once per image
+microbatch. The returned dictionary becomes the library's shared state.
+
+#### 2. Define the callable function
+
+The callable accepts only the values that change between calls. It retrieves
+the persistent model state by name:
+
+```python
+def classify_image_batch(image_paths, top_k):
+    from ndcctools.taskvine.utils import load_variable_from_library
+
+    session = load_variable_from_library("inference_session")
+    labels = load_variable_from_library("imagenet_labels")
+    model_load_id = load_variable_from_library("model_load_id")
+
+    # Preprocess the images and run inference with session.
+    predictions = ...
+
+    return {
+        "predictions": predictions,
+        "model_load_id": model_load_id,
+    }
+```
+
+The complete function in the example contains the image preprocessing and
+inference code represented by `...` above.
+
+#### 3. Create and install the Function Library
+
+The manager packages `classify_image_batch` as a named library function. The
+`library_context_info` value identifies the initializer, its positional
+arguments, and its keyword arguments:
+
+```python
+library = manager.create_library_from_functions(
+    LIBRARY_NAME,
+    classify_image_batch,
+    add_env=False,
+    exec_mode="direct",
+    library_context_info=[
+        initialize_mobilenet_library,
+        ["model.onnx", "labels.txt"],
+        {},
+    ],
+)
+library.add_input(model_file, "model.onnx")
+library.add_input(labels_file, "labels.txt")
+library.set_cores(1)
+library.set_function_slots(1)
+manager.install_library(library)
+```
+
+The model and labels are inputs to the library rather than to every call.
+Their sandbox names match the filenames passed to the initializer. Direct
+execution keeps each call inside the library process, and one function slot
+allows that process to handle one microbatch at a time.
+
+Installing the library makes TaskVine dispatch it to an available worker. The
+worker starts the library, runs `initialize_mobilenet_library`, and then keeps
+the library ready for calls.
+
+#### 4. Submit FunctionCall tasks
+
+Each microbatch becomes a call to the named function in the named library:
+
+```python
+call = vine.FunctionCall(
+    LIBRARY_NAME,
+    "classify_image_batch",
+    sandbox_image_paths,
+    TOP_K,
+)
+for image_path, sandbox_path in zip(image_batch, sandbox_image_paths):
+    call.add_input(declared_images[image_path], sandbox_path)
+call.set_cores(1)
+manager.submit(call)
+```
+
+Only the images and ordinary function arguments vary between calls. TaskVine
+stages each call's images, invokes `classify_image_batch`, and returns its
+Python value through `completed.output`, just as it does for a PythonTask.
+
+#### 5. Reuse the initialized state
+
+Both calls retrieve the same ONNX session, labels, and model-load ID from the
+persistent library process. The repeated model-load ID in the output is the
+visible proof that the initializer ran once and both microbatches reused its
+state.
+
+The manager collects each returned Python value through the normal TaskVine
+wait loop:
+
+```python
+while not manager.empty():
+    completed = manager.wait(5)
+    if completed:
+        result = completed.output
+        print(result["model_load_id"])
+```
+
+| Ordinary `PythonTask` | Function Library with `FunctionCall` |
+| --- | --- |
+| One self-contained Python task per microbatch | One persistent library serves multiple calls |
+| Model and labels are task inputs | Model and labels are library inputs |
+| Creates a new ONNX session for every task | Initializes one ONNX session for the library |
+| Simpler for independent, longer-running work | Useful when many short calls share expensive startup state |
 
 Ordinary PythonTasks are direct and work well for independent functions with
 little startup cost. For machine-learning inference, repeatedly importing
@@ -200,6 +318,6 @@ larger workload is needed for a meaningful timing comparison.
 - Return to the [TaskVine overview and exercises](index.md).
 - Review the [TaskVine Quickstart](quickstart.md).
 - Review [Matrix Multiplication with TaskVine](matrix.md).
-- Read the [official TaskVine Function Calls documentation](https://cctools.readthedocs.io/en/stable/taskvine/#serverless-computing-with-taskvine).
+- Read the [official TaskVine Function Calls documentation](https://cctools.readthedocs.io/en/stable/taskvine/#serverless-computing).
 
 [**Next: Sciunit overview →**](../03-sciunit/index.md)
