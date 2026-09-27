@@ -2,12 +2,23 @@
 
 **Session time:** 15 minutes
 
-This exercise uses two creation paths. First, you create a working backpack
-from a built-in template and make a small change. Then you package the basic
-matrix-multiplication program from the earlier TaskVine exercise.
+For most existing notebooks, Python scripts, and shell scripts, you can ask
+Floability to create the backpack scaffold around the workflow. You then
+review its specifications and make any changes required for Floability-managed
+execution.
 
-Both workflows are Python scripts, so run them non-interactively with
-`floability execute`.
+See the official
+[Create Your First Backpack](https://floability.readthedocs.io/en/stable/getting-started/create-first-backpack/)
+guide for every creation method and command-line option.
+
+## Start from a template
+
+If you want a starting point that you can customize and build on, use
+Floability's template feature. Templates create a Jupyter notebook by default.
+
+The recommended path below creates a notebook with managed input data. The
+alternative creates a simpler Python script without managed data. Choose one,
+inspect the generated backpack, make a small change, and run it.
 
 ## Before you begin
 
@@ -34,25 +45,28 @@ conda activate tutorial-env
 
 **Continue with either setup**
 
-Return to the repository root:
-
-```bash
-cd ~/tutorial
-```
-
-Create a directory for the backpacks you build:
+Create a location for the backpack:
 
 ```bash
 mkdir -p ~/tutorial/created-backpacks
 ```
 
-## Part 1: Start from a template
+## 1. Create a backpack
 
-Use `--from-template` when you want a complete working starting point. The
-`taskvine` template demonstrates manager creation, PythonTask submission, and
-result collection without using Floability-managed data.
+Run **one** of the following commands—not both.
 
-### 1. Generate the backpack
+### Notebook with managed data
+
+```bash
+floability backpack init \
+  --name ~/tutorial/created-backpacks/my-taskvine-backpack \
+  --from-template taskvine-data
+```
+
+This is the default notebook-based path. It creates a TaskVine notebook,
+`data/data.yml`, one backpack-local text file, and one remote text input.
+
+### Script without managed data
 
 ```bash
 floability backpack init \
@@ -61,15 +75,17 @@ floability backpack init \
   --script
 ```
 
-`--script` creates a Python entrypoint instead of the template's default
-notebook. Inspect the generated structure:
+The `--script` option creates a Python entrypoint. This basic template leaves
+input-data management to the workflow, so it does not create `data/data.yml`.
+
+## 2. Inspect the generated backpack
 
 ```bash
 find ~/tutorial/created-backpacks/my-taskvine-backpack \
-  -maxdepth 2 -type f | sort
+  -maxdepth 3 -type f | sort
 ```
 
-It contains:
+Both options include:
 
 ```text
 my-taskvine-backpack/
@@ -78,55 +94,35 @@ my-taskvine-backpack/
 ├── software/
 │   └── environment.yml
 └── workflow/
-    └── my-taskvine-backpack.py
+    └── my-taskvine-backpack.py or my-taskvine-backpack.ipynb
 ```
 
-### 2. Make a simple workflow change
+The notebook option also includes:
 
-Open the generated workflow:
+```text
+data/
+├── data.yml
+└── text_data/
+    └── local-sample.txt
+```
+
+## 3. Set the software specification
+
+Use the same pinned software specification as the matrix backpack you ran
+earlier:
 
 ```bash
-nano ~/tutorial/created-backpacks/my-taskvine-backpack/workflow/my-taskvine-backpack.py
+cp ~/tutorial/examples/backpacks/matrix-multiplication-script/software/environment.yml \
+  ~/tutorial/created-backpacks/my-taskvine-backpack/software/environment.yml
+cat ~/tutorial/created-backpacks/my-taskvine-backpack/software/environment.yml
 ```
 
-Find this line in `worker_function`:
+The starter workflows do not require NumPy, but using the identical
+specification allows Floability to reuse the environment prepared by the
+matrix exercise. If you skipped that exercise, Floability creates the
+environment now.
 
-```python
-return {"input": value, "output": value * 2}
-```
-
-Change only the multiplier so that every worker returns three times its input:
-
-```python
-return {"input": value, "output": value * 3}
-```
-
-After editing in `nano`, press `Ctrl-O`, then `Enter` to save, and `Ctrl-X` to
-exit.
-
-### 3. Pin the software requirements
-
-Open the software specification:
-
-```bash
-nano ~/tutorial/created-backpacks/my-taskvine-backpack/software/environment.yml
-```
-
-Set its contents to:
-
-```yaml
-name: my-taskvine-backpack
-channels:
-  - conda-forge
-dependencies:
-  - python=3.11
-  - ndcctools=7.17.1
-```
-
-This file records the direct software requirements that Floability installs
-and distributes to the TaskVine worker.
-
-### 4. Request one small worker
+## 4. Request one small worker
 
 Open the compute specification:
 
@@ -134,7 +130,7 @@ Open the compute specification:
 nano ~/tutorial/created-backpacks/my-taskvine-backpack/compute/compute.yml
 ```
 
-Replace it with:
+Replace its contents with:
 
 ```yaml
 vine_factory_config:
@@ -145,101 +141,137 @@ vine_factory_config:
   disk: 4096
 ```
 
-Floability reads this file and starts one local worker for the exercise.
+Save with `Ctrl-O`, press `Enter`, and exit with `Ctrl-X`. Floability will use
+this file to start one local worker.
 
-### 5. Execute the backpack
+## 5. Customize the workflow
+
+### If you created the notebook
+
+Continue to the next step. After JupyterLab opens, find the cell defining:
+
+```python
+def worker_function(file_path, keywords=("war", "peace")):
+```
+
+Add `"love"` to the keyword tuple, then run all cells:
+
+```python
+def worker_function(file_path, keywords=("war", "peace", "love")):
+```
+
+### If you created the script
+
+Open the generated Python file:
+
+```bash
+nano ~/tutorial/created-backpacks/my-taskvine-backpack/workflow/*.py
+```
+
+Find:
+
+```python
+return {"input": value, "output": value * 2}
+```
+
+Change the multiplier from `2` to `3`, then save and exit. The output should
+now contain multiples of three.
+
+## 6. Run the backpack
+
+Use the command that matches the workflow type you generated.
+
+### Notebook entrypoint
+
+```bash
+floability run \
+  --backpack ~/tutorial/created-backpacks/my-taskvine-backpack
+```
+
+Floability prints the JupyterLab URL and, for a remote server, the SSH tunnel
+command. Open JupyterLab, select the generated notebook, add `"love"` to the
+keyword tuple, and run all cells. The workflow should process two staged text
+files. Stop the Floability process with `Ctrl-C` when you are finished.
+
+!!! important "Floability prints a ready-to-copy command"
+
+    Live participants can copy the complete SSH tunnel command printed by
+    Floability. Use the same JupyterLab access process as in
+    [Run Your First Interactive Backpack](first-interactive-backpack.md#4-open-jupyterlab).
+
+### Script entrypoint
 
 ```bash
 floability execute \
-  --backpack ~/tutorial/created-backpacks/my-taskvine-backpack \
-  --base-dir ~/floability-runs
+  --backpack ~/tutorial/created-backpacks/my-taskvine-backpack
 ```
 
-The first run may take a few minutes while Floability creates and packs the
-software environment. Near the beginning of the workflow output, the local
-smoke test should show your change:
+The workflow runs to completion and prints its results in the terminal. The
+last line should report that all 20 tasks completed.
 
-```text
-[manager] worker_function smoke-test: {'input': 5, 'output': 15}
+## What Floability added
+
+For the backpack you created, Floability:
+
+1. created a standard backpack structure;
+2. supplied a workflow that connects to its TaskVine manager;
+3. created initial software and compute specifications;
+4. created a managed-data specification for the notebook option;
+5. prepared or reused the software environment;
+6. launched the requested local worker; and
+7. ran either a script or an interactive notebook.
+
+## Reset
+
+To repeat this exercise with the other option, remove only the backpack you
+created, then return to step 1:
+
+```bash
+test -d "$HOME/tutorial/created-backpacks/my-taskvine-backpack"
+rm -rf -- "$HOME/tutorial/created-backpacks/my-taskvine-backpack"
 ```
 
-The distributed results should map inputs `0` through `19` to multiples of
-three, ending with input `19` and output `57`. Task completion order may vary.
+## Start from an existing workflow
 
-## Part 2: Package an existing TaskVine workflow
-
-Use `--from-workflow` when you already have a notebook, Python script, or shell
-script. The starting point here is the basic matrix program from the
-TaskVine hands-on exercise:
-
-```text
-examples/taskvine/matrix-basic/matrix-basic.py
-```
-
-The original program creates its own manager and asks you to launch
-`vine_factory` manually. We will leave that original example unchanged and
-adapt only the copy placed in the new backpack.
-
-### 1. Scaffold the backpack
-
-From `~/tutorial`, run:
+Use `--from-workflow` when you already have working code:
 
 ```bash
 floability backpack init \
-  --name ~/tutorial/created-backpacks/matrix-basic \
-  --from-workflow examples/taskvine/matrix-basic/matrix-basic.py
+  --name ~/tutorial/created-backpacks/my-existing-workflow \
+  --from-workflow /path/to/my-workflow.ipynb
 ```
 
-Floability asks how to construct the software specification. Select option
-`1`, then provide the environment used by the existing matrix example:
+Floability copies the entrypoint and creates the surrounding scaffold:
 
 ```text
-Select option (1-3, default 3): 1
-Path to environment.yml: examples/taskvine/matrix-basic/environment.yml
+my-existing-workflow/
+├── compute/
+│   └── compute.yml
+├── data/
+│   └── data.yml             optional
+├── software/
+│   └── environment.yml
+└── workflow/
+    └── my-workflow.ipynb    or a Python or shell script
 ```
 
-The matrices are defined inside the script, so enter `n` when Floability asks
-whether to create a data specification:
+Review every generated specification. The software file must contain the
+workflow's direct dependencies, the compute file must describe suitable
+workers, and `data.yml` must identify any inputs Floability should stage.
 
-```text
-Create data.yml? (y/n, default n): n
-```
+### Connect an existing TaskVine workflow
 
-The command copies the script and creates initial software and compute
-specifications around it.
+A standalone TaskVine application may create an arbitrary manager name and
+port, then ask you to start a worker or factory manually. Inside a backpack,
+Floability chooses the manager name and allowed port range so that the workers
+it launches can find the workflow.
 
-### 2. Connect the workflow to Floability's manager
-
-Open the copied workflow—not the original TaskVine example:
-
-```bash
-nano ~/tutorial/created-backpacks/matrix-basic/workflow/matrix-basic.py
-```
-
-Remove the unused `getpass` and `Path` imports. Then find the manager-creation
-and `vine_factory` instruction block at the beginning of `main()`:
+Read those values from the environment when creating the manager:
 
 ```python
-manager_name = f"taskvine-matrix-basic-{getpass.getuser()}-{os.getpid()}"
-scratch_dir = Path.home() / "vine_scratch" / manager_name
-scratch_dir.mkdir(parents=True, exist_ok=True)
-manager = vine.Manager(port=0, name=manager_name)
+import os
+import ndcctools.taskvine as vine
 
-print(f"Manager name: {manager_name}")
-print(f"Listening on port: {manager.port}")
-print(f"Factory scratch directory: {scratch_dir}")
-print("\nIn a second terminal, activate this environment and run:")
-print(
-    "vine_factory -T local --min-workers=1 --max-workers=2 "
-    "--timeout=60 "
-    f"--scratch-dir {scratch_dir} "
-    f"--manager-name {manager_name}"
-)
-```
-
-Replace that block with:
-
-```python
 manager_name = os.environ["VINE_MANAGER_NAME"]
 ports_text = os.environ.get("VINE_MANAGER_PORTS", "9123,9150")
 manager_ports = [
@@ -247,66 +279,11 @@ manager_ports = [
     for value in ports_text.replace(":", ",").split(",")
     if value.strip()
 ]
+
 manager = vine.Manager(manager_ports, name=manager_name)
-
-print(f"Manager name: {manager_name}")
-print(f"Listening on port: {manager.port}")
 ```
 
-Floability creates a new manager name for each run and exports it through
-`VINE_MANAGER_NAME`. It also exports the allowed port range through
-`VINE_MANAGER_PORTS`. The workflow must use those values so that the workers
-started by Floability connect to the correct manager.
-
-### 3. Reduce the worker request
-
-Open the generated compute specification:
-
-```bash
-nano ~/tutorial/created-backpacks/matrix-basic/compute/compute.yml
-```
-
-Replace it with:
-
-```yaml
-vine_factory_config:
-  min-workers: 1
-  max-workers: 1
-  cores: 1
-  memory: 2048
-  disk: 4096
-```
-
-Do not start `vine_factory` in another terminal. Floability launches it from
-this compute specification.
-
-### 4. Execute the converted workflow
-
-```bash
-floability execute \
-  --backpack ~/tutorial/created-backpacks/matrix-basic \
-  --base-dir ~/floability-runs
-```
-
-A successful run finishes with the same results as the standalone TaskVine
-program:
-
-```text
-Completed A x B on <WORKER_ADDRESS>: [[19, 22], [43, 50]]
-Completed C x D on <WORKER_ADDRESS>: [[6, 2], [8, 4]]
-
-Basic PythonTask matrix multiplication complete.
-```
-
-## What Floability added
-
-For both backpacks, one `floability execute` command:
-
-1. validates and copies the backpack into a run instance;
-2. creates or reuses the declared software environment;
-3. starts a local `vine_factory` using `compute.yml`;
-4. supplies a matching manager name and port range to the workflow;
-5. runs the Python entrypoint; and
-6. records the output and cleans up the worker processes.
+Remove instructions that launch `vine_worker` or `vine_factory` manually.
+Floability starts the workers from `compute/compute.yml`.
 
 [**Next: Generate a backpack automatically →**](audit.md)

@@ -19,7 +19,7 @@ from an observed notebook execution.
 | 10 min | [Run your first backpack](first-backpack.md) | Execute a Python workflow and watch its results in the terminal |
 | 15 min | [Run your first interactive backpack](first-interactive-backpack.md) | Run the same workload from a notebook through JupyterLab |
 | 10 min | [Structure of a backpack](backpack-structure.md) | Compare their workflow, software, data, and compute specifications |
-| 15 min | [Create and run a backpack](create-backpack.md) | Package a workflow and run the resulting backpack |
+| 15 min | [Create and run a backpack](create-backpack.md) | Generate and customize a script or notebook template |
 | 10 min | [Generate a backpack automatically](audit.md) | Use Audit to create initial specifications from a working notebook environment |
 | 5 min | Wrap-up and questions | Review the portability model and next steps |
 
