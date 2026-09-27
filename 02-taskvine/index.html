@@ -14,7 +14,7 @@
         <link rel="prev" href="../01-access-and-setup/self-managed/">
       
       
-        <link rel="next" href="hands-on/">
+        <link rel="next" href="quickstart/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Overview - Portable by Design Tutorial</title>
+        <title>Overview and Exercises - Portable by Design Tutorial</title>
       
     
     
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Overview and Exercises
             
           </span>
         </div>
@@ -375,8 +375,6 @@
       
         
       
-        
-      
     
     
     
@@ -429,34 +427,6 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="hands-on/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Hands-on Exercises
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -1069,21 +1039,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#execution-model" class="md-nav__link">
+  <a href="#how-taskvine-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Execution model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-taskvine-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core TaskVine features
+        How TaskVine works
       
     </span>
   </a>
@@ -1119,77 +1078,37 @@
 
 
 <h1 id="taskvine">TaskVine</h1>
-<p>TaskVine provides the distributed execution layer used throughout this tutorial. A TaskVine application creates a manager, submits tasks and their data dependencies, and collects results. Workers connect to the manager, request ready tasks, and execute them in private sandboxes.</p>
-<h2 id="execution-model">Execution model</h2>
-<p>The application owns the workflow logic. Its manager describes and coordinates work, while workers supply the resources that execute it:</p>
-<pre><code class="language-text">TaskVine application
-        │
-        ▼
-     Manager ─── defines tasks and tracks files
-        │
-        ├──── Worker ─── task sandbox
-        ├──── Worker ─── task sandbox
-        └──── Worker ─── task sandbox
+<p>TaskVine distributes tasks across workers. A TaskVine application starts a
+manager, submits tasks and their input files, and collects completed results.
+Workers connect to the manager and run those tasks in isolated sandboxes.</p>
+<h2 id="how-taskvine-works">How TaskVine works</h2>
+<pre><code class="language-text">Application → Manager → Workers → Results
 </code></pre>
-<p>Workers request ready tasks from the manager. They may join or leave while the application is running, and the manager assigns work according to data availability and requested resources.</p>
-<p>On an HPC system, the batch scheduler allocates worker processes to nodes. TaskVine then schedules the application's finer-grained tasks across those workers. It complements the site scheduler rather than replacing it.</p>
-<h2 id="core-taskvine-features">Core TaskVine features</h2>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Role in an application</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Manager</td>
-<td>Coordinates tasks, files, workers, and results.</td>
-</tr>
-<tr>
-<td>Command task</td>
-<td>Uses <code>vine.Task</code> to describe a Unix command line executed in a worker sandbox.</td>
-</tr>
-<tr>
-<td>Python task</td>
-<td>Uses <code>vine.PythonTask</code> to execute a Python function with Python arguments.</td>
-</tr>
-<tr>
-<td>Submission</td>
-<td>Makes a task available for TaskVine to schedule.</td>
-</tr>
-<tr>
-<td><code>wait</code></td>
-<td>Returns completed tasks to the application in dynamic completion order.</td>
-</tr>
-<tr>
-<td>File declarations</td>
-<td>Describe inputs and outputs before tasks use them.</td>
-</tr>
-<tr>
-<td>Sandbox mappings</td>
-<td>Give manager-side files predictable names inside individual tasks.</td>
-</tr>
-<tr>
-<td>File caching</td>
-<td>Allows workers to reuse immutable inputs across tasks.</td>
-</tr>
-<tr>
-<td>Resource requests</td>
-<td>Match task core, memory, disk, and GPU needs to worker capacity.</td>
-</tr>
-<tr>
-<td>Function Calls</td>
-<td>Invoke Python functions through persistent Function Libraries.</td>
-</tr>
-</tbody>
-</table>
-<p>Function Calls provide TaskVine's serverless-style execution model. A Function Library can initialize expensive reusable state—such as a machine-learning model—once on a worker and serve many lightweight calls. A later advanced example will explore this model.</p>
+<ol>
+<li>The application starts a manager.</li>
+<li>The application defines files and submits tasks.</li>
+<li>Workers connect and request ready tasks.</li>
+<li>Each worker stages the required files and runs the task.</li>
+<li>The manager returns completed results to the application.</li>
+</ol>
+<p>Workers may join or leave while the application is running. On an HPC system,
+the batch scheduler provides the worker processes, while TaskVine schedules the
+application's tasks across them.</p>
+<p>For a complete introduction and API reference, see the
+<a href="https://cctools.readthedocs.io/en/stable/taskvine/">official TaskVine documentation</a>.</p>
 <h2 id="hands-on-exercises">Hands-on exercises</h2>
-<p>Continue to the <a href="hands-on/"><strong>TaskVine hands-on exercises</strong></a> for the guided
-Quickstart, matrix multiplication, and MobileNet batch-inference applications.
-Together, they progress from Unix command tasks to Python functions, declared
-files, and reusable worker-side Function Libraries.</p>
+<p>Complete the exercises in order:</p>
+<ol>
+<li><a href="quickstart/"><strong>TaskVine Quickstart</strong></a> — start a manager and worker, run
+   five command tasks, and collect their output.</li>
+<li><a href="matrix/"><strong>Matrix Multiplication</strong></a> — run Python functions with
+   <code>PythonTask</code> and declared input files.</li>
+<li><a href="mobilenet/"><strong>MobileNet Batch Inference</strong></a> — compare ordinary
+   PythonTasks with a persistent Function Library.</li>
+</ol>
+<p>The Quickstart also confirms that your tutorial account and TaskVine
+installation are ready.</p>
+<p><a href="quickstart/"><strong>Start with the TaskVine Quickstart →</strong></a></p>
 
 
 

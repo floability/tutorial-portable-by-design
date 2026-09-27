@@ -373,8 +373,6 @@
       
         
       
-        
-      
     
     
     
@@ -427,34 +425,6 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../02-taskvine/hands-on/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Hands-on Exercises
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -1323,10 +1293,12 @@ conda activate raglite-flinc-env
 </code></pre>
 <p>You will copy paste the above link starting with <code>http://localhost:</code> and paste it in your local machine's browser. </p>
 <p><strong>If the URL does NOT open</strong><br>
-You may need to set up SSH tunneling first. You will need to run a command with the following pattern on your local machine:</p>
-<pre><code class="language-bash">ssh -L &lt;LOCAL_PORT&gt;:localhost:&lt;REMOTE_PORT&gt; &lt;USERNAME&gt;@&lt;SERVER&gt;
+You may need to set up SSH tunneling first.</p>
+<p><strong>Open a new terminal.</strong></p>
+<p>You will need to run a command with the following pattern on the new terminal on your local machine:</p>
+<pre><code class="language-bash">ssh -L &lt;JUPYTER_PORT&gt;:localhost:&lt;JUPYTER_PORT&gt; &lt;USERNAME&gt;@&lt;SERVER&gt;
 </code></pre>
-<p>Your <code>USERNAME</code> and <code>SERVER</code> are already provided to you. <code>REMOTE_PORT</code> will be given in the output shown above for the previous command. For example, the actual command to run on your local machine will look similar to this:</p>
+<p>Your <code>USERNAME</code> and <code>SERVER</code> are already provided to you in your credentials card. <code>&lt;JUPYTER_PORT&gt;</code> is given in the output shown above for the previous command after <code>http://localhost:</code>. For example, the actual command to run on your local machine will look similar to this:</p>
 <pre><code class="language-bash">ssh -L localhost:8891:localhost:8891 user02@34.250.253.140
 </code></pre>
 <p>You will be asked to enter your password. </p>
