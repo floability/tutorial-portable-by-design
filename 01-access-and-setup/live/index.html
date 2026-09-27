@@ -371,10 +371,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#windows-unverified" class="md-nav__link">
+  <a href="#windows" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Windows — unverified
+        Windows
       
     </span>
   </a>
@@ -1174,10 +1174,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#windows-unverified" class="md-nav__link">
+  <a href="#windows" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Windows — unverified
+        Windows
       
     </span>
   </a>
@@ -1268,14 +1268,19 @@
 <pre><code class="language-bash">ssh &lt;USERNAME&gt;@&lt;SERVER&gt;
 </code></pre>
 <p>Replace <code>&lt;USERNAME&gt;</code> and <code>&lt;SERVER&gt;</code> with the values printed on your card.</p>
-<h2 id="windows-unverified">Windows — unverified</h2>
-<blockquote>
-<p><strong>These Windows instructions have not been verified yet.</strong> We will remove this notice after testing password login and SSH tunneling on a Windows computer.</p>
-</blockquote>
-<p>Open PowerShell or Windows Terminal and check whether the OpenSSH client is available:</p>
+<h2 id="windows">Windows</h2>
+<p>Open <strong>PowerShell</strong> or Windows Terminal to check whether SSH is already installed:</p>
 <pre><code class="language-powershell">ssh -V
 </code></pre>
-<p>If that prints an OpenSSH version, connect with:</p>
+<p>If that prints an OpenSSH version, you are ready to connect.</p>
+<p>If <code>ssh</code> is not recognized, open <strong>PowerShell</strong> as <strong>Administrator</strong> and <strong>install</strong> the OpenSSH Client:</p>
+<pre><code class="language-powershell">Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+</code></pre>
+<p>After installation, verify it:</p>
+<pre><code class="language-powershell">ssh -V
+</code></pre>
+<p>If that prints an OpenSSH version, SSH is ready to use.</p>
+<p>Connect with:</p>
 <pre><code class="language-powershell">ssh &lt;USERNAME&gt;@&lt;SERVER&gt;
 </code></pre>
 <p>Replace <code>&lt;USERNAME&gt;</code> and <code>&lt;SERVER&gt;</code> with the values printed on your card.</p>
