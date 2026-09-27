@@ -55,13 +55,9 @@ Short presentations introduce each concept, followed immediately by guided exerc
 
 By the end of the tutorial, you will be able to:
 
-- build and execute a distributed workflow with TaskVine;
-- explain TaskVine's manager-worker execution model;
-- capture and reproduce a workflow execution with Sciunit;
-- run script and notebook workflows packaged as Floability backpacks;
-- identify the workflow, software, data, and compute specifications in a backpack;
-- create and run a backpack from an existing workflow; and
-- use Floability Audit to generate initial backpack specifications for manual review.
+- build and run a distributed workflow with TaskVine;
+- capture and reproduce an application with Sciunit; and
+- package and run script or notebook workflows as Floability backpacks.
 
 ## Related resources
 
