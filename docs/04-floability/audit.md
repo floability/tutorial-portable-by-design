@@ -266,7 +266,18 @@ http://localhost:8888/lab?token=<TOKEN>
 If port `8888` is already in use on your computer, choose another local port,
 such as `8889`, in both the SSH command and browser URL.
 
+The remote port belongs to this specific Floability run. Close any tunnel from
+an earlier run with `Ctrl-C`, open a new terminal on your computer, and use the
+new tunnel command printed by Floability.
+
 **Continue with either setup**
+
+Open `workflow/matrix-multiplication.ipynb` and run its cells. When you are
+finished, save the notebook and return to the terminal running Floability.
+Press `Ctrl-C` to stop JupyterLab and its worker processes. Live participants
+should also return to the SSH tunnel terminal and press `Ctrl-C`. For another
+interactive run, open a new local terminal and use the new tunnel command and
+port printed by Floability.
 
 You can also execute the notebook without opening Jupyter:
 
@@ -280,6 +291,17 @@ For a Slurm cluster:
 floability run \
     --backpack matrix-backpack \
     --batch-type slurm
+```
+
+## Reset
+
+To repeat the Audit exercise, remove only the generated backpack before
+returning to step 3:
+
+```bash
+if test -d "$HOME/tutorial/examples/audit/matrix-backpack"; then
+  rm -rf -- "$HOME/tutorial/examples/audit/matrix-backpack"
+fi
 ```
 
 ---

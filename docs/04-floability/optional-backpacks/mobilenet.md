@@ -109,6 +109,10 @@ http://localhost:8888/lab?token=<TOKEN>
 If port `8888` is already in use on your computer, choose another local port,
 such as `8889`, in both the SSH command and browser URL.
 
+The remote port belongs to this specific Floability run. Close any tunnel from
+an earlier run with `Ctrl-C`, open a new terminal on your computer, and use the
+new tunnel command printed by Floability.
+
 **Continue with either setup**
 
 Open:
@@ -117,8 +121,10 @@ Open:
 workflow/mobilenet-serverless-taskvine.ipynb
 ```
 
-Run all cells, save the notebook, and stop Floability with `Ctrl-C`. Inspect the
-generated files under:
+Run all cells and save the notebook. Return to the terminal running Floability
+and press `Ctrl-C` to stop JupyterLab and its worker processes. Live
+participants should also return to the SSH tunnel terminal and press `Ctrl-C`.
+Inspect the generated files under:
 
 ```text
 workflow/outputs/
@@ -144,9 +150,12 @@ floability run --backpack . \
   --sync-path outputs
 ```
 
-Open JupyterLab using the URL and, if needed, the SSH tunnel steps above. Open
-`workflow/mobilenet-python-task.ipynb`, run all cells, save the notebook, and
-stop Floability with `Ctrl-C`. This run produces `python-task-summary.json` and
+This second interactive run may use a different remote port. Open a new
+terminal on your computer and use the new tunnel command printed by
+Floability; do not reuse the tunnel from the stateful run. Open
+`workflow/mobilenet-python-task.ipynb`, run all cells, and save the notebook.
+Return to the terminal running Floability and press `Ctrl-C`, then close the
+new SSH tunnel with `Ctrl-C`. This run produces `python-task-summary.json` and
 `python-task-contact-sheet.jpg`.
 
 Compare the mode, timing, task metadata, model-load identifiers, and predictions recorded in the two JSON summaries. This small dataset illustrates the execution models, but it is not a performance benchmark.

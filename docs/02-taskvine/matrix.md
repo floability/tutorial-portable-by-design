@@ -44,11 +44,14 @@ cd ~/tutorial/examples/taskvine/matrix-files
 ls
 ```
 
-You should see:
+You should see at least:
 
 ```text
 README.md  data  environment.yml  matrix-files.py
 ```
+
+After a previous run, you may also see generated directories such as
+`vine-run-info` or `outputs`. This is normal.
 
 ## 2. Check the matrix dependencies
 
@@ -145,6 +148,14 @@ vine_factory -T local --min-workers=1 --max-workers=2 \
 
 Use the complete command printed by the program. It contains the actual
 manager name and the matching absolute scratch-directory path.
+
+!!! note "AWS address warning"
+
+    On the live tutorial server, a worker may briefly report that the public
+    manager address is not one of the machine's local interfaces. If the
+    worker then connects through a private `172.31.x.x` address and tasks
+    begin completing, the warning is harmless. If tasks remain waiting, ask
+    an instructor for help.
 
 The options have distinct purposes:
 

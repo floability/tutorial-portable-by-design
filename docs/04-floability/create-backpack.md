@@ -170,6 +170,10 @@ command.
     Floability. Use the same JupyterLab access process as in
     [Run Your First Interactive Backpack](first-interactive-backpack.md#4-open-jupyterlab).
 
+    The remote port can change between runs. Close any tunnel from an earlier
+    run with `Ctrl-C`, open a new terminal on your computer, and use the tunnel
+    command printed for this run.
+
 Open JupyterLab, select `workflow/my-taskvine-backpack.ipynb`, and run all
 cells. The workflow should process two staged text files. Keep JupyterLab and
 the Floability terminal running for the next step.
@@ -206,7 +210,10 @@ notebook a fresh TaskVine manager before executing the workflow again. The
 new results should include a count for `love`.
 
 Save the notebook. Return to the terminal running Floability and press
-`Ctrl-C` to stop JupyterLab and its worker processes.
+`Ctrl-C` to stop JupyterLab and its worker processes. Live participants should
+also return to the SSH tunnel terminal and press `Ctrl-C`. For another
+interactive run, open a new local terminal and use the new tunnel command and
+port printed by Floability.
 
 ### If you created the script
 

@@ -149,6 +149,11 @@ http://localhost:8888/lab?token=<TOKEN>
 If port `8888` is already in use on your computer, choose another local port,
 such as `8889`, in both the SSH command and browser URL.
 
+The remote port belongs to this specific Floability run. A later interactive
+run may print a different port. Do not reuse an earlier tunnel command: close
+the old tunnel with `Ctrl-C`, open a new terminal on your computer, and use the
+new command printed by Floability.
+
 **Continue with either setup**
 
 ## 5. Run the workflow
@@ -180,8 +185,10 @@ Ctrl-C
 ```
 
 Floability stops JupyterLab and the worker factory, cleans up their processes,
-and synchronizes the edited notebook back to the backpack. You may also close
-the SSH tunnel with `Ctrl-C` after JupyterLab has stopped.
+and synchronizes the edited notebook back to the backpack. Live participants
+should then return to the SSH tunnel terminal and press `Ctrl-C` there as
+well. For the next interactive run, open a new local terminal and use the new
+tunnel command and port printed by Floability.
 
 ## What Floability handled
 

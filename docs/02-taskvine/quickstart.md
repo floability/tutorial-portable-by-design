@@ -40,11 +40,14 @@ cd ~/tutorial/examples/taskvine/quickstart
 ls
 ```
 
-You should see:
+You should see at least:
 
 ```text
 README.md  taskvine-quickstart.py
 ```
+
+After a previous run, you may also see generated directories such as
+`vine-run-info`. This is normal.
 
 ## 2. Start the manager
 
