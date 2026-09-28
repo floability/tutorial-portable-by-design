@@ -106,10 +106,11 @@ data/
     └── local-sample.txt
 ```
 
-## 3. Set the software specification
+## 3. Reuse the prepared software environment
 
-Use the same pinned software specification as the matrix backpack you ran
-earlier:
+The generated backpack already contains a valid `environment.yml`. For the
+live exercise, replace it with the exact pinned specification used by the
+matrix backpack:
 
 ```bash
 cp ~/tutorial/examples/backpacks/matrix-multiplication-script/software/environment.yml \
@@ -117,10 +118,14 @@ cp ~/tutorial/examples/backpacks/matrix-multiplication-script/software/environme
 cat ~/tutorial/created-backpacks/my-taskvine-backpack/software/environment.yml
 ```
 
-The starter workflows do not require NumPy, but using the identical
-specification allows Floability to reuse the environment prepared by the
-matrix exercise. If you skipped that exercise, Floability creates the
-environment now.
+The starter workflows do not require NumPy. We use this identical file so
+Floability can reuse the environment prepared by the earlier matrix exercise
+instead of building another environment during the tutorial. If you skipped
+that exercise, Floability creates the environment now.
+
+This is a tutorial-time optimization, not a required backpack-creation step.
+For your own workflow, edit the generated file to describe its actual software
+dependencies.
 
 ## 4. Request one small worker
 
@@ -144,21 +149,64 @@ vine_factory_config:
 Save with `Ctrl-O`, press `Enter`, and exit with `Ctrl-X`. Floability will use
 this file to start one local worker.
 
-## 5. Customize the workflow
+## 5. Run the generated backpack
+
+Run the unmodified template first. Use the command matching the workflow type
+you generated.
+
+### Notebook entrypoint
+
+```bash
+floability run \
+  --backpack ~/tutorial/created-backpacks/my-taskvine-backpack
+```
+
+Floability prints the JupyterLab URL and, for a remote server, the SSH tunnel
+command.
+
+!!! important "Floability prints a ready-to-copy command"
+
+    Live participants can copy the complete SSH tunnel command printed by
+    Floability. Use the same JupyterLab access process as in
+    [Run Your First Interactive Backpack](first-interactive-backpack.md#4-open-jupyterlab).
+
+Open JupyterLab, select `workflow/my-taskvine-backpack.ipynb`, and run all
+cells. The workflow should process two staged text files. Keep JupyterLab and
+the Floability terminal running for the next step.
+
+### Script entrypoint
+
+```bash
+floability execute \
+  --backpack ~/tutorial/created-backpacks/my-taskvine-backpack
+```
+
+The workflow runs to completion and prints its results in the terminal. The
+last line should report that all 20 tasks completed. The initial results are
+multiples of two.
+
+## 6. Customize and rerun the workflow
 
 ### If you created the notebook
 
-Continue to the next step. After JupyterLab opens, find the cell defining:
+In the open notebook, find the cell defining:
 
 ```python
 def worker_function(file_path, keywords=("war", "peace")):
 ```
 
-Add `"love"` to the keyword tuple, then run all cells:
+Add `"love"` to the keyword tuple:
 
 ```python
 def worker_function(file_path, keywords=("war", "peace", "love")):
 ```
+
+Use **Kernel → Restart Kernel and Run All Cells**. Restarting gives the
+notebook a fresh TaskVine manager before executing the workflow again. The
+new results should include a count for `love`.
+
+Save the notebook. Return to the terminal running Floability and press
+`Ctrl-C` to stop JupyterLab and its worker processes.
 
 ### If you created the script
 
@@ -177,37 +225,13 @@ return {"input": value, "output": value * 2}
 Change the multiplier from `2` to `3`, then save and exit. The output should
 now contain multiples of three.
 
-## 6. Run the backpack
-
-Use the command that matches the workflow type you generated.
-
-### Notebook entrypoint
-
-```bash
-floability run \
-  --backpack ~/tutorial/created-backpacks/my-taskvine-backpack
-```
-
-Floability prints the JupyterLab URL and, for a remote server, the SSH tunnel
-command. Open JupyterLab, select the generated notebook, add `"love"` to the
-keyword tuple, and run all cells. The workflow should process two staged text
-files. Stop the Floability process with `Ctrl-C` when you are finished.
-
-!!! important "Floability prints a ready-to-copy command"
-
-    Live participants can copy the complete SSH tunnel command printed by
-    Floability. Use the same JupyterLab access process as in
-    [Run Your First Interactive Backpack](first-interactive-backpack.md#4-open-jupyterlab).
-
-### Script entrypoint
-
 ```bash
 floability execute \
   --backpack ~/tutorial/created-backpacks/my-taskvine-backpack
 ```
 
-The workflow runs to completion and prints its results in the terminal. The
-last line should report that all 20 tasks completed.
+The second run should again complete 20 tasks, now returning multiples of
+three.
 
 ## What Floability added
 
