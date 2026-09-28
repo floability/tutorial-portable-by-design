@@ -1299,6 +1299,18 @@ each submitted task and each completed result directly in the terminal:</p>
 <p>Your run succeeded if it reached:</p>
 <pre><code class="language-text">[manager] Completed all 45 tasks
 </code></pre>
+<div class="admonition note">
+<p class="admonition-title">Cleanup messages are not workflow failures</p>
+<p>After the workflow succeeds, Floability interrupts the worker factory and
+its Conda wrapper so they do not remain running. During this cleanup you
+may see messages such as <code>CondaError: KeyboardInterrupt</code>, <code>Connection
+refused</code>, <code>SIGTERM</code>, or <code>SIGKILL</code>. These messages are expected when they
+appear after:</p>
+<p><code>text
+[floability] Script completed successfully (exit 0)</code></p>
+<p>Cleanup is complete when Floability reports <code>All subprocesses cleaned up</code>
+and exits the run.</p>
+</div>
 <p>Floability also records the complete terminal output in the run instance's
 <code>logs/workflow.log</code> file.</p>
 <h2 id="what-floability-handled">What Floability handled</h2>

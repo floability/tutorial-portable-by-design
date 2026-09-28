@@ -995,6 +995,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-did-we-do" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1200,6 +1211,17 @@
     <span class="md-ellipsis">
       
         5. Run the Backpack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reset
       
     </span>
   </a>
@@ -1442,7 +1464,16 @@ printed URL with local port <code>8888</code>:</p>
 </code></pre>
 <p>If port <code>8888</code> is already in use on your computer, choose another local port,
 such as <code>8889</code>, in both the SSH command and browser URL.</p>
+<p>The remote port belongs to this specific Floability run. Close any tunnel from
+an earlier run with <code>Ctrl-C</code>, open a new terminal on your computer, and use the
+new tunnel command printed by Floability.</p>
 <p><strong>Continue with either setup</strong></p>
+<p>Open <code>workflow/matrix-multiplication.ipynb</code> and run its cells. When you are
+finished, save the notebook and return to the terminal running Floability.
+Press <code>Ctrl-C</code> to stop JupyterLab and its worker processes. Live participants
+should also return to the SSH tunnel terminal and press <code>Ctrl-C</code>. For another
+interactive run, open a new local terminal and use the new tunnel command and
+port printed by Floability.</p>
 <p>You can also execute the notebook without opening Jupyter:</p>
 <pre><code class="language-bash">floability execute --backpack matrix-backpack
 </code></pre>
@@ -1450,6 +1481,13 @@ such as <code>8889</code>, in both the SSH command and browser URL.</p>
 <pre><code class="language-bash">floability run \
     --backpack matrix-backpack \
     --batch-type slurm
+</code></pre>
+<h2 id="reset">Reset</h2>
+<p>To repeat the Audit exercise, remove only the generated backpack before
+returning to step 3:</p>
+<pre><code class="language-bash">if test -d &quot;$HOME/tutorial/examples/audit/matrix-backpack&quot;; then
+  rm -rf -- &quot;$HOME/tutorial/examples/audit/matrix-backpack&quot;
+fi
 </code></pre>
 <hr />
 <h2 id="what-did-we-do">What Did We Do?</h2>

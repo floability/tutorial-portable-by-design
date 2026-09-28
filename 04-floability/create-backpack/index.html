@@ -1656,6 +1656,9 @@ command.</p>
 <p>Live participants can copy the complete SSH tunnel command printed by
 Floability. Use the same JupyterLab access process as in
 <a href="../first-interactive-backpack/#4-open-jupyterlab">Run Your First Interactive Backpack</a>.</p>
+<p>The remote port can change between runs. Close any tunnel from an earlier
+run with <code>Ctrl-C</code>, open a new terminal on your computer, and use the tunnel
+command printed for this run.</p>
 </div>
 <p>Open JupyterLab, select <code>workflow/my-taskvine-backpack.ipynb</code>, and run all
 cells. The workflow should process two staged text files. Keep JupyterLab and
@@ -1679,7 +1682,10 @@ multiples of two.</p>
 notebook a fresh TaskVine manager before executing the workflow again. The
 new results should include a count for <code>love</code>.</p>
 <p>Save the notebook. Return to the terminal running Floability and press
-<code>Ctrl-C</code> to stop JupyterLab and its worker processes.</p>
+<code>Ctrl-C</code> to stop JupyterLab and its worker processes. Live participants should
+also return to the SSH tunnel terminal and press <code>Ctrl-C</code>. For another
+interactive run, open a new local terminal and use the new tunnel command and
+port printed by Floability.</p>
 <h3 id="if-you-created-the-script">If you created the script</h3>
 <p>Open the generated Python file:</p>
 <pre><code class="language-bash">nano ~/tutorial/created-backpacks/my-taskvine-backpack/workflow/*.py

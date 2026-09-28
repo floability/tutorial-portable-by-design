@@ -1374,6 +1374,10 @@ printed URL with local port <code>8888</code>:</p>
 </code></pre>
 <p>If port <code>8888</code> is already in use on your computer, choose another local port,
 such as <code>8889</code>, in both the SSH command and browser URL.</p>
+<p>The remote port belongs to this specific Floability run. A later interactive
+run may print a different port. Do not reuse an earlier tunnel command: close
+the old tunnel with <code>Ctrl-C</code>, open a new terminal on your computer, and use the
+new command printed by Floability.</p>
 <p><strong>Continue with either setup</strong></p>
 <h2 id="5-run-the-workflow">5. Run the workflow</h2>
 <p>In JupyterLab, open:</p>
@@ -1392,8 +1396,10 @@ press <code>Ctrl-C</code> once:</p>
 <pre><code class="language-text">Ctrl-C
 </code></pre>
 <p>Floability stops JupyterLab and the worker factory, cleans up their processes,
-and synchronizes the edited notebook back to the backpack. You may also close
-the SSH tunnel with <code>Ctrl-C</code> after JupyterLab has stopped.</p>
+and synchronizes the edited notebook back to the backpack. Live participants
+should then return to the SSH tunnel terminal and press <code>Ctrl-C</code> there as
+well. For the next interactive run, open a new local terminal and use the new
+tunnel command and port printed by Floability.</p>
 <h2 id="what-floability-handled">What Floability handled</h2>
 <p>During this one command, Floability:</p>
 <ol>
