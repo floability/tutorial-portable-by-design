@@ -137,12 +137,13 @@ Before running the audit, let's determine your **manager port** from your assign
 >
 > **Each user must use a different manager port to avoid conflicts when running the tutorial concurrently.**
 >
-> Add the **numeric part** of your **username** to **9123**.
+> Add the **numeric part** of your **username** to **9000**. Tutorial accounts
+> `user01` through `user25` therefore use ports `9001` through `9025`.
 >
 > **Examples:**
 >
-> - `user03` → `9123 + 3 = 9126`
-> - `user11` → `9123 + 11 = 9134`
+> - `user03` → `9000 + 3 = 9003`
+> - `user11` → `9000 + 11 = 9011`
 >
 > ⚠️ **Replace `<MANAGER_PORT>` in the command below with your calculated port number.**
 
