@@ -1,6 +1,6 @@
 # Running Multi-Step Workflow with FLINC
 
-Workflows are most commonly executed in interactive environments like Jupyter notebooks. In order to achieve reproducibility in these environments, we use FLINC, which is built on top of Sciunit and extends the concept of application virtualization to such environments. It creates two new kernels: audit and repeat.
+Workflows are most commonly executed in interactive environments like Jupyter notebooks. In order to achieve reproducibility in these environments, we use FLINC, which is built on top of Sciunit and extends the concept of application virtualization to interactive environments. It creates two new kernels: audit and repeat.
 
 Complete the [RAG-Lite Sciunit exercise](rag-lite.md) before starting this page.
 
@@ -56,7 +56,7 @@ Available kernels:
   audit-kernel    /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/audit-kernel
   python3         /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/python3
   rag-lite-flinc-env    /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/raglite-flinc-env
-  repeat-kernel   /home/user03/.conda/envs/raglite-flinc-env/share/jupyter/kernels/repeat-kernel
+  repeat-kernel   /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/repeat-kernel
 ```
 
 
@@ -108,27 +108,33 @@ You may need to set up SSH tunneling first.
 
 **Open a new terminal.**
 
-You will need to run a command with the following pattern on the new terminal on your local machine:
-```bash
+You will need to run a command with the following pattern on the new terminal on **your local machine**:
+```
 ssh -L <JUPYTER_PORT>:localhost:<JUPYTER_PORT> <USERNAME>@<SERVER>
 ```
-Your `USERNAME` and `SERVER` are already provided to you in your credentials card. `<JUPYTER_PORT>` is given in the output shown above for the previous command after `http://localhost:`. For example, the actual command to run on your local machine will look similar to this:
+Your `USERNAME` and `SERVER` are already provided to you in your credentials card. `<JUPYTER_PORT>` is given in the output of the previous command shown above  after `http://localhost:`. For example, the actual command to run on your local machine will look similar to this:
 ```bash
 ssh -L localhost:8891:localhost:8891 user02@34.250.253.140
 ```
-You will be asked to enter your password. 
+You will be asked to enter your password for this machine when you run this command.
 
 **If the URL opens**<br>
 Navigate to the browser link where you can visualize and open the notebook `rag-lite_workflow.ipynb`.
 
 
 ## Auditing with FLINC
-Select the `Sciunit Audit(rag-lite)` kernel in the notebook and execute your notebook code. FLINC will audit this entire notebook execution. After execution completes, select 'No Kernel' from the list to explicitly mark the end of audit process. Wait a few seconds to let the audit process complete and create the container in the background. Each audit run will create a new Sciunit execution.
+1. From the list of available kernels for this notebook, select the `Sciunit Audit(rag-lite)` kernel.
+2. Run all cells of your notebook. FLINC will audit the entire notebook execution in the background. 
+3. After notebook execution is complete, select `No Kernel` from the list of kernels to explicitly mark the end of audit process.
+
+Wait a few seconds to let the audit process finish and create the execution container in the background. Each audit run will create a new Sciunit execution.
 
 ## Repeating with FLINC
-You can repeat your notebook code on the same or different machine. Select the `Sciunit Repeat` kernel and execute the notebook code. This will repeat the last audited execution successfully. After using the repeat kernel, select 'No Kernel' from the list of kernels to finish. 
+1. Select the `Sciunit Repeat` kernel from the list of kernels.
+2. Run all cells of your notebook. FLINC will repeat the last audited execution. 
+3. When you are done repeating the notebook code, select `No Kernel` from the list of kernels to end FLINC. 
 
-Go back to the terminal and press Ctrl+C to terminate the Jupyter server process.
+Go back to the terminal and press `Ctrl+C` to terminate the Jupyter server process.
 
 ## Inspecting Notebook Executions
 FILNC will store your notebook as an executable which you can view from the command line:

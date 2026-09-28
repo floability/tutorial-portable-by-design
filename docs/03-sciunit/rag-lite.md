@@ -199,7 +199,11 @@ You will not see any response since these do not exist in this environment.
 Now repeat the executions one by one:
 ```bash
 sciunit repeat e1
+```
+```
 sciunit repeat e2
+```
+```
 sciunit repeat e3
 ```
 
