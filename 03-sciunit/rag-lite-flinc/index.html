@@ -1213,7 +1213,7 @@
 
 
 <h1 id="running-multi-step-workflow-with-flinc">Running Multi-Step Workflow with FLINC</h1>
-<p>Workflows are most commonly executed in interactive environments like Jupyter notebooks. In order to achieve reproducibility in these environments, we use FLINC, which is built on top of Sciunit and extends the concept of application virtualization to such environments. It creates two new kernels: audit and repeat.</p>
+<p>Workflows are most commonly executed in interactive environments like Jupyter notebooks. In order to achieve reproducibility in these environments, we use FLINC, which is built on top of Sciunit and extends the concept of application virtualization to interactive environments. It creates two new kernels: audit and repeat.</p>
 <p>Complete the <a href="../rag-lite/">RAG-Lite Sciunit exercise</a> before starting this page.</p>
 <p>First, move into this directory:</p>
 <pre><code class="language-bash">cd ~/tutorial/examples/sciunit/flinc
@@ -1252,7 +1252,7 @@ conda activate raglite-flinc-env
   audit-kernel    /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/audit-kernel
   python3         /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/python3
   rag-lite-flinc-env    /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/raglite-flinc-env
-  repeat-kernel   /home/user03/.conda/envs/raglite-flinc-env/share/jupyter/kernels/repeat-kernel
+  repeat-kernel   /home/user02/.conda/envs/raglite-flinc-env/share/jupyter/kernels/repeat-kernel
 </code></pre>
 <h2 id="starting-the-notebook-server">Starting the Notebook Server</h2>
 <p>Move into the correct directory:</p>
@@ -1295,20 +1295,29 @@ conda activate raglite-flinc-env
 <p><strong>If the URL does NOT open</strong><br>
 You may need to set up SSH tunneling first.</p>
 <p><strong>Open a new terminal.</strong></p>
-<p>You will need to run a command with the following pattern on the new terminal on your local machine:</p>
-<pre><code class="language-bash">ssh -L &lt;JUPYTER_PORT&gt;:localhost:&lt;JUPYTER_PORT&gt; &lt;USERNAME&gt;@&lt;SERVER&gt;
+<p>You will need to run a command with the following pattern on the new terminal on <strong>your local machine</strong>:</p>
+<pre><code>ssh -L &lt;JUPYTER_PORT&gt;:localhost:&lt;JUPYTER_PORT&gt; &lt;USERNAME&gt;@&lt;SERVER&gt;
 </code></pre>
-<p>Your <code>USERNAME</code> and <code>SERVER</code> are already provided to you in your credentials card. <code>&lt;JUPYTER_PORT&gt;</code> is given in the output shown above for the previous command after <code>http://localhost:</code>. For example, the actual command to run on your local machine will look similar to this:</p>
+<p>Your <code>USERNAME</code> and <code>SERVER</code> are already provided to you in your credentials card. <code>&lt;JUPYTER_PORT&gt;</code> is given in the output of the previous command shown above  after <code>http://localhost:</code>. For example, the actual command to run on your local machine will look similar to this:</p>
 <pre><code class="language-bash">ssh -L localhost:8891:localhost:8891 user02@34.250.253.140
 </code></pre>
-<p>You will be asked to enter your password. </p>
+<p>You will be asked to enter your password for this machine when you run this command.</p>
 <p><strong>If the URL opens</strong><br>
 Navigate to the browser link where you can visualize and open the notebook <code>rag-lite_workflow.ipynb</code>.</p>
 <h2 id="auditing-with-flinc">Auditing with FLINC</h2>
-<p>Select the <code>Sciunit Audit(rag-lite)</code> kernel in the notebook and execute your notebook code. FLINC will audit this entire notebook execution. After execution completes, select 'No Kernel' from the list to explicitly mark the end of audit process. Wait a few seconds to let the audit process complete and create the container in the background. Each audit run will create a new Sciunit execution.</p>
+<ol>
+<li>From the list of available kernels for this notebook, select the <code>Sciunit Audit(rag-lite)</code> kernel.</li>
+<li>Run all cells of your notebook. FLINC will audit the entire notebook execution in the background. </li>
+<li>After notebook execution is complete, select <code>No Kernel</code> from the list of kernels to explicitly mark the end of audit process.</li>
+</ol>
+<p>Wait a few seconds to let the audit process finish and create the execution container in the background. Each audit run will create a new Sciunit execution.</p>
 <h2 id="repeating-with-flinc">Repeating with FLINC</h2>
-<p>You can repeat your notebook code on the same or different machine. Select the <code>Sciunit Repeat</code> kernel and execute the notebook code. This will repeat the last audited execution successfully. After using the repeat kernel, select 'No Kernel' from the list of kernels to finish. </p>
-<p>Go back to the terminal and press Ctrl+C to terminate the Jupyter server process.</p>
+<ol>
+<li>Select the <code>Sciunit Repeat</code> kernel from the list of kernels.</li>
+<li>Run all cells of your notebook. FLINC will repeat the last audited execution. </li>
+<li>When you are done repeating the notebook code, select <code>No Kernel</code> from the list of kernels to end FLINC. </li>
+</ol>
+<p>Go back to the terminal and press <code>Ctrl+C</code> to terminate the Jupyter server process.</p>
 <h2 id="inspecting-notebook-executions">Inspecting Notebook Executions</h2>
 <p>FILNC will store your notebook as an executable which you can view from the command line:</p>
 <pre><code class="language-bash">sciunit list
