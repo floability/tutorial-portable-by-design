@@ -1,6 +1,3 @@
-!!! warning "Under construction"
-    This tutorial is still under construction. Materials and instructions may change before eScience 2026.
-
 # Portable by Design
 
 ## Deploying Notebook-based Scientific Workflows Across HPC Clusters
