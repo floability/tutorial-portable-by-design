@@ -1317,10 +1317,15 @@ cd ~/tutorial/examples/backpacks/matrix-multiplication
 <p><strong>Continue with either setup</strong></p>
 <p>Both setup paths now use the same backpack directory.</p>
 <h2 id="2-recognize-the-backpack-root">2. Recognize the backpack root</h2>
-<p>List its contents:</p>
-<pre><code class="language-bash">ls
+<p>Display its structure:</p>
+<pre><code class="language-bash">tree -L 2
 </code></pre>
-<p>You should see:</p>
+<p>If <code>tree</code> is not available, try:</p>
+<pre><code class="language-bash">ls -R
+</code></pre>
+<p>The <code>ls -R</code> output is formatted differently from <code>tree</code>, but it lists the
+same directories and files.</p>
+<p>The top of the <code>ls -R</code> output should include:</p>
 <pre><code class="language-text">README.md  compute  data  software  workflow
 </code></pre>
 <p>These directories are the backpack's workflow, software, data, and compute

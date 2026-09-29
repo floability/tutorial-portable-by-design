@@ -1581,31 +1581,37 @@ environment using the command for your setup:</p>
 <p>Run <strong>one</strong> of the following commands—not both.</p>
 <h3 id="notebook-with-managed-data">Notebook with managed data</h3>
 <pre><code class="language-bash">floability backpack init \
-  --name ~/tutorial/created-backpacks/my-taskvine-backpack \
+  --name ~/tutorial/created-backpacks/my-taskvine-notebook \
   --from-template taskvine-data
+cd ~/tutorial/created-backpacks/my-taskvine-notebook
 </code></pre>
 <p>This is the default notebook-based path. It creates a TaskVine notebook,
 <code>data/data.yml</code>, one backpack-local text file, and one remote text input.</p>
 <h3 id="script-without-managed-data">Script without managed data</h3>
 <pre><code class="language-bash">floability backpack init \
-  --name ~/tutorial/created-backpacks/my-taskvine-backpack \
+  --name ~/tutorial/created-backpacks/my-taskvine-script \
   --from-template taskvine \
   --script
+cd ~/tutorial/created-backpacks/my-taskvine-script
 </code></pre>
 <p>The <code>--script</code> option creates a Python entrypoint. This basic template leaves
 input-data management to the workflow, so it does not create <code>data/data.yml</code>.</p>
 <h2 id="2-inspect-the-generated-backpack">2. Inspect the generated backpack</h2>
-<pre><code class="language-bash">find ~/tutorial/created-backpacks/my-taskvine-backpack \
-  -maxdepth 3 -type f | sort
+<pre><code class="language-bash">tree -L 3 .
 </code></pre>
+<p>If <code>tree</code> is not available, try:</p>
+<pre><code class="language-bash">ls -R .
+</code></pre>
+<p>The <code>ls -R</code> output is formatted differently from <code>tree</code>, but it lists the
+same directories and files.</p>
 <p>Both options include:</p>
-<pre><code class="language-text">my-taskvine-backpack/
+<pre><code class="language-text">./
 ├── compute/
 │   └── compute.yml
 ├── software/
 │   └── environment.yml
 └── workflow/
-    └── my-taskvine-backpack.py or my-taskvine-backpack.ipynb
+    └── my-taskvine-script.py or my-taskvine-notebook.ipynb
 </code></pre>
 <p>The notebook option also includes:</p>
 <pre><code class="language-text">data/
@@ -1618,8 +1624,8 @@ input-data management to the workflow, so it does not create <code>data/data.yml
 live exercise, replace it with the exact pinned specification used by the
 matrix backpack:</p>
 <pre><code class="language-bash">cp ~/tutorial/examples/backpacks/matrix-multiplication-script/software/environment.yml \
-  ~/tutorial/created-backpacks/my-taskvine-backpack/software/environment.yml
-cat ~/tutorial/created-backpacks/my-taskvine-backpack/software/environment.yml
+  software/environment.yml
+cat software/environment.yml
 </code></pre>
 <p>The starter workflows do not require NumPy. We use this identical file so
 Floability can reuse the environment prepared by the earlier matrix exercise
@@ -1630,7 +1636,7 @@ For your own workflow, edit the generated file to describe its actual software
 dependencies.</p>
 <h2 id="4-request-one-small-worker">4. Request one small worker</h2>
 <p>Open the compute specification:</p>
-<pre><code class="language-bash">nano ~/tutorial/created-backpacks/my-taskvine-backpack/compute/compute.yml
+<pre><code class="language-bash">nano compute/compute.yml
 </code></pre>
 <p>Replace its contents with:</p>
 <pre><code class="language-yaml">vine_factory_config:
@@ -1646,8 +1652,7 @@ this file to start one local worker.</p>
 <p>Run the unmodified template first. Use the command matching the workflow type
 you generated.</p>
 <h3 id="notebook-entrypoint">Notebook entrypoint</h3>
-<pre><code class="language-bash">floability run \
-  --backpack ~/tutorial/created-backpacks/my-taskvine-backpack
+<pre><code class="language-bash">floability run --backpack .
 </code></pre>
 <p>Floability prints the JupyterLab URL and, for a remote server, the SSH tunnel
 command.</p>
@@ -1660,12 +1665,11 @@ Floability. Use the same JupyterLab access process as in
 run with <code>Ctrl-C</code>, open a new terminal on your computer, and use the tunnel
 command printed for this run.</p>
 </div>
-<p>Open JupyterLab, select <code>workflow/my-taskvine-backpack.ipynb</code>, and run all
+<p>Open JupyterLab, select <code>workflow/my-taskvine-notebook.ipynb</code>, and run all
 cells. The workflow should process two staged text files. Keep JupyterLab and
 the Floability terminal running for the next step.</p>
 <h3 id="script-entrypoint">Script entrypoint</h3>
-<pre><code class="language-bash">floability execute \
-  --backpack ~/tutorial/created-backpacks/my-taskvine-backpack
+<pre><code class="language-bash">floability execute --backpack .
 </code></pre>
 <p>The workflow runs to completion and prints its results in the terminal. The
 last line should report that all 20 tasks completed. The initial results are
@@ -1688,15 +1692,14 @@ interactive run, open a new local terminal and use the new tunnel command and
 port printed by Floability.</p>
 <h3 id="if-you-created-the-script">If you created the script</h3>
 <p>Open the generated Python file:</p>
-<pre><code class="language-bash">nano ~/tutorial/created-backpacks/my-taskvine-backpack/workflow/*.py
+<pre><code class="language-bash">nano workflow/my-taskvine-script.py
 </code></pre>
 <p>Find:</p>
 <pre><code class="language-python">return {&quot;input&quot;: value, &quot;output&quot;: value * 2}
 </code></pre>
 <p>Change the multiplier from <code>2</code> to <code>3</code>, then save and exit. The output should
 now contain multiples of three.</p>
-<pre><code class="language-bash">floability execute \
-  --backpack ~/tutorial/created-backpacks/my-taskvine-backpack
+<pre><code class="language-bash">floability execute --backpack .
 </code></pre>
 <p>The second run should again complete 20 tasks, now returning multiples of
 three.</p>
@@ -1712,11 +1715,19 @@ three.</p>
 <li>ran either a script or an interactive notebook.</li>
 </ol>
 <h2 id="reset">Reset</h2>
-<p>To repeat this exercise with the other option, remove only the backpack you
-created, then return to step 1:</p>
-<pre><code class="language-bash">test -d &quot;$HOME/tutorial/created-backpacks/my-taskvine-backpack&quot;
-rm -rf -- &quot;$HOME/tutorial/created-backpacks/my-taskvine-backpack&quot;
+<p>To repeat this exercise with the other option, first return to the parent
+directory:</p>
+<pre><code class="language-bash">cd ~/tutorial/created-backpacks
 </code></pre>
+<p>If you created the notebook backpack, remove it with:</p>
+<pre><code class="language-bash">test -d &quot;$HOME/tutorial/created-backpacks/my-taskvine-notebook&quot;
+rm -rf -- &quot;$HOME/tutorial/created-backpacks/my-taskvine-notebook&quot;
+</code></pre>
+<p>If you created the script backpack, remove it with:</p>
+<pre><code class="language-bash">test -d &quot;$HOME/tutorial/created-backpacks/my-taskvine-script&quot;
+rm -rf -- &quot;$HOME/tutorial/created-backpacks/my-taskvine-script&quot;
+</code></pre>
+<p>Then return to step 1 and create the other backpack.</p>
 <h2 id="start-from-an-existing-workflow">Start from an existing workflow</h2>
 <p>Use <code>--from-workflow</code> when you already have working code:</p>
 <pre><code class="language-bash">floability backpack init \

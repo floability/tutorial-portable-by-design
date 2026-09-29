@@ -1274,10 +1274,16 @@ responsibility.</p>
 <p>Return to the backpack directory:</p>
 <pre><code class="language-bash">cd ~/tutorial/examples/backpacks
 </code></pre>
-<p>List the files in both backpacks:</p>
-<pre><code class="language-bash">find matrix-multiplication-script -maxdepth 2 -type f | sort
-find matrix-multiplication -maxdepth 2 -type f | sort
+<p>Display both backpack structures:</p>
+<pre><code class="language-bash">tree -L 2 matrix-multiplication-script
+tree -L 2 matrix-multiplication
 </code></pre>
+<p>If <code>tree</code> is not available, try:</p>
+<pre><code class="language-bash">ls -R matrix-multiplication-script
+ls -R matrix-multiplication
+</code></pre>
+<p>The <code>ls -R</code> output is formatted differently from <code>tree</code>, but it lists the
+same directories and files.</p>
 <p>Both use the same backpack structure:</p>
 <pre><code class="language-text">backpack/
 ├── compute/

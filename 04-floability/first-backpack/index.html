@@ -1268,10 +1268,15 @@ cd ~/tutorial/examples/backpacks/matrix-multiplication-script
 </code></pre>
 <p><strong>Continue with either setup</strong></p>
 <h2 id="2-inspect-the-backpack">2. Inspect the backpack</h2>
-<p>List its contents:</p>
-<pre><code class="language-bash">ls
+<p>Display its structure:</p>
+<pre><code class="language-bash">tree -L 2
 </code></pre>
-<p>You should see:</p>
+<p>If <code>tree</code> is not available, try:</p>
+<pre><code class="language-bash">ls -R
+</code></pre>
+<p>The <code>ls -R</code> output is formatted differently from <code>tree</code>, but it lists the
+same directories and files.</p>
+<p>The top of the <code>ls -R</code> output should include:</p>
 <pre><code class="language-text">README.md  compute  data  software  workflow
 </code></pre>
 <h2 id="3-execute-the-workflow">3. Execute the workflow</h2>
